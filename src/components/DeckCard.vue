@@ -2,31 +2,33 @@
   <div class="productcard">
     <div
       class="columns"
-      v-for="(skateboards, index) in chunkedSkateboards"
+      v-for="(decks, index) in chunkedSkateboards"
       v-bind:key="index"
     >
       <div
         class="column"
-        v-for="(skateboard, index) in skateboards"
+        v-for="(deck, index) in decks"
         v-bind:key="index"
       >
         <div class="card">
           <div class="card-content">
             <img
               class="skateboardimage"
-              :src="skateboard.src"
-              :alt="skateboard.alt"
+              :src="deck.src"
+              :alt="deck.alt"
             />
             <div class="content">
-              <p class="subtitle">{{ skateboard.name }}</p>
-              <p class="subtitle">{{ skateboard.price }}</p>
-              <p class="subtitle is-6">Maat: {{ skateboard.size }}</p>
+              <br>
+              <p class="subtitle">{{ deck.name }}</p>
+              <p class="subtitle">{{ deck.price }}</p>
+              <br><br><br>
+              <p class="subtitle is-6">Maat: {{ deck.size }}</p>
             </div>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
             <p class="card-footer-item">
-              <span>Add</span>
+              <button @click="changeShowDecks">Add</button>
             </p>
           </footer>
         </div>
@@ -40,30 +42,30 @@ var chunk = require("chunk");
 export default {
   data() {
     return {
-      skateboards: [
+      decks: [
         {
-          src: require("@/assets/images/alien.png"),
+          src: require("@/assets/images/decks/alien.png"),
           name: "Alien Skateboard Deck",
           price: "€112",
           size: "8.25",
           alt: "Alien Skateboard Deck"
         },
         {
-          src: require("@/assets/images/firstskateboard.png"),
+          src: require("@/assets/images/decks/firstskateboard.png"),
           name: "My First Skateboard Deck",
           price: "€50",
           size: "6.8",
           alt: "My First Skateboard Deck"
         },
         {
-          src: require("@/assets/images/superorange.png"),
+          src: require("@/assets/images/decks/superorange.png"),
           name: "Super Orange Skateboard Deck",
           price: "€65,95",
           size: "7.6",
           alt: "Super Orange Skateboard Deck"
         },
         {
-          src: require("@/assets/images/outerspace.png"),
+          src: require("@/assets/images/decks/outerspace.png"),
           name: "Outerspace Skateboard Deck",
           price: "€89,99",
           size: "8.0",
@@ -75,7 +77,16 @@ export default {
 
   computed: {
     chunkedSkateboards() {
-      return chunk(this.skateboards, 2);
+      return chunk(this.decks, 2);
+    }
+  },
+
+  methods: {
+    changeShowDecks() {
+      console.log("button geklikt");
+      this.$store.state.showDecks = false;
+      this.$store.state.showTrucks = true;
+
     }
   }
 };

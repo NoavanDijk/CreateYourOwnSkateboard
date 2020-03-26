@@ -4,7 +4,7 @@
       <div class="card-content">
         <div class="content">
           <p class="partname">{{ part.name }}</p>
-          <i class="fas fa-chevron-circle-right"></i>
+          <i class="fas fa-chevron-circle-right fa-lg"></i>
         </div>
       </div>
     </div>
@@ -19,8 +19,8 @@ export default {
         { name: "Deck" },
         { name: "Trucks" },
         { name: "Wielen" },
-        { name: "Bearrings" },
-        { name: "Moeren" },
+        { name: "Bearings" },
+        { name: "Bolts" },
         { name: "Griptape" },
       ]
     }
