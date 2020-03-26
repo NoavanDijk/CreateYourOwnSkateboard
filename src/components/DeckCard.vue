@@ -83,10 +83,8 @@ export default {
 
   methods: {
     changeShowDecks() {
-      console.log("button geklikt");
       this.$store.state.showDecks = false;
       this.$store.state.showTrucks = true;
-
     }
   }
 };

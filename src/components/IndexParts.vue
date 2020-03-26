@@ -1,12 +1,14 @@
 <template>
   <div>
-    <div class="card" v-for="(part, index) in parts" v-bind:key="index">
-      <div class="card-content">
+    <div class="card" v-for="(part, index) in parts" v-bind:key="index" @click="changeShowDecks(index)">
+      <button class="buttonindexpart">
+        <div class="card-content">
         <div class="content">
           <p class="partname">{{ part.name }}</p>
           <i class="fas fa-chevron-circle-right fa-lg"></i>
         </div>
       </div>
+      </button>
     </div>
   </div>
 </template>
@@ -24,7 +26,58 @@ export default {
         { name: "Griptape" },
       ]
     }
-  }
+  },
+
+  methods: {
+    changeShowDecks(index) {
+      if(index == 0){
+        this.$store.state.showDecks = true;
+        this.$store.state.showTrucks = false;
+        this.$store.state.showWheels = false;
+        this.$store.state.showBearings = false;
+      }
+      if(index == 1){
+        this.$store.state.showDecks = false;
+        this.$store.state.showTrucks = true;
+        this.$store.state.showWheels = false;
+        this.$store.state.showBearings = false;
+        this.$store.state.showBolts = false;
+        this.$store.state.showGriptape = false;
+      }
+      if(index == 2){
+        this.$store.state.showDecks = false;
+        this.$store.state.showTrucks = false;
+        this.$store.state.showWheels = true;
+        this.$store.state.showBearings = false;
+        this.$store.state.showBolts = false;
+        this.$store.state.showGriptape = false;
+      }
+      if(index == 3){
+        this.$store.state.showDecks = false;
+        this.$store.state.showTrucks = false;
+        this.$store.state.showWheels = false;
+        this.$store.state.showBearings = true;
+        this.$store.state.showBolts = false;
+        this.$store.state.showGriptape = false;
+      }
+      if(index == 4){
+        this.$store.state.showDecks = false;
+        this.$store.state.showTrucks = false;
+        this.$store.state.showWheels = false;
+        this.$store.state.showBearings = false;
+        this.$store.state.showBolts = true;
+        this.$store.state.showGriptape = false;
+      }
+      if(index == 5){
+        this.$store.state.showDecks = false;
+        this.$store.state.showTrucks = false;
+        this.$store.state.showWheels = false;
+        this.$store.state.showBearings = false;
+        this.$store.state.showBolts = false;
+        this.$store.state.showGriptape = true;
+      }
+    }
+  },
 }
 </script>
 
@@ -35,6 +88,13 @@ export default {
     align-items: center;
     align-content: center;
     padding: 0.5em;
+  }
+
+  .buttonindexpart{
+    width: 100%;
+    border: 0;
+    background-color: white;
+    cursor: pointer;
   }
 
   .card{
