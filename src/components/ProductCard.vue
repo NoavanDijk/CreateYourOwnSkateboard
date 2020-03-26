@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="productcard">
     <div
       class="columns"
       v-for="(skateboards, index) in chunkedSkateboards"
@@ -17,9 +17,11 @@
               :src="skateboard.src"
               :alt="skateboard.alt"
             />
-            <p class="subtitle">{{ skateboard.name }}</p>
-            <p class="subtitle">{{ skateboard.price }}</p>
-            <p class="subtitle">Maat: {{ skateboard.size }}</p>
+            <div class="content">
+              <p class="subtitle">{{ skateboard.name }}</p>
+              <p class="subtitle">{{ skateboard.price }}</p>
+              <p class="subtitle is-6">Maat: {{ skateboard.size }}</p>
+            </div>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
@@ -80,7 +82,28 @@ export default {
 </script>
 
 <style scoped>
+.productcard{
+  margin: 0.4em 1.2em 0 0;
+}
+
 .skateboardimage {
-  width: 50%;
+  width: 47%;
+}
+
+.card-content{
+  display: flex;
+}
+
+.card{
+  margin: 0.5em;
+  width: 90
+}
+
+.column{
+  padding: .75rem 0 0 0rem;
+}
+
+.columns:not(:last-child), .columns:not(:last-child){
+  margin-bottom: 0;
 }
 </style>
