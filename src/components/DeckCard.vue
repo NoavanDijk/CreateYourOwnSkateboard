@@ -5,31 +5,25 @@
       v-for="(decks, index) in chunkedSkateboards"
       v-bind:key="index"
     >
-      <div
-        class="column"
-        v-for="(deck, index) in decks"
-        v-bind:key="index"
-      >
+      <div class="column" v-for="(deck, index) in decks" v-bind:key="index">
         <div class="card">
           <div class="card-content">
-            <img
-              class="skateboardimage"
-              :src="deck.src"
-              :alt="deck.alt"
-            />
+            <img class="skateboardimage" :src="deck.src" :alt="deck.alt" />
             <div class="content">
-              <br>
+              <br />
               <p class="subtitle">{{ deck.name }}</p>
               <p class="subtitle">{{ deck.price }}</p>
-              <br><br><br>
+              <br /><br /><br />
               <p class="subtitle is-6">Maat: {{ deck.size }}</p>
             </div>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <p class="card-footer-item">
-              <button @click="changeShowDecks">Add</button>
-            </p>
+            <button class="addbutton" @click="changeShowDecks">
+              <p class="card-footer-item">
+                Add
+              </p>
+            </button>
           </footer>
         </div>
       </div>
@@ -59,10 +53,10 @@ export default {
         },
         {
           src: require("@/assets/images/decks/superorange.png"),
-          name: "Super Orange Skateboard Deck",
+          name: "SO Skateboard Deck",
           price: "€65,95",
           size: "7.6",
-          alt: "Super Orange Skateboard Deck"
+          alt: "SO Skateboard Deck"
         },
         {
           src: require("@/assets/images/decks/outerspace.png"),
@@ -91,7 +85,7 @@ export default {
 </script>
 
 <style scoped>
-.productcard{
+.productcard {
   margin: 0.4em 1.2em 0 0;
 }
 
@@ -99,20 +93,28 @@ export default {
   width: 47%;
 }
 
-.card-content{
+.card-content {
   display: flex;
 }
 
-.card{
+.card {
   margin: 0.5em;
-  width: 90
+  width: 90;
 }
 
-.column{
-  padding: .75rem 0 0 0rem;
+.column {
+  padding: 0.75rem 0 0 0rem;
 }
 
-.columns:not(:last-child), .columns:not(:last-child){
+.columns:not(:last-child),
+.columns:not(:last-child) {
   margin-bottom: 0;
+}
+
+.addbutton {
+  width: 50%;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
 }
 </style>

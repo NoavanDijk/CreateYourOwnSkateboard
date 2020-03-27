@@ -5,29 +5,23 @@
       v-for="(bolts, index) in chunkedSkateboards"
       v-bind:key="index"
     >
-      <div
-        class="column"
-        v-for="(bolt, index) in bolts"
-        v-bind:key="index"
-      >
+      <div class="column" v-for="(bolt, index) in bolts" v-bind:key="index">
         <div class="card">
           <div class="card-content">
-            <img
-              class="skateboardimage"
-              :src="bolt.src"
-              :alt="bolt.alt"
-            />
+            <img class="skateboardimage" :src="bolt.src" :alt="bolt.alt" />
             <div class="content">
-              <br>
+              <br />
               <p class="subtitle">{{ bolt.name }}</p>
               <p class="subtitle">{{ bolt.price }}</p>
             </div>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <p class="card-footer-item">
-              <span>Add</span>
-            </p>
+            <button class="addbutton" @click="changeShowDecks">
+              <p class="card-footer-item">
+                <span>Add</span>
+              </p>
+            </button>
           </footer>
         </div>
       </div>
@@ -73,12 +67,19 @@ export default {
     chunkedSkateboards() {
       return chunk(this.bolts, 2);
     }
+  },
+
+  methods: {
+    changeShowDecks() {
+      this.$store.state.showBolts = false;
+      this.$store.state.showGriptape = true;
+    }
   }
 };
 </script>
 
 <style scoped>
-.productcard{
+.productcard {
   margin: 0.4em 1.2em 0 0;
 }
 
@@ -86,20 +87,28 @@ export default {
   width: 47%;
 }
 
-.card-content{
+.card-content {
   display: flex;
 }
 
-.card{
+.card {
   margin: 0.5em;
-  width: 90
+  width: 90;
 }
 
-.column{
-  padding: .75rem 0 0 0rem;
+.column {
+  padding: 0.75rem 0 0 0rem;
 }
 
-.columns:not(:last-child), .columns:not(:last-child){
+.columns:not(:last-child),
+.columns:not(:last-child) {
   margin-bottom: 0;
+}
+
+.addbutton {
+  width: 50%;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
 }
 </style>

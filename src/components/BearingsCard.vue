@@ -18,16 +18,18 @@
               :alt="bearing.alt"
             />
             <div class="content">
-              <br>
+              <br />
               <p class="subtitle">{{ bearing.name }}</p>
               <p class="subtitle">{{ bearing.price }}</p>
             </div>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <p class="card-footer-item">
-              <span>Add</span>
-            </p>
+            <button class="addbutton" @click="changeShowDecks">
+              <p class="card-footer-item">
+                <span>Add</span>
+              </p>
+            </button>
           </footer>
         </div>
       </div>
@@ -49,15 +51,18 @@ export default {
         },
         {
           src: require("@/assets/images/bearings/greenbearrings.png"),
-          name: "Aegis Precision High Speed Shieldless Green Skateboard Bearings",
+          name:
+            "Aegis Green Skateboard Bearings",
           price: "€29",
-          alt: "Aegis Precision High Speed Shieldless Green Skateboard Bearings"
+          alt: "Aegis Green Skateboard Bearings"
         },
         {
           src: require("@/assets/images/bearings/rainbowbearrings.png"),
-          name: "Aegis Precision High Speed Shieldless Electro Luxe Skateboard Bearings",
+          name:
+            "Aegis Rainbow Luxe Skateboard Bearings",
           price: "€29",
-          alt: "Aegis Precision High Speed Shieldless Electro Luxe Skateboard Bearings"
+          alt:
+            "Aegis Rainbow Luxe Skateboard Bearings"
         },
         {
           src: require("@/assets/images/bearings/redbearrings.png"),
@@ -73,33 +78,49 @@ export default {
     chunkedSkateboards() {
       return chunk(this.bearings, 2);
     }
+  },
+
+  methods: {
+    changeShowDecks() {
+      this.$store.state.showBearings = false;
+      this.$store.state.showBolts = true;
+    }
   }
 };
 </script>
 
 <style scoped>
-.productcard{
+.productcard {
   margin: 0.4em 1.2em 0 0;
 }
 
 .skateboardimage {
-  width: 47%;
+  width: 43.8%;
+  margin: 0.5em 2.5em 0.5em 0.5em;
 }
 
-.card-content{
+.card-content {
   display: flex;
 }
 
-.card{
+.card {
   margin: 0.5em;
-  width: 90
+  width: 90;
 }
 
-.column{
-  padding: .75rem 0 0 0rem;
+.column {
+  padding: 0.75rem 0 0 0rem;
 }
 
-.columns:not(:last-child), .columns:not(:last-child){
+.columns:not(:last-child),
+.columns:not(:last-child) {
   margin-bottom: 0;
+}
+
+.addbutton {
+  width: 50%;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
 }
 </style>

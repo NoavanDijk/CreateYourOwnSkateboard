@@ -5,31 +5,25 @@
       v-for="(wheels, index) in chunkedSkateboards"
       v-bind:key="index"
     >
-      <div
-        class="column"
-        v-for="(wheel, index) in wheels"
-        v-bind:key="index"
-      >
+      <div class="column" v-for="(wheel, index) in wheels" v-bind:key="index">
         <div class="card">
           <div class="card-content">
-            <img
-              class="skateboardimage"
-              :src="wheel.src"
-              :alt="wheel.alt"
-            />
+            <img class="skateboardimage" :src="wheel.src" :alt="wheel.alt" />
             <div class="content">
-              <br>
+              <br />
               <p class="subtitle">{{ wheel.name }}</p>
               <p class="subtitle">{{ wheel.price }}</p>
-              <br><br><br>
+              <br /><br />
               <p class="subtitle is-6">Maat: {{ wheel.size }}</p>
             </div>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <p class="card-footer-item">
-              <span>Add</span>
-            </p>
+            <button class="addbutton" @click="changeShowDecks">
+              <p class="card-footer-item">
+                <span>Add</span>
+              </p>
+            </button>
           </footer>
         </div>
       </div>
@@ -63,11 +57,10 @@ export default {
           price: "€48",
           size: "52mm",
           alt: "Bones 100's Sidecuts Black Skateboard Wheels"
-          
         },
         {
           src: require("@/assets/images/wheels/whitewheels.png"),
-          name: "Bones STF Sidecut McClung Oats Skateboard Wheels",
+          name: "Bones STF Sidecut Oats Skateboard Wheels",
           price: "€64",
           size: "53mm",
           alt: "Bones STF Sidecut McClung Oats Skateboard Wheels"
@@ -80,33 +73,49 @@ export default {
     chunkedSkateboards() {
       return chunk(this.wheels, 2);
     }
+  },
+  
+  methods: {
+    changeShowDecks() {
+      this.$store.state.showWheels = false;
+      this.$store.state.showBearings = true;
+    }
   }
 };
 </script>
 
 <style scoped>
-.productcard{
+.productcard {
   margin: 0.4em 1.2em 0 0;
 }
 
 .skateboardimage {
-  width: 47%;
+  width: 43.8%;
+  margin: 0.5em 2.5em 0.5em 0.5em;
 }
 
-.card-content{
+.card-content {
   display: flex;
 }
 
-.card{
+.card {
   margin: 0.5em;
-  width: 90
+  width: 90;
 }
 
-.column{
-  padding: .75rem 0 0 0rem;
+.column {
+  padding: 0.75rem 0 0 0rem;
 }
 
-.columns:not(:last-child), .columns:not(:last-child){
+.columns:not(:last-child),
+.columns:not(:last-child) {
   margin-bottom: 0;
+}
+
+.addbutton {
+  width: 50%;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
 }
 </style>
