@@ -8,7 +8,7 @@
             <div class="content">
               <br />
               <p class="subtitle">{{ truck.name }}</p>
-              <p class="subtitle">{{ truck.price }}</p>
+              <p class="subtitle">€ {{ truck.price }}</p>
             </div>
           </div>
           <footer class="card-footer">
@@ -35,14 +35,14 @@ export default {
         {
           src: require("@/assets/images/trucks/blacktruck.png"),
           name: "Independent Forged Titanium 139 Skateboard Trucks Black",
-          price: "€124",
+          price: 124,
           alt: "Independent Forged Titanium 139 Skateboard Trucks Black",
           id: 4
         },
         {
           src: require("@/assets/images/trucks/bluetruck.png"),
           name: "Independent Forged Hollow 159 Anodised Blue Skateboard Trucks",
-          price: "€112",
+          price: 112,
           alt: "Independent Forged Hollow 159 Anodised Blue Skateboard Trucks",
           id: 5
         },
@@ -50,7 +50,7 @@ export default {
           src: require("@/assets/images/trucks/redtruck.png"),
           name:
             "Independent Forged Hollow 144 Vintage Cross Red Skateboard Trucks",
-          price: "€112",
+          price: 112,
           alt:
             "Independent Forged Hollow 144 Vintage Cross Red Skateboard Trucks",
           id: 6
@@ -58,7 +58,7 @@ export default {
         {
           src: require("@/assets/images/trucks/silvertruck.png"),
           name: "Independent 139 STD Silver Skateboard Trucks",
-          price: "€89",
+          price: 89,
           alt: "Independent 139 STD Silver Skateboard Trucks",
           id: 7
         }

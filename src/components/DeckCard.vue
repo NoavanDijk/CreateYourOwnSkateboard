@@ -8,7 +8,7 @@
             <div class="content">
               <br />
               <p class="subtitle">{{ deck.name }}</p>
-              <p class="subtitle">{{ deck.price }}</p>
+              <p class="subtitle">€ {{ deck.price }}</p>
               <br /><br /><br />
               <p class="subtitle is-6">Maat: {{ deck.size }}</p>
             </div>
@@ -37,7 +37,7 @@ export default {
         {
           src: require("@/assets/images/decks/alien.png"),
           name: "Alien Skateboard Deck",
-          price: "€112",
+          price: 112,
           size: "8.25",
           alt: "Alien Skateboard Deck",
           id: 0
@@ -45,7 +45,7 @@ export default {
         {
           src: require("@/assets/images/decks/firstskateboard.png"),
           name: "My First Skateboard Deck",
-          price: "€50",
+          price: 50,
           size: "6.8",
           alt: "My First Skateboard Deck",
           id: 1
@@ -53,7 +53,7 @@ export default {
         {
           src: require("@/assets/images/decks/superorange.png"),
           name: "SO Skateboard Deck",
-          price: "€65,95",
+          price: 65.95,
           size: "7.6",
           alt: "SO Skateboard Deck",
           id: 2
@@ -61,7 +61,7 @@ export default {
         {
           src: require("@/assets/images/decks/outerspace.png"),
           name: "Outerspace Skateboard Deck",
-          price: "€89,99",
+          price: 89.99,
           size: "8.0",
           alt: "Outerspace Skateboard Deck",
           id: 3

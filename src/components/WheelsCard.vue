@@ -8,7 +8,7 @@
             <div class="content">
               <br />
               <p class="subtitle">{{ wheel.name }}</p>
-              <p class="subtitle">{{ wheel.price }}</p>
+              <p class="subtitle">€ {{ wheel.price }}</p>
               <br /><br />
               <p class="subtitle is-6">Maat: {{ wheel.size }}</p>
             </div>
@@ -37,7 +37,7 @@ export default {
         {
           src: require("@/assets/images/wheels/blackwheels.png"),
           name: "Speedlab Sirens Skateboard Wheels",
-          price: "€68",
+          price: 68,
           size: "55mm",
           alt: "Speedlab Sirens Skateboard Wheels",
           id: 8
@@ -45,7 +45,7 @@ export default {
         {
           src: require("@/assets/images/wheels/bluewheels.png"),
           name: "Bones 100's Sidecuts White Skateboard Wheels",
-          price: "€48",
+          price: 48,
           size: "53mm",
           alt: "Bones 100's Sidecuts White Skateboard Wheels",
           id: 9
@@ -53,7 +53,7 @@ export default {
         {
           src: require("@/assets/images/wheels/redwheels.png"),
           name: "Bones 100's Sidecuts Black Skateboard Wheels",
-          price: "€48",
+          price: 48,
           size: "52mm",
           alt: "Bones 100's Sidecuts Black Skateboard Wheels",
           id: 10
@@ -61,7 +61,7 @@ export default {
         {
           src: require("@/assets/images/wheels/whitewheels.png"),
           name: "Bones STF Sidecut Oats Skateboard Wheels",
-          price: "€64",
+          price: 64,
           size: "53mm",
           alt: "Bones STF Sidecut McClung Oats Skateboard Wheels",
           id: 11

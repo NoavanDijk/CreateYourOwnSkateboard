@@ -8,7 +8,7 @@
             <div class="content">
               <br />
               <p class="subtitle">{{ bolt.name }}</p>
-              <p class="subtitle">{{ bolt.price }}</p>
+              <p class="subtitle">€ {{ bolt.price }}</p>
             </div>
           </div>
           <footer class="card-footer">
@@ -35,28 +35,28 @@ export default {
         {
           src: require("@/assets/images/bolts/bluebolts.png"),
           name: "Aegis Anodised Blue Allen Deck Bolts",
-          price: "€9",
+          price: 9,
           alt: "Aegis Anodised Blue Allen Deck Bolts",
           id: 16
         },
         {
           src: require("@/assets/images/bolts/bronzebolts.png"),
           name: "Aegis Anodised Bronze Allen Deck Bolts",
-          price: "€9",
+          price: 9,
           alt: "Aegis Anodised Bronze Allen Deck Bolts",
           id: 17
         },
         {
           src: require("@/assets/images/bolts/goldbolts.png"),
           name: "Aegis Anodised Gold Allen Deck Bolts",
-          price: "€9",
+          price: 9,
           alt: "Aegis Anodised Gold Allen Deck Bolts",
           id: 18
         },
         {
           src: require("@/assets/images/bolts/redbolts.png"),
           name: "Aegis Anodised Red Allen Deck Bolts",
-          price: "€9",
+          price: 9,
           alt: "Aegis Anodised Red Allen Deck Bolts",
           id: 19
         }
