@@ -1,10 +1,6 @@
 <template>
   <div class="productcard">
-    <div
-      class="columns"
-      v-for="(bolts, index) in chunkedSkateboards"
-      v-bind:key="index"
-    >
+    <div class="columns">
       <div class="column" v-for="(bolt, index) in bolts" v-bind:key="index">
         <div class="card">
           <div class="card-content">
@@ -17,7 +13,7 @@
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <button class="addbutton" @click="changeShowDecks">
+            <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
                 <span>Add</span>
               </p>
@@ -30,7 +26,8 @@
 </template>
 
 <script>
-var chunk = require("chunk");
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -39,41 +36,65 @@ export default {
           src: require("@/assets/images/bolts/bluebolts.png"),
           name: "Aegis Anodised Blue Allen Deck Bolts",
           price: "€9",
-          alt: "Aegis Anodised Blue Allen Deck Bolts"
+          alt: "Aegis Anodised Blue Allen Deck Bolts",
+          id: 16
         },
         {
           src: require("@/assets/images/bolts/bronzebolts.png"),
           name: "Aegis Anodised Bronze Allen Deck Bolts",
           price: "€9",
-          alt: "Aegis Anodised Bronze Allen Deck Bolts"
+          alt: "Aegis Anodised Bronze Allen Deck Bolts",
+          id: 17
         },
         {
           src: require("@/assets/images/bolts/goldbolts.png"),
           name: "Aegis Anodised Gold Allen Deck Bolts",
           price: "€9",
-          alt: "Aegis Anodised Gold Allen Deck Bolts"
+          alt: "Aegis Anodised Gold Allen Deck Bolts",
+          id: 18
         },
         {
           src: require("@/assets/images/bolts/redbolts.png"),
           name: "Aegis Anodised Red Allen Deck Bolts",
           price: "€9",
-          alt: "Aegis Anodised Red Allen Deck Bolts"
+          alt: "Aegis Anodised Red Allen Deck Bolts",
+          id: 19
         }
-      ]
+      ],
+
+      choices: []
     };
   },
 
-  computed: {
-    chunkedSkateboards() {
-      return chunk(this.bolts, 2);
+  methods: {
+    changeShowDecks(index) {
+      this.$store.state.showBolts = false;
+      this.$store.state.showGriptape = true;
+      axios
+        .post(
+          "https://createyourownskateboard.firebaseio.com/decks.json",
+          this.bolts[index]
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+      this.createdMethod();
+    },
+
+    createdMethod(index) {
+      axios
+        .get("https://createyourownskateboard.firebaseio.com/decks.json")
+        .then(response => {
+          this.choices = response.data;
+          const id = response.data.id;
+          console.log(id);
+          console.log(this.choices);
+        })
+        .catch(error => console.log(error));
     }
   },
 
-  methods: {
-    changeShowDecks() {
-      this.$store.state.showBolts = false;
-      this.$store.state.showGriptape = true;
-    }
+  created() {
+    this.createdMethod();
   }
 };
 </script>
@@ -81,6 +102,7 @@ export default {
 <style scoped>
 .productcard {
   margin: 0.4em 1.2em 0 0;
+  column-count: 2;
 }
 
 .skateboardimage {
@@ -98,6 +120,11 @@ export default {
 
 .column {
   padding: 0.75rem 0 0 0rem;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
 }
 
 .columns:not(:last-child),

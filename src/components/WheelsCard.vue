@@ -1,10 +1,6 @@
 <template>
   <div class="productcard">
-    <div
-      class="columns"
-      v-for="(wheels, index) in chunkedSkateboards"
-      v-bind:key="index"
-    >
+    <div class="columns">
       <div class="column" v-for="(wheel, index) in wheels" v-bind:key="index">
         <div class="card">
           <div class="card-content">
@@ -19,7 +15,7 @@
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <button class="addbutton" @click="changeShowDecks">
+            <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
                 <span>Add</span>
               </p>
@@ -32,7 +28,8 @@
 </template>
 
 <script>
-var chunk = require("chunk");
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -42,44 +39,69 @@ export default {
           name: "Speedlab Sirens Skateboard Wheels",
           price: "€68",
           size: "55mm",
-          alt: "Speedlab Sirens Skateboard Wheels"
+          alt: "Speedlab Sirens Skateboard Wheels",
+          id: 8
         },
         {
           src: require("@/assets/images/wheels/bluewheels.png"),
           name: "Bones 100's Sidecuts White Skateboard Wheels",
           price: "€48",
           size: "53mm",
-          alt: "Bones 100's Sidecuts White Skateboard Wheels"
+          alt: "Bones 100's Sidecuts White Skateboard Wheels",
+          id: 9
         },
         {
           src: require("@/assets/images/wheels/redwheels.png"),
           name: "Bones 100's Sidecuts Black Skateboard Wheels",
           price: "€48",
           size: "52mm",
-          alt: "Bones 100's Sidecuts Black Skateboard Wheels"
+          alt: "Bones 100's Sidecuts Black Skateboard Wheels",
+          id: 10
         },
         {
           src: require("@/assets/images/wheels/whitewheels.png"),
           name: "Bones STF Sidecut Oats Skateboard Wheels",
           price: "€64",
           size: "53mm",
-          alt: "Bones STF Sidecut McClung Oats Skateboard Wheels"
+          alt: "Bones STF Sidecut McClung Oats Skateboard Wheels",
+          id: 11
         }
-      ]
+      ],
+
+      choices: []
     };
   },
 
-  computed: {
-    chunkedSkateboards() {
-      return chunk(this.wheels, 2);
-    }
-  },
-  
   methods: {
-    changeShowDecks() {
+    changeShowDecks(index) {
       this.$store.state.showWheels = false;
       this.$store.state.showBearings = true;
+
+      axios
+        .post(
+          "https://createyourownskateboard.firebaseio.com/decks.json",
+          this.wheels[index]
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+      this.createdMethod();
+    },
+
+    createdMethod(index) {
+      axios
+        .get("https://createyourownskateboard.firebaseio.com/decks.json")
+        .then(response => {
+          this.choices = response.data;
+          const id = response.data.id;
+          console.log(id);
+          console.log(this.choices);
+        })
+        .catch(error => console.log(error));
     }
+  },
+
+  created() {
+    this.createdMethod();
   }
 };
 </script>
@@ -87,6 +109,7 @@ export default {
 <style scoped>
 .productcard {
   margin: 0.4em 1.2em 0 0;
+  column-count: 2;
 }
 
 .skateboardimage {
@@ -105,6 +128,11 @@ export default {
 
 .column {
   padding: 0.75rem 0 0 0rem;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
 }
 
 .columns:not(:last-child),

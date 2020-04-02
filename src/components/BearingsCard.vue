@@ -1,10 +1,6 @@
 <template>
   <div class="productcard">
-    <div
-      class="columns"
-      v-for="(bearings, index) in chunkedSkateboards"
-      v-bind:key="index"
-    >
+    <div class="columns">
       <div
         class="column"
         v-for="(bearing, index) in bearings"
@@ -25,7 +21,7 @@
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <button class="addbutton" @click="changeShowDecks">
+            <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
                 <span>Add</span>
               </p>
@@ -38,7 +34,8 @@
 </template>
 
 <script>
-var chunk = require("chunk");
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -47,44 +44,66 @@ export default {
           src: require("@/assets/images/bearings/blackbearrings.png"),
           name: "Andale Abec 7 Skateboard Bearings",
           price: "€49",
-          alt: "Andale Abec 7 Skateboard Bearings"
+          alt: "Andale Abec 7 Skateboard Bearings",
+          id: 12
         },
         {
           src: require("@/assets/images/bearings/greenbearrings.png"),
-          name:
-            "Aegis Green Skateboard Bearings",
+          name: "Aegis Green Skateboard Bearings",
           price: "€29",
-          alt: "Aegis Green Skateboard Bearings"
+          alt: "Aegis Green Skateboard Bearings",
+          id: 13
         },
         {
           src: require("@/assets/images/bearings/rainbowbearrings.png"),
-          name:
-            "Aegis Rainbow Luxe Skateboard Bearings",
+          name: "Aegis Rainbow Luxe Skateboard Bearings",
           price: "€29",
-          alt:
-            "Aegis Rainbow Luxe Skateboard Bearings"
+          alt: "Aegis Rainbow Luxe Skateboard Bearings",
+          id: 14
         },
         {
           src: require("@/assets/images/bearings/redbearrings.png"),
           name: "Bones Reds Skateboard Bearings",
           price: "€32",
-          alt: "Bones Reds Skateboard Bearings"
+          alt: "Bones Reds Skateboard Bearings",
+          id: 15
         }
-      ]
+      ],
+
+      choices: []
     };
   },
 
-  computed: {
-    chunkedSkateboards() {
-      return chunk(this.bearings, 2);
+  methods: {
+    changeShowDecks(index) {
+      this.$store.state.showBearings = false;
+      this.$store.state.showBolts = true;
+
+      axios
+        .post(
+          "https://createyourownskateboard.firebaseio.com/decks.json",
+          this.bearings[index]
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+      this.createdMethod();
+    },
+
+    createdMethod(index) {
+      axios
+        .get("https://createyourownskateboard.firebaseio.com/decks.json")
+        .then(response => {
+          this.choices = response.data;
+          const id = response.data.id;
+          console.log(id);
+          console.log(this.choices);
+        })
+        .catch(error => console.log(error));
     }
   },
 
-  methods: {
-    changeShowDecks() {
-      this.$store.state.showBearings = false;
-      this.$store.state.showBolts = true;
-    }
+  created() {
+    this.createdMethod();
   }
 };
 </script>
@@ -92,6 +111,7 @@ export default {
 <style scoped>
 .productcard {
   margin: 0.4em 1.2em 0 0;
+  column-count: 2;
 }
 
 .skateboardimage {
@@ -110,6 +130,11 @@ export default {
 
 .column {
   padding: 0.75rem 0 0 0rem;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
 }
 
 .columns:not(:last-child),

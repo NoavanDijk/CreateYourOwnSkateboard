@@ -11,19 +11,22 @@
         <app-bearings-card v-show="showBearings"></app-bearings-card>
         <app-bolts-card v-show="showBolts"></app-bolts-card>
         <app-griptape-card v-show="showGriptape"></app-griptape-card>
+        <app-order-form v-show="showOrderform"></app-order-form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import IndexParts from '@/components/IndexParts.vue';
-import DeckCard from '@/components/DeckCard.vue';
-import TrucksCard from '@/components/TrucksCard.vue';
-import WheelsCard from '@/components/WheelsCard.vue';
-import BearingsCard from '@/components/BearingsCard.vue';
-import BoltsCard from '@/components/BoltsCard.vue';
-import GriptapeCard from '@/components/GriptapeCard.vue';
+import axios from 'axios';
+import IndexParts from "@/components/IndexParts.vue";
+import DeckCard from "@/components/DeckCard.vue";
+import TrucksCard from "@/components/TrucksCard.vue";
+import WheelsCard from "@/components/WheelsCard.vue";
+import BearingsCard from "@/components/BearingsCard.vue";
+import BoltsCard from "@/components/BoltsCard.vue";
+import GriptapeCard from "@/components/GriptapeCard.vue";
+import OrderForm from "@/components/OrderForm.vue";
 
 export default {
   components: {
@@ -33,33 +36,57 @@ export default {
     appWheelsCard: WheelsCard,
     appBearingsCard: BearingsCard,
     appBoltsCard: BoltsCard,
-    appGriptapeCard: GriptapeCard
+    appGriptapeCard: GriptapeCard,
+    appOrderForm: OrderForm
   },
 
-  computed:{
-    showDecks(){
+  computed: {
+    showDecks() {
       return this.$store.state.showDecks;
     },
 
-    showTrucks(){
+    showTrucks() {
       return this.$store.state.showTrucks;
     },
 
-    showWheels(){
+    showWheels() {
       return this.$store.state.showWheels;
     },
 
-    showBearings(){
+    showBearings() {
       return this.$store.state.showBearings;
     },
 
-    showBolts(){
+    showBolts() {
       return this.$store.state.showBolts;
     },
 
-    showGriptape(){
+    showGriptape() {
       return this.$store.state.showGriptape;
+    },
+
+    showOrderform(){
+      return this.$store.state.showOrderform;
     }
+  },
+
+  created(index) {
+    axios
+      .get("https://createyourownskateboard.firebaseio.com/decks.json")
+      .then(res => {
+        console.log(res);
+        const data = res.data;
+        const trucks = [];
+        for (let key in data) {
+          const truck = data[key];
+          truck.id = key;
+          trucks.push(truck);
+        }
+        console.log(trucks);
+        this.name = trucks[index].name;
+        console.log(this.name);
+      })
+      .catch(error => console.log(error));
   }
-}
+};
 </script>

@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
     showWheels: false,
     showBearings: false,
     showBolts: false,
-    showGriptape: false
+    showGriptape: false,
+    showOrderform: false
   }
 });

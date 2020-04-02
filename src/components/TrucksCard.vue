@@ -1,10 +1,6 @@
 <template>
   <div class="productcard">
-    <div
-      class="columns"
-      v-for="(trucks, index) in chunkedSkateboards"
-      v-bind:key="index"
-    >
+    <div class="columns">
       <div class="column" v-for="(truck, index) in trucks" v-bind:key="index">
         <div class="card">
           <div class="card-content">
@@ -17,7 +13,7 @@
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <button class="addbutton" @click="changeShowDecks">
+            <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
                 <span>Add</span>
               </p>
@@ -30,7 +26,8 @@
 </template>
 
 <script>
-var chunk = require("chunk");
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -39,13 +36,15 @@ export default {
           src: require("@/assets/images/trucks/blacktruck.png"),
           name: "Independent Forged Titanium 139 Skateboard Trucks Black",
           price: "€124",
-          alt: "Independent Forged Titanium 139 Skateboard Trucks Black"
+          alt: "Independent Forged Titanium 139 Skateboard Trucks Black",
+          id: 4
         },
         {
           src: require("@/assets/images/trucks/bluetruck.png"),
           name: "Independent Forged Hollow 159 Anodised Blue Skateboard Trucks",
           price: "€112",
-          alt: "Independent Forged Hollow 159 Anodised Blue Skateboard Trucks"
+          alt: "Independent Forged Hollow 159 Anodised Blue Skateboard Trucks",
+          id: 5
         },
         {
           src: require("@/assets/images/trucks/redtruck.png"),
@@ -53,15 +52,19 @@ export default {
             "Independent Forged Hollow 144 Vintage Cross Red Skateboard Trucks",
           price: "€112",
           alt:
-            "Independent Forged Hollow 144 Vintage Cross Red Skateboard Trucks"
+            "Independent Forged Hollow 144 Vintage Cross Red Skateboard Trucks",
+          id: 6
         },
         {
           src: require("@/assets/images/trucks/silvertruck.png"),
           name: "Independent 139 STD Silver Skateboard Trucks",
           price: "€89",
-          alt: "Independent 139 STD Silver Skateboard Trucks"
+          alt: "Independent 139 STD Silver Skateboard Trucks",
+          id: 7
         }
-      ]
+      ],
+
+      choices: []
     };
   },
 
@@ -72,10 +75,34 @@ export default {
   },
 
   methods: {
-    changeShowDecks() {
+    changeShowDecks(index) {
       this.$store.state.showTrucks = false;
       this.$store.state.showWheels = true;
+
+      axios
+        .post(
+          "https://createyourownskateboard.firebaseio.com/decks.json",
+          this.trucks[index]
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+    },
+
+    createdMethod(index) {
+      axios
+        .get("https://createyourownskateboard.firebaseio.com/decks.json")
+        .then(response => {
+          this.choices = response.data;
+          const id = response.data.id;
+          console.log(id);
+          console.log(this.choices);
+        })
+        .catch(error => console.log(error));
     }
+  },
+
+  created() {
+    this.createdMethod();
   }
 };
 </script>
@@ -83,6 +110,7 @@ export default {
 <style scoped>
 .productcard {
   margin: 0.4em 1.2em 0 0;
+  column-count: 2;
 }
 
 .skateboardimage {
@@ -101,6 +129,11 @@ export default {
 
 .column {
   padding: 0.75rem 0 0 0rem;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
 }
 
 .columns:not(:last-child),

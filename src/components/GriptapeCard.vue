@@ -1,10 +1,6 @@
 <template>
   <div class="productcard">
-    <div
-      class="columns"
-      v-for="(griptapes, index) in chunkedSkateboards"
-      v-bind:key="index"
-    >
+    <div class="columns">
       <div
         class="column"
         v-for="(griptape, index) in griptapes"
@@ -25,11 +21,13 @@
           </div>
           <footer class="card-footer">
             <p class="card-footer-item"></p>
-            <button class="addbutton" @click="changeShowDecks">
-              <p class="card-footer-item">
-                <span>Add</span>
-              </p>
-            </button>
+            <router-link to="/orderform">
+              <button class="addbutton" @click="changeShowDecks(index)">
+                <p class="card-footer-item">
+                  <span>Add</span>
+                </p>
+              </button>
+            </router-link>
           </footer>
         </div>
       </div>
@@ -38,7 +36,8 @@
 </template>
 
 <script>
-var chunk = require("chunk");
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -47,40 +46,66 @@ export default {
           src: require("@/assets/images/griptape/basementgriptape.png"),
           name: "Basement Mini Logo Griptape Sheet",
           price: "€7",
-          alt: "Basement Mini Logo Griptape Sheet"
+          alt: "Basement Mini Logo Griptape Sheet",
+          id: 20
         },
         {
           src: require("@/assets/images/griptape/blackbasementgriptape.png"),
           name: "Basement Skate Logo Black Griptape Sheet",
           price: "€14",
-          alt: "Basement Skate Logo Black Griptape Sheet"
+          alt: "Basement Skate Logo Black Griptape Sheet",
+          id: 21
         },
         {
           src: require("@/assets/images/griptape/diamondgriptape.png"),
           name: "Diamond Brilliant Blue Printed Griptape Sheet",
           price: "€14",
-          alt: "Diamond Brilliant Blue Printed Griptape Sheet"
+          alt: "Diamond Brilliant Blue Printed Griptape Sheet",
+          id: 22
         },
         {
           src: require("@/assets/images/griptape/pandagriptape.png"),
           name: "Enjoi Astro Panda Skateboard Griptape Sheet",
           price: "€21",
-          alt: "Enjoi Astro Panda Skateboard Griptape Sheet"
+          alt: "Enjoi Astro Panda Skateboard Griptape Sheet",
+          id: 23
         }
-      ]
+      ],
+
+      choices: []
     };
   },
 
-  computed: {
-    chunkedSkateboards() {
-      return chunk(this.griptapes, 2);
+  methods: {
+    changeShowDecks(index) {
+      this.$store.state.showGriptape = false;
+      this.$store.state.showOrderform = true;
+
+      axios
+        .post(
+          "https://createyourownskateboard.firebaseio.com/decks.json",
+          this.griptapes[index]
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+      this.createdMethod();
+    },
+
+    createdMethod(index) {
+      axios
+        .get("https://createyourownskateboard.firebaseio.com/decks.json")
+        .then(response => {
+          this.choices = response.data;
+          const id = response.data.id;
+          console.log(id);
+          console.log(this.choices);
+        })
+        .catch(error => console.log(error));
     }
   },
 
-  methods: {
-    changeShowDecks() {
-      this.$store.state.showGriptape = false;
-    }
+  created() {
+    this.createdMethod();
   }
 };
 </script>
@@ -88,6 +113,7 @@ export default {
 <style scoped>
 .productcard {
   margin: 0.4em 1.2em 0 0;
+  column-count: 2;
 }
 
 .skateboardimage {
@@ -107,6 +133,11 @@ export default {
   padding: 0.75rem 0 0 0rem;
 }
 
+.columns {
+  display: flex;
+  flex-direction: column;
+}
+
 .columns:not(:last-child),
 .columns:not(:last-child) {
   margin-bottom: 0;
@@ -117,5 +148,10 @@ export default {
   border: 0;
   background-color: white;
   cursor: pointer;
+}
+
+a{
+  width: 50%;
+  text-align: center;
 }
 </style>
