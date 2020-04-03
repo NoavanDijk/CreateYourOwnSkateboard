@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="orderform">
     <div class="columns">
       <div class="column"></div>
       <div class="column is-two-fifths">
@@ -100,7 +100,10 @@ export default {
 </script>
 
 <style scoped>
-/* background: linear-gradient(90deg, rgba(229,148,85,1) 0%, rgba(26,54,62,1) 100%); */
+.orderform{
+  background-color: #f4f4f4;
+}
+
 .card {
   margin: 2em 0 1.3em 0;
   padding: 0;
