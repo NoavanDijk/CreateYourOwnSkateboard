@@ -136,6 +136,7 @@ export default {
 .columns {
   display: flex;
   flex-direction: column;
+  padding: 0.4em;
 }
 
 .columns:not(:last-child),

@@ -16,5 +16,6 @@ export default {
   #app, #nav{
     padding: 0;
     margin: 0;
+    background-color: #f4f4f4;
   }
 </style>

@@ -17,7 +17,7 @@
                   Dhr
                 </label>
                 <label class="radio">
-                  <input type="radio" name="question" v-model="woman"/>
+                  <input type="radio" name="question" v-model="woman" />
                   Mevr
                 </label>
               </div>
@@ -28,7 +28,12 @@
               <div class="field-body">
                 <div class="field">
                   <p class="control">
-                    <input class="input" type="text" placeholder="Voornaam" v-model="firstname"/>
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder="Voornaam"
+                      v-model="firstname"
+                    />
                   </p>
                 </div>
                 <div class="field">
@@ -36,13 +41,19 @@
                     <input
                       class="input"
                       type="text"
-                      placeholder="Tussenvoegsel" v-model="insertion"
+                      placeholder="Tussenvoegsel"
+                      v-model="insertion"
                     />
                   </p>
                 </div>
                 <div class="field">
                   <p class="control">
-                    <input class="input" type="text" placeholder="Achternaam" v-model="lastname" />
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder="Achternaam"
+                      v-model="lastname"
+                    />
                   </p>
                 </div>
               </div>
@@ -51,7 +62,12 @@
             <div class="field">
               <label class="label">Postcode</label>
               <div class="control">
-                <input class="input" type="text" placeholder="1234AB" v-model="zipcode" />
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="1234AB"
+                  v-model="zipcode"
+                />
               </div>
             </div>
 
@@ -60,12 +76,23 @@
               <div class="field-body">
                 <div class="field">
                   <p class="control">
-                    <input class="input" type="number" placeholder="Nummer" v-model="housenumber" />
+                    <input
+                      class="input"
+                      type="number"
+                      placeholder="Nummer"
+                      v-model="housenumber"
+                      min="0"
+                    />
                   </p>
                 </div>
                 <div class="field">
                   <p class="control">
-                    <input class="input" type="text" placeholder="Toevoeging" v-model="addition" />
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder="Toevoeging"
+                      v-model="addition"
+                    />
                   </p>
                 </div>
               </div>
@@ -77,7 +104,8 @@
                 <input
                   class="input"
                   type="email"
-                  placeholder="test@gmail.com" v-model="email"
+                  placeholder="test@gmail.com"
+                  v-model="email"
                 />
               </div>
             </div>
@@ -94,7 +122,8 @@
                   <input
                     class="input"
                     type="tel"
-                    placeholder="Jouw telefoonnummer" v-model="phonenumber"
+                    placeholder="Jouw telefoonnummer"
+                    v-model="phonenumber"
                   />
                 </p>
               </div>
@@ -123,23 +152,34 @@
             <div class="field">
               <label class="label">Rekeningnummer</label>
               <p class="control">
-                <input class="input" type="number" placeholder="Nummer" v-model="accountnumber" />
+                <input
+                  class="input"
+                  type="number"
+                  placeholder="Nummer"
+                  v-model="accountnumber"
+                  min="0"
+                />
               </p>
             </div>
 
             <div class="field">
               <label class="label">Pasnummer</label>
               <p class="control">
-                <input class="input" type="number" placeholder="Nummer" v-model="pasnumber" />
+                <input
+                  class="input"
+                  type="number"
+                  placeholder="Nummer"
+                  v-model="pasnumber"
+                  min="0"
+                />
               </p>
             </div>
-
           </div>
           <footer class="card-footer">
             <!-- <router-link to="/personalinformation"> -->
-              <button class="button next" @click="orderSkateboard">
-                Bestel
-              </button>
+            <button class="button next" @click="orderSkateboard">
+              Bestel
+            </button>
             <!-- </router-link> -->
           </footer>
         </div>
@@ -151,10 +191,10 @@
 
 <script>
 export default {
-  data(){
-    return{
-      man: "",
-      woman: "",
+  data() {
+    return {
+      man: 0,
+      woman: 1,
       firstname: "",
       insertion: "",
       lastname: "",
@@ -167,11 +207,11 @@ export default {
       pasnumber: null,
 
       personalInformation: []
-    }
+    };
   },
 
   methods: {
-    orderSkateboard(){
+    orderSkateboard() {
       this.personalInformation.push({
         man: this.man,
         woman: this.woman,
