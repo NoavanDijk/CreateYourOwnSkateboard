@@ -36,8 +36,8 @@
             </div>
           </div>
           <footer class="card-footer">
-            <router-link to="/personalinformation">
-              <button class="button startover">
+            <router-link to="/">
+              <button class="button startover" @click="startover">
                 Begin opnieuw
               </button>
             </router-link>
@@ -51,8 +51,6 @@
       </div>
       <div class="column"></div>
     </div>
-
-    <!-- Start over button en dan verwijdert het alles uit de api -->
   </div>
 </template>
 
@@ -64,7 +62,7 @@ export default {
     return {
       results: [],
       finalChoices: [],
-      totalprice: 0
+      totalprice: 0,
     };
   },
 
@@ -72,7 +70,7 @@ export default {
     createdMethod() {
       axios
         .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then(response => {
+        .then((response) => {
           this.results = response.data;
 
           var choices = [];
@@ -89,18 +87,31 @@ export default {
 
           this.totalprice = totalprices.reduce((a, b) => a + b, 0);
         })
-        .catch(error => console.log(error));
-    }
+        .catch((error) => console.log(error));
+    },
+
+    startover() {
+      axios
+        .delete("https://createyourownskateboard.firebaseio.com/decks.json", {
+          data: this.results,
+        })
+        .then((response) => {
+          console.log(response);
+          this.$router.go()
+        })
+        .catch((error) => console.log(error));
+      
+    },
   },
 
   created() {
     this.createdMethod();
-  }
+  },
 };
 </script>
 
 <style scoped>
-.orderform{
+.orderform {
   background-color: #f4f4f4;
 }
 

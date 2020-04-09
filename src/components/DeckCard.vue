@@ -77,8 +77,6 @@ export default {
       this.$store.state.showDecks = false;
       this.$store.state.showTrucks = true;
 
-      console.log(this.decks[index].id);
-
       axios
         .post(
           "https://createyourownskateboard.firebaseio.com/decks.json",
@@ -86,25 +84,8 @@ export default {
         )
         .then(res => console.log(res))
         .catch(error => console.log(error));
-      this.createdMethod();
     },
-
-    createdMethod(index) {
-      axios
-        .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then(response => {
-          this.choices = response.data;
-          const id = response.data.id;
-          console.log(id);
-          console.log(this.choices);
-        })
-        .catch(error => console.log(error));
-    }
   },
-
-  created() {
-    this.createdMethod();
-  }
 };
 </script>
 

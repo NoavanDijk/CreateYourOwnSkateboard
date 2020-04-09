@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="indexparts">
     <div class="card" v-for="(part, index) in parts" v-bind:key="index" @click="changeShowDecks(index)">
       <button class="buttonindexpart">
         <div class="card-content">
@@ -82,6 +82,11 @@ export default {
 </script>
 
 <style scoped>
+  .indexparts
+  {
+    padding: 0.4em;
+  }
+
   .content{
     display: flex;
     justify-content: space-between;

@@ -37,14 +37,14 @@ export default {
           name: "Independent Forged Titanium 139 Skateboard Trucks Black",
           price: 124,
           alt: "Independent Forged Titanium 139 Skateboard Trucks Black",
-          id: 4
+          id: 4,
         },
         {
           src: require("@/assets/images/trucks/bluetruck.png"),
           name: "Independent Forged Hollow 159 Anodised Blue Skateboard Trucks",
           price: 112,
           alt: "Independent Forged Hollow 159 Anodised Blue Skateboard Trucks",
-          id: 5
+          id: 5,
         },
         {
           src: require("@/assets/images/trucks/redtruck.png"),
@@ -53,25 +53,25 @@ export default {
           price: 112,
           alt:
             "Independent Forged Hollow 144 Vintage Cross Red Skateboard Trucks",
-          id: 6
+          id: 6,
         },
         {
           src: require("@/assets/images/trucks/silvertruck.png"),
           name: "Independent 139 STD Silver Skateboard Trucks",
           price: 89,
           alt: "Independent 139 STD Silver Skateboard Trucks",
-          id: 7
-        }
+          id: 7,
+        },
       ],
 
-      choices: []
+      choices: [],
     };
   },
 
   computed: {
     chunkedSkateboards() {
       return chunk(this.trucks, 2);
-    }
+    },
   },
 
   methods: {
@@ -84,26 +84,10 @@ export default {
           "https://createyourownskateboard.firebaseio.com/decks.json",
           this.trucks[index]
         )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
     },
-
-    createdMethod(index) {
-      axios
-        .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then(response => {
-          this.choices = response.data;
-          const id = response.data.id;
-          console.log(id);
-          console.log(this.choices);
-        })
-        .catch(error => console.log(error));
-    }
   },
-
-  created() {
-    this.createdMethod();
-  }
 };
 </script>
 

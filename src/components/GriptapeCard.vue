@@ -47,32 +47,32 @@ export default {
           name: "Basement Mini Logo Griptape Sheet",
           price: 7,
           alt: "Basement Mini Logo Griptape Sheet",
-          id: 20
+          id: 20,
         },
         {
           src: require("@/assets/images/griptape/blackbasementgriptape.png"),
           name: "Basement Skate Logo Black Griptape Sheet",
           price: 14,
           alt: "Basement Skate Logo Black Griptape Sheet",
-          id: 21
+          id: 21,
         },
         {
           src: require("@/assets/images/griptape/diamondgriptape.png"),
           name: "Diamond Brilliant Blue Printed Griptape Sheet",
           price: 14,
           alt: "Diamond Brilliant Blue Printed Griptape Sheet",
-          id: 22
+          id: 22,
         },
         {
           src: require("@/assets/images/griptape/pandagriptape.png"),
           name: "Enjoi Astro Panda Skateboard Griptape Sheet",
           price: 21,
           alt: "Enjoi Astro Panda Skateboard Griptape Sheet",
-          id: 23
-        }
+          id: 23,
+        },
       ],
 
-      choices: []
+      choices: [],
     };
   },
 
@@ -86,27 +86,10 @@ export default {
           "https://createyourownskateboard.firebaseio.com/decks.json",
           this.griptapes[index]
         )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
-      this.createdMethod();
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
     },
-
-    createdMethod(index) {
-      axios
-        .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then(response => {
-          this.choices = response.data;
-          const id = response.data.id;
-          console.log(id);
-          console.log(this.choices);
-        })
-        .catch(error => console.log(error));
-    }
   },
-
-  created() {
-    this.createdMethod();
-  }
 };
 </script>
 
@@ -151,7 +134,7 @@ export default {
   cursor: pointer;
 }
 
-a{
+a {
   width: 50%;
   text-align: center;
 }

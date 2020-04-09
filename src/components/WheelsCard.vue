@@ -40,7 +40,7 @@ export default {
           price: 68,
           size: "55mm",
           alt: "Speedlab Sirens Skateboard Wheels",
-          id: 8
+          id: 8,
         },
         {
           src: require("@/assets/images/wheels/bluewheels.png"),
@@ -48,7 +48,7 @@ export default {
           price: 48,
           size: "53mm",
           alt: "Bones 100's Sidecuts White Skateboard Wheels",
-          id: 9
+          id: 9,
         },
         {
           src: require("@/assets/images/wheels/redwheels.png"),
@@ -56,7 +56,7 @@ export default {
           price: 48,
           size: "52mm",
           alt: "Bones 100's Sidecuts Black Skateboard Wheels",
-          id: 10
+          id: 10,
         },
         {
           src: require("@/assets/images/wheels/whitewheels.png"),
@@ -64,11 +64,11 @@ export default {
           price: 64,
           size: "53mm",
           alt: "Bones STF Sidecut McClung Oats Skateboard Wheels",
-          id: 11
-        }
+          id: 11,
+        },
       ],
 
-      choices: []
+      choices: [],
     };
   },
 
@@ -82,27 +82,10 @@ export default {
           "https://createyourownskateboard.firebaseio.com/decks.json",
           this.wheels[index]
         )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
-      this.createdMethod();
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
     },
-
-    createdMethod(index) {
-      axios
-        .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then(response => {
-          this.choices = response.data;
-          const id = response.data.id;
-          console.log(id);
-          console.log(this.choices);
-        })
-        .catch(error => console.log(error));
-    }
   },
-
-  created() {
-    this.createdMethod();
-  }
 };
 </script>
 

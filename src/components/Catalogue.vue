@@ -70,23 +70,8 @@ export default {
     }
   },
 
-  created(index) {
-    axios
-      .get("https://createyourownskateboard.firebaseio.com/decks.json")
-      .then(res => {
-        console.log(res);
-        const data = res.data;
-        const trucks = [];
-        for (let key in data) {
-          const truck = data[key];
-          truck.id = key;
-          trucks.push(truck);
-        }
-        console.log(trucks);
-        this.name = trucks[index].name;
-        console.log(this.name);
-      })
-      .catch(error => console.log(error));
+  created(){
+    this.showDecks();
   }
 };
 </script>
