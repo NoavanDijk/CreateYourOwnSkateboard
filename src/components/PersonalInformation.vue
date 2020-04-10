@@ -32,9 +32,11 @@
                       class="input"
                       type="text"
                       placeholder="Voornaam"
-                      v-model="firstname"
+                      :value="firstname"
+                      @input="updateFirstname"
                     />
                   </p>
+                  <p>{{ firstname }}</p>
                 </div>
                 <div class="field">
                   <p class="control">
@@ -42,7 +44,8 @@
                       class="input"
                       type="text"
                       placeholder="Tussenvoegsel"
-                      v-model="insertion"
+                      :value="insertion"
+                      @input="updateInsertion"
                     />
                   </p>
                 </div>
@@ -52,7 +55,8 @@
                       class="input"
                       type="text"
                       placeholder="Achternaam"
-                      v-model="lastname"
+                      :value="lastname"
+                      @input="updateLastname"
                     />
                   </p>
                 </div>
@@ -66,7 +70,8 @@
                   class="input"
                   type="text"
                   placeholder="1234AB"
-                  v-model="zipcode"
+                  :value="zipcode"
+                  @input="updateZipcode"
                 />
               </div>
             </div>
@@ -80,7 +85,8 @@
                       class="input"
                       type="number"
                       placeholder="Nummer"
-                      v-model="housenumber"
+                      :value="housenumber"
+                      @input="updateHousenumber"
                       min="0"
                     />
                   </p>
@@ -91,7 +97,8 @@
                       class="input"
                       type="text"
                       placeholder="Toevoeging"
-                      v-model="addition"
+                      :value="addition"
+                      @input="updateAddition"
                     />
                   </p>
                 </div>
@@ -105,7 +112,8 @@
                   class="input"
                   type="email"
                   placeholder="test@gmail.com"
-                  v-model="email"
+                  :value="email"
+                  @input="updateEmail"
                 />
               </div>
             </div>
@@ -123,7 +131,8 @@
                     class="input"
                     type="tel"
                     placeholder="Jouw telefoonnummer"
-                    v-model="phonenumber"
+                    :value="phonenumber"
+                    @input="updatePhonenumber"
                   />
                 </p>
               </div>
@@ -134,7 +143,7 @@
               <label class="label">Kies uw bank</label>
               <div class="control">
                 <div class="select">
-                  <select>
+                  <select :value="bank" @input="updateBank">
                     <option>Selecteer uw bank</option>
                     <option>ABN Amro Bank</option>
                     <option>ASN Bank</option>
@@ -156,7 +165,8 @@
                   class="input"
                   type="number"
                   placeholder="Nummer"
-                  v-model="accountnumber"
+                  :value="accountnumber"
+                  @input="updateAccountnumber"
                   min="0"
                 />
               </p>
@@ -169,18 +179,19 @@
                   class="input"
                   type="number"
                   placeholder="Nummer"
-                  v-model="pasnumber"
+                  :value="pasnumber"
+                  @input="updatePasnumber"
                   min="0"
                 />
               </p>
             </div>
           </div>
           <footer class="card-footer">
-            <!-- <router-link to="/personalinformation"> -->
-            <button class="button next" @click="orderSkateboard">
-              Bestel
-            </button>
-            <!-- </router-link> -->
+            <router-link to="/filledinpersonalinfo">
+              <button class="button next">
+                Bestel
+              </button>
+            </router-link>
           </footer>
         </div>
       </div>
@@ -190,44 +201,105 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
   data() {
     return {
       man: 0,
-      woman: 1,
-      firstname: "",
-      insertion: "",
-      lastname: "",
-      zipcode: "",
-      housenumber: null,
-      addition: "",
-      email: "",
-      phonenumber: "",
-      accountnumber: null,
-      pasnumber: null,
-
-      personalInformation: []
+      woman: 1
     };
   },
 
-  methods: {
-    orderSkateboard() {
-      this.personalInformation.push({
-        man: this.man,
-        woman: this.woman,
-        firstname: this.firstname,
-        insertion: this.insertion,
-        lastname: this.lastname,
-        zipcode: this.zipcode,
-        housenumber: this.housenumber,
-        addition: this.addition,
-        email: this.email,
-        phonenumber: this.phonenumber,
-        accountnumber: this.accountnumber,
-        pasnumber: this.pasnumber
-      });
+  computed: {
+    firstname() {
+      return this.$store.getters.firstname;
+    },
 
-      console.log(this.personalInformation);
+    insertion() {
+      return this.$store.getters.insertion;
+    },
+
+    lastname() {
+      return this.$store.getters.lastname;
+    },
+
+    zipcode() {
+      return this.$store.getters.zipcode;
+    },
+
+    housenumber() {
+      return this.$store.getters.housenumber;
+    },
+
+    addition() {
+      return this.$store.getters.addition;
+    },
+
+    email() {
+      return this.$store.getters.email;
+    },
+
+    phonenumber() {
+      return this.$store.getters.phonenumber;
+    },
+
+    bank() {
+      return this.$store.getters.bank;
+    },
+
+    accountnumber() {
+      return this.$store.getters.accountnumber;
+    },
+
+    pasnumber() {
+      return this.$store.getters.pasnumber;
+    }
+  },
+
+  methods: {
+    updateFirstname(event) {
+      this.$store.dispatch("updateFirstname", event.target.value);
+    },
+
+    updateInsertion(event) {
+      this.$store.dispatch("updateInsertion", event.target.value);
+    },
+
+    updateLastname(event) {
+      this.$store.dispatch("updateLastname", event.target.value);
+    },
+
+    updateZipcode(event) {
+      this.$store.dispatch("updateZipcode", event.target.value);
+    },
+
+    updateHousenumber(event) {
+      this.$store.dispatch("updateHousenumber", event.target.value);
+    },
+
+    updateAddition(event) {
+      this.$store.dispatch("updateAddition", event.target.value);
+    },
+
+    updateEmail(event) {
+      this.$store.dispatch("updateEmail", event.target.value);
+    },
+
+    updatePhonenumber(event) {
+      this.$store.dispatch("updatePhonenumber", event.target.value);
+    },
+
+    updateBank(event) {
+      this.$store.dispatch("updateBank", event.target.value);
+    },
+
+    updateAccountnumber(event) {
+      this.$store.dispatch("updateAccountnumber", event.target.value);
+    },
+
+    updatePasnumber(event) {
+      this.$store.dispatch("updatePasnumber", event.target.value);
     }
   }
 };
@@ -248,6 +320,11 @@ export default {
   border: 0;
   background-color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-footer {
   display: flex;
   justify-content: flex-end;
 }

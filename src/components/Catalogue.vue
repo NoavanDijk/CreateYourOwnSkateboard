@@ -67,7 +67,7 @@ export default {
 
     showOrderform(){
       return this.$store.state.showOrderform;
-    }
+    },
   },
 
   created(){
