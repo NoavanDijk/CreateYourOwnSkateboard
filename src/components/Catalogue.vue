@@ -69,9 +69,5 @@ export default {
       return this.$store.state.showOrderform;
     },
   },
-
-  created(){
-    this.showDecks();
-  }
 };
 </script>

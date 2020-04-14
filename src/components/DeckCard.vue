@@ -84,12 +84,12 @@ export default {
         )
         .then(res => console.log(res))
         .catch(error => console.log(error));
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .productcard {
   margin: 0.4em 1.2em 0 0;
   column-count: 2;
@@ -128,5 +128,12 @@ export default {
   border: 0;
   background-color: white;
   cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 635px) {
+  .productcard {
+    margin: 0.4em 1.2em 0 0;
+    column-count: 1;
+  }
 }
 </style>

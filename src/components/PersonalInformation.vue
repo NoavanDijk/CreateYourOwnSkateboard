@@ -11,15 +11,14 @@
           </header>
           <div class="card-content">
             <div class="field">
+              <label class="label">Geslacht</label>
               <div class="control">
-                <label class="radio">
-                  <input type="radio" name="question" v-model="man" />
-                  Dhr
-                </label>
-                <label class="radio">
-                  <input type="radio" name="question" v-model="woman" />
-                  Mevr
-                </label>
+                <div class="select">
+                  <select :value="gender" @input="updateGender">
+                    <option>Man</option>
+                    <option>Vrouw</option>
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -118,32 +117,10 @@
             </div>
 
             <div class="field">
-              <label class="label">Telefoonnummer</label>
-              <div class="field has-addons">
-                <p class="control">
-                  <a class="button is-static">
-                    +31
-                  </a>
-                </p>
-                <p class="control is-expanded">
-                  <input
-                    class="input"
-                    type="tel"
-                    placeholder="Jouw telefoonnummer"
-                    :value="phonenumber"
-                    @input="updatePhonenumber"
-                  />
-                </p>
-              </div>
-              <p class="help">Vul niet de eerste nul in</p>
-            </div>
-
-            <div class="field">
               <label class="label">Kies uw bank</label>
               <div class="control">
                 <div class="select">
                   <select :value="bank" @input="updateBank">
-                    <option>Selecteer uw bank</option>
                     <option>ABN Amro Bank</option>
                     <option>ASN Bank</option>
                     <option>Bunq</option>
@@ -218,12 +195,15 @@ export default {
         this.zipcode.length > 0 &&
         this.housenumber.length > 0 &&
         this.email.length > 0 &&
-        this.phonenumber.length > 0 &&
         this.bank.length > 0 &&
         this.accountnumber.length > 0 &&
         this.pasnumber.length > 0;
 
       return inputsAreValid;
+    },
+
+    gender(){
+      return this.$store.state.gender;
     },
 
     firstname() {
@@ -254,10 +234,6 @@ export default {
       return this.$store.getters.email;
     },
 
-    phonenumber() {
-      return this.$store.getters.phonenumber;
-    },
-
     bank() {
       return this.$store.getters.bank;
     },
@@ -272,6 +248,10 @@ export default {
   },
 
   methods: {
+    updateGender(event){
+      this.$store.dispatch("updateGender", event.target.value);
+    },
+
     updateFirstname(event) {
       this.$store.dispatch("updateFirstname", event.target.value);
     },
@@ -300,10 +280,6 @@ export default {
       this.$store.dispatch("updateEmail", event.target.value);
     },
 
-    updatePhonenumber(event) {
-      this.$store.dispatch("updatePhonenumber", event.target.value);
-    },
-
     updateBank(event) {
       this.$store.dispatch("updateBank", event.target.value);
     },
@@ -314,12 +290,12 @@ export default {
 
     updatePasnumber(event) {
       this.$store.dispatch("updatePasnumber", event.target.value);
-    }
+    },
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .personalinformation {
   background-color: #f4f4f4;
 }
@@ -329,7 +305,8 @@ export default {
   padding: 0;
 }
 
-.next, a {
+.next,
+a {
   width: 100%;
   border: 0;
   background-color: white;
@@ -342,5 +319,12 @@ export default {
 .card-footer {
   display: flex;
   justify-content: flex-end;
+}
+
+@media (min-width: 320px) and (max-width: 635px) {
+  .card {
+    margin: 0;
+    padding: 0;
+  }
 }
 </style>

@@ -15,6 +15,7 @@ export const store = new Vuex.Store({
     showGriptape: false,
     showOrderform: false,
 
+    gender: "",
     firstname: "",
     insertion: "",
     lastname: "",
@@ -22,13 +23,16 @@ export const store = new Vuex.Store({
     housenumber: 0,
     addition: "",
     email: "",
-    phonenumber: "",
     bank: "",
     accountnumber: 0,
-    pasnumber: 0
+    pasnumber: 0,
   },
 
   getters: {
+    gender: state => {
+      return state.gender;
+    },
+
     firstname: state => {
       return state.firstname;
     },
@@ -57,10 +61,6 @@ export const store = new Vuex.Store({
       return state.email;
     },
 
-    phonenumber: state => {
-      return state.phonenumber;
-    },
-
     bank: state => {
       return state.bank;
     },
@@ -75,6 +75,10 @@ export const store = new Vuex.Store({
   },
 
   mutations: {
+    updateGender: (state, payload) => {
+      state.gender = payload;
+    },
+
     updateFirstname: (state, payload) => {
       state.firstname = payload;
     },
@@ -103,10 +107,6 @@ export const store = new Vuex.Store({
       state.email = payload;
     },
 
-    updatePhonenumber: (state, payload) => {
-      state.phonenumber = payload;
-    },
-
     updateBank: (state, payload) => {
       state.bank = payload;
     },
@@ -122,6 +122,10 @@ export const store = new Vuex.Store({
   },
 
   actions: {
+    updateGender({ commit }, payload) {
+      commit("updateGender", payload);
+    },
+
     updateFirstname({ commit }, payload) {
       commit("updateFirstname", payload);
     },
@@ -148,10 +152,6 @@ export const store = new Vuex.Store({
 
     updateEmail({ commit }, payload) {
       commit("updateEmail", payload);
-    },
-
-    updatePhonenumber({ commit }, payload) {
-      commit("updatePhonenumber", payload);
     },
 
     updateBank({ commit }, payload) {

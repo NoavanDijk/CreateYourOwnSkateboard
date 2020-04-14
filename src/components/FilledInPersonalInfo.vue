@@ -1,23 +1,23 @@
 <template>
-  <div>
+  <div class="filledinpersonalinfo">
     <div class="columns">
       <div class="column"></div>
       <div class="column is-two-fifths">
         <div class="card">
           <header class="card-header">
-            <p class="card-header-title">
+            <p class="card-header-title titel">
               Ingevulde gegevens
             </p>
           </header>
           <div class="card-content">
+            <label class="label">Gender</label>
+            <p>{{ gender }} {{ gender2 }}</p>
             <label class="label">Naam</label>
             <p>{{ firstname }} {{ insertion }} {{ lastname }}</p>
             <label class="label">Postcode</label>
             <p> {{ zipcode }}</p>
             <label class="label">E-mailadres</label>
             <p>{{ email }}</p>
-            <label class="label">Telefoonnummer</label>
-            <p>{{ phonenumber }}</p>
             <label class="label">Bank</label>
             <p>{{ bank }}</p>
             <label class="label">Rekeningnummer</label>
@@ -40,6 +40,14 @@
 <script>
 export default {
   computed: {
+    gender(){
+      return this.$store.getters.gender;
+    },
+
+    gender2(){
+      return this.$store.getters.gender2;
+    },
+
     firstname() {
       return this.$store.getters.firstname;
     },
@@ -68,10 +76,6 @@ export default {
       return this.$store.getters.email;
     },
 
-    phonenumber() {
-      return this.$store.getters.phonenumber;
-    },
-
     bank() {
       return this.$store.getters.bank;
     },
@@ -88,9 +92,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.filledinpersonalinfo{
+  height: 101.5vh;
+}
+
 .card {
-  margin: 2em 0 1.3em 0;
+  margin: 4em 0 1.3em 0;
   padding: 0;
 }
 
@@ -99,6 +107,10 @@ export default {
 }
 
 p{
-  margin: 1em;
+  margin: 0 0 1em 0;
+}
+
+.titel{
+  margin: 0;
 }
 </style>
