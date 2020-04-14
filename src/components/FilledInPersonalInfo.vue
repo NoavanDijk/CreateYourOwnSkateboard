@@ -10,20 +10,23 @@
             </p>
           </header>
           <div class="card-content">
-            <p>{{ firstname }}</p>
-            <p>{{ insertion }}</p>
-            <p>{{ lastname }}</p>
-            <p>{{ zipcode }}</p>
-            <p>{{ housenumber }}</p>
-            <p>{{ addition }}</p>
+            <label class="label">Naam</label>
+            <p>{{ firstname }} {{ insertion }} {{ lastname }}</p>
+            <label class="label">Postcode</label>
+            <p> {{ zipcode }}</p>
+            <label class="label">E-mailadres</label>
             <p>{{ email }}</p>
+            <label class="label">Telefoonnummer</label>
             <p>{{ phonenumber }}</p>
+            <label class="label">Bank</label>
             <p>{{ bank }}</p>
+            <label class="label">Rekeningnummer</label>
             <p>{{ accountnumber }}</p>
+            <label class="label">Pasnummer</label>
             <p>{{ pasnumber }}</p>
           </div>
           <footer class="card-footer">
-            <button class="button next" @click="orderSkateboard">
+            <button class="button next">
               Bestel
             </button>
           </footer>
@@ -42,11 +45,11 @@ export default {
     },
 
     insertion() {
-      return this.$store.getters.lastname;
+      return this.$store.getters.insertion;
     },
 
     lastname() {
-      return this.$store.getters.insertion;
+      return this.$store.getters.lastname;
     },
 
     zipcode() {
@@ -84,3 +87,18 @@ export default {
 
 };
 </script>
+
+<style>
+.card {
+  margin: 2em 0 1.3em 0;
+  padding: 0;
+}
+
+.label:not(:last-child){
+  margin-bottom: 0;
+}
+
+p{
+  margin: 1em;
+}
+</style>

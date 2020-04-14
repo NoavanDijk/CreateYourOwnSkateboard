@@ -36,7 +36,6 @@
                       @input="updateFirstname"
                     />
                   </p>
-                  <p>{{ firstname }}</p>
                 </div>
                 <div class="field">
                   <p class="control">
@@ -187,11 +186,11 @@
             </div>
           </div>
           <footer class="card-footer">
-            <router-link to="/filledinpersonalinfo">
-              <button class="button next">
+            <button class="button next" :disabled="!allFilledIn">
+              <router-link to="/filledinpersonalinfo">
                 Bestel
-              </button>
-            </router-link>
+              </router-link>
+            </button>
           </footer>
         </div>
       </div>
@@ -212,6 +211,21 @@ export default {
   },
 
   computed: {
+    allFilledIn() {
+      const inputsAreValid =
+        this.firstname.length > 0 &&
+        this.lastname.length > 0 &&
+        this.zipcode.length > 0 &&
+        this.housenumber.length > 0 &&
+        this.email.length > 0 &&
+        this.phonenumber.length > 0 &&
+        this.bank.length > 0 &&
+        this.accountnumber.length > 0 &&
+        this.pasnumber.length > 0;
+
+      return inputsAreValid;
+    },
+
     firstname() {
       return this.$store.getters.firstname;
     },
@@ -315,13 +329,14 @@ export default {
   padding: 0;
 }
 
-.next {
+.next, a {
   width: 100%;
   border: 0;
   background-color: white;
   cursor: pointer;
   display: flex;
   justify-content: flex-end;
+  color: black;
 }
 
 .card-footer {
