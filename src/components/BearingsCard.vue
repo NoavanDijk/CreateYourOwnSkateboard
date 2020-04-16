@@ -23,7 +23,7 @@
             <p class="card-footer-item"></p>
             <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
-                <span>Add</span>
+                Add <pre><i class="fas fa-plus"></i></pre>
               </p>
             </button>
           </footer>
@@ -131,5 +131,11 @@ export default {
   border: 0;
   background-color: white;
   cursor: pointer;
+}
+
+pre{
+  background-color: white;
+  padding: 0 1em 0 1em;
+  color: black;
 }
 </style>

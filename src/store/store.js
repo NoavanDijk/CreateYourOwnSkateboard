@@ -30,7 +30,7 @@ export const store = new Vuex.Store({
     addition: "",
     email: "",
     bank: "",
-    accountnumber: 0,
+    accountnumber: "",
     pasnumber: 0,
   },
 

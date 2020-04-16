@@ -11,12 +11,12 @@
           </header>
           <div class="card-content">
             <div class="field">
-              <label class="label">Geslacht</label>
+              <label class="label">Aanhef</label>
               <div class="control">
                 <div class="select">
                   <select :value="gender" @input="updateGender">
-                    <option>Man</option>
-                    <option>Vrouw</option>
+                    <option>Dhr.</option>
+                    <option>Mevr.</option>
                   </select>
                 </div>
               </div>
@@ -139,8 +139,7 @@
               <p class="control">
                 <input
                   class="input"
-                  type="number"
-                  placeholder="Nummer"
+                  placeholder="Rekeningnummer"
                   :value="accountnumber"
                   @input="updateAccountnumber"
                   min="0"
@@ -180,13 +179,6 @@
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  data() {
-    return {
-      man: 0,
-      woman: 1,
-    };
-  },
-
   computed: {
     allFilledIn() {
       const inputsAreValid =

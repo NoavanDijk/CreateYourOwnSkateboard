@@ -2,7 +2,7 @@
   <div class="thanksfororder">
     <div class="columns">
       <div class="column"></div>
-      <div class="column is-two-fifths">
+      <div class="column is-two-fifths thanks">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -18,7 +18,7 @@
           </div>
           <footer class="card-footer">
             <router-link to="/" class="next">
-              <button class="button next">
+              <button class="button next" @click="startover">
                 Ga terug naar Home
               </button>
             </router-link>
@@ -30,6 +30,26 @@
   </div>
 </template>
 
+<script>
+import axios from "axios";
+
+export default {
+  methods: {
+    startover() {
+      axios
+        .delete("https://createyourownskateboard.firebaseio.com/decks.json", {
+          data: this.results,
+        })
+        .then((response) => {
+          console.log(response);
+          this.$router.go();
+        })
+        .catch((error) => console.log(error));
+    },
+  },
+};
+</script>
+
 <style scoped>
 .thanksfororder {
   height: 100vh;
@@ -38,7 +58,8 @@
   justify-content: center;
 }
 
-.column {
+.column.is-two-fifths,
+.column.is-two-fifths-tablet {
   width: 100%;
 }
 

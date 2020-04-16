@@ -24,7 +24,7 @@
             <router-link to="/orderform">
               <button class="addbutton" @click="changeShowDecks(index)">
                 <p class="card-footer-item">
-                  <span>Add</span>
+                  Add <pre><i class="fas fa-plus"></i></pre>
                 </p>
               </button>
             </router-link>
@@ -137,5 +137,11 @@ export default {
 a {
   width: 50%;
   text-align: center;
+}
+
+pre{
+  background-color: white;
+  padding: 0 1em 0 1em;
+  color: black;
 }
 </style>

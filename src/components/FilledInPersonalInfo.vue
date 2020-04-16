@@ -10,12 +10,15 @@
             </p>
           </header>
           <div class="card-content">
-            <label class="label">Gender</label>
-            <p>{{ gender }} {{ gender2 }}</p>
-            <label class="label">Naam</label>
-            <p>{{ firstname }} {{ insertion }} {{ lastname }}</p>
+            <p>
+              Beste {{ gender }} {{ gender2 }} {{ firstname }} {{ insertion }}
+              {{ lastname }}
+            </p>
+            <div v-for="(result, index) in results" v-bind:key="index">
+              <p>{{ result.name }}</p>
+            </div>
             <label class="label">Postcode</label>
-            <p> {{ zipcode }}</p>
+            <p>{{ zipcode }}</p>
             <label class="label">E-mailadres</label>
             <p>{{ email }}</p>
             <label class="label">Bank</label>
@@ -40,13 +43,45 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data() {
+    return {
+      results: [],
+      finalChoices: [],
+    };
+  },
+
+  methods: {
+    createdMethod() {
+      axios
+        .get("https://createyourownskateboard.firebaseio.com/decks.json")
+        .then((response) => {
+          console.log(response);
+          this.results = response.data;
+
+          var choices = [];
+          for (let key in this.results) {
+            this.results[key].id = key;
+            choices.push(this.results[key]);
+          }
+          this.finalChoices = choices;
+        })
+        .catch((error) => console.log(error));
+    },
+  },
+
+  created() {
+    this.createdMethod();
+  },
+
   computed: {
-    gender(){
+    gender() {
       return this.$store.getters.gender;
     },
 
-    gender2(){
+    gender2() {
       return this.$store.getters.gender2;
     },
 
@@ -88,14 +123,13 @@ export default {
 
     pasnumber() {
       return this.$store.getters.pasnumber;
-    }
+    },
   },
-
 };
 </script>
 
 <style scoped>
-.filledinpersonalinfo{
+.filledinpersonalinfo {
   height: 101.5vh;
 }
 
@@ -104,15 +138,15 @@ export default {
   padding: 0;
 }
 
-.label:not(:last-child){
+.label:not(:last-child) {
   margin-bottom: 0;
 }
 
-p{
+p {
   margin: 0 0 1em 0;
 }
 
-.titel{
+.titel {
   margin: 0;
 }
 

@@ -97,10 +97,9 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          this.$router.go()
+          this.$router.go();
         })
         .catch((error) => console.log(error));
-      
     },
   },
 
@@ -143,9 +142,9 @@ article {
   border-radius: 0;
 }
 
-.next:hover{
+.next:hover {
   background-color: #2bb54b;
-  color:white;
+  color: white;
 }
 
 .startover {
