@@ -1,7 +1,7 @@
 <template>
   <div class="indexparts">
-    <div class="card" v-for="(part, index) in parts" v-bind:key="index" @click="changeShowDecks(index)">
-      <button class="buttonindexpart">
+    <div class="card" v-for="(part, index) in parts" v-bind:key="index">
+      <button class="buttonindexpart" @click="changeShowDecks(index)">
         <div class="card-content">
         <div class="content">
           <p class="partname">{{ part.name }}</p>

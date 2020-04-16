@@ -163,11 +163,11 @@
             </div>
           </div>
           <footer class="card-footer">
-            <button class="button next" :disabled="!allFilledIn">
-              <router-link to="/filledinpersonalinfo">
+            <router-link to="/filledinpersonalinfo" class="next2">
+              <button class="button next" :disabled="!allFilledIn">
                 Bestel
-              </router-link>
-            </button>
+              </button>
+            </router-link>
           </footer>
         </div>
       </div>
@@ -183,7 +183,7 @@ export default {
   data() {
     return {
       man: 0,
-      woman: 1
+      woman: 1,
     };
   },
 
@@ -202,7 +202,7 @@ export default {
       return inputsAreValid;
     },
 
-    gender(){
+    gender() {
       return this.$store.state.gender;
     },
 
@@ -244,11 +244,11 @@ export default {
 
     pasnumber() {
       return this.$store.getters.pasnumber;
-    }
+    },
   },
 
   methods: {
-    updateGender(event){
+    updateGender(event) {
       this.$store.dispatch("updateGender", event.target.value);
     },
 
@@ -291,7 +291,7 @@ export default {
     updatePasnumber(event) {
       this.$store.dispatch("updatePasnumber", event.target.value);
     },
-  }
+  },
 };
 </script>
 
@@ -305,20 +305,32 @@ export default {
   padding: 0;
 }
 
-.next,
 a {
   width: 100%;
-  border: 0;
-  background-color: white;
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-end;
-  color: black;
+  border-left: 0.5px solid #ececec;
 }
 
-.card-footer {
+.next {
+  width: 100%;
+  border: 0;
+  background-color: #28a745;
+  cursor: pointer;
+  height: 56px;
+  color: white;
+  border-radius: 0;
+  padding: 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+}
+
+.next2{
+  background-color: #28a745;
+}
+
+.next:hover {
+  background-color: #2bb54b;
+  color: white;
 }
 
 @media (min-width: 320px) and (max-width: 635px) {

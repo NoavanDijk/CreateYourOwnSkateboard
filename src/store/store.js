@@ -5,7 +5,7 @@ import { getField, updateField } from "vuex-map-fields";
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-  strict: true,
+  strict: false,
   state: {
     showDecks: true,
     showTrucks: false,
@@ -14,6 +14,12 @@ export const store = new Vuex.Store({
     showBolts: false,
     showGriptape: false,
     showOrderform: false,
+
+    disableTrucks: true,
+    disableWheels: true,
+    disableBearings: true,
+    disableBolts: true,
+    disableGriptape: true,
 
     gender: "",
     firstname: "",

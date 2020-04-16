@@ -134,11 +134,18 @@ article {
 }
 
 .next {
-  width: 84%;
+  width: 100%;
   border: 0;
-  background-color: white;
+  background-color: #28a745;
   cursor: pointer;
-  margin: 0.5em 2em 0.5em 1em;
+  height: 100%;
+  color: white;
+  border-radius: 0;
+}
+
+.next:hover{
+  background-color: #2bb54b;
+  color:white;
 }
 
 .startover {

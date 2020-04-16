@@ -26,9 +26,11 @@
             <p>{{ pasnumber }}</p>
           </div>
           <footer class="card-footer">
-            <button class="button next">
-              Bestel
-            </button>
+            <router-link to="/thanksfororder" class="next">
+              <button class="button next">
+                Bevestigen
+              </button>
+            </router-link>
           </footer>
         </div>
       </div>
@@ -112,5 +114,24 @@ p{
 
 .titel{
   margin: 0;
+}
+
+.next {
+  width: 100%;
+  border: 0;
+  background-color: #28a745;
+  cursor: pointer;
+  height: 56px;
+  color: white;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.next:hover {
+  background-color: #2bb54b;
+  color: white;
 }
 </style>
