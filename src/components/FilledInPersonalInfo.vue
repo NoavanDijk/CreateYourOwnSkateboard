@@ -6,7 +6,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title titel">
-              Ingevulde gegevens
+              Bevestiging
             </p>
           </header>
           <div class="card-content">
@@ -14,10 +14,11 @@
               Beste {{ gender }} {{ gender2 }} {{ firstname }} {{ insertion }}
               {{ lastname }}
             </p>
-            <div v-for="(result, index) in results" v-bind:key="index">
-              <p>{{ result.name }}</p>
-            </div>
-            <label class="label">Postcode</label>
+            <p>U wilt het volgende bestellen:</p>
+            <ul v-for="(result, index) in results" v-bind:key="index">
+              <li>{{ result.name }}</li>
+            </ul>
+            <label class="label zipcode">Postcode</label>
             <p>{{ zipcode }}</p>
             <label class="label">E-mailadres</label>
             <p>{{ email }}</p>
@@ -29,7 +30,12 @@
             <p>{{ pasnumber }}</p>
           </div>
           <footer class="card-footer">
-            <router-link to="/thanksfororder" class="next">
+            <router-link to="/personalinformation">
+              <button class="button startover">
+                Ga terug
+              </button>
+            </router-link>
+            <router-link to="/thanksfororder">
               <button class="button next">
                 Bevestigen
               </button>
@@ -129,12 +135,8 @@ export default {
 </script>
 
 <style scoped>
-.filledinpersonalinfo {
-  height: 101.5vh;
-}
-
 .card {
-  margin: 4em 0 1.3em 0;
+  margin: 2em 0 1.3em 0;
   padding: 0;
 }
 
@@ -150,22 +152,41 @@ p {
   margin: 0;
 }
 
+a {
+  width: 50%;
+  border-left: 0.5px solid #ececec;
+}
+
 .next {
   width: 100%;
   border: 0;
   background-color: #28a745;
   cursor: pointer;
-  height: 56px;
+  height: 100%;
   color: white;
   border-radius: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .next:hover {
-  background-color: #2bb54b;
+  background-color: #218838;
+  border-color: #1e7e34;
   color: white;
+}
+
+.startover {
+  width: 97%;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  margin: 0.5em 2em 0.5em 0.5em;
+}
+
+ul{
+  list-style-type: square;
+  margin-left: 3em;
+}
+
+.zipcode{
+  margin-top: 1em;
 }
 </style>

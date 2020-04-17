@@ -321,7 +321,8 @@ a {
 }
 
 .next:hover {
-  background-color: #2bb54b;
+  background-color: #218838;
+  border-color: #1e7e34;
   color: white;
 }
 

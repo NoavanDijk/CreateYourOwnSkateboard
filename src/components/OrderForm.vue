@@ -36,11 +36,9 @@
             </div>
           </div>
           <footer class="card-footer">
-            <router-link to="/">
-              <button class="button startover" @click="startover">
-                Begin opnieuw
-              </button>
-            </router-link>
+            <button class="button startover" @click="onClickOpenDeleteWarning">
+              Begin opnieuw
+            </button>
             <router-link to="/personalinformation">
               <button class="button next">
                 Ga verder
@@ -48,6 +46,13 @@
             </router-link>
           </footer>
         </div>
+
+        <DeleteWarning
+          :onClickCloseModal="onClickCloseModal"
+          :startover="startover"
+          :activeModalId="activeModalId"
+        >
+        </DeleteWarning>
       </div>
       <div class="column"></div>
     </div>
@@ -57,12 +62,18 @@
 <script>
 import axios from "axios";
 
+import DeleteWarning from "@/components/StartoverWarning.vue";
+
 export default {
+  components: {
+    DeleteWarning,
+  },
   data() {
     return {
       results: [],
       finalChoices: [],
       totalprice: 0,
+      activeModalId: "",
     };
   },
 
@@ -97,9 +108,20 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.$router.push("/");
           this.$router.go();
         })
         .catch((error) => console.log(error));
+    },
+
+    onClickOpenDeleteWarning: function(event) {
+      this.activeModalId = "modal-delete";
+      return;
+    },
+
+    onClickCloseModal: function(event) {
+      this.activeModalId = "";
+      return;
     },
   },
 
@@ -143,16 +165,18 @@ article {
 }
 
 .next:hover {
-  background-color: #2bb54b;
+  background-color: #218838;
+  border-color: #1e7e34;
   color: white;
 }
 
 .startover {
-  width: 97%;
+  width: 50%;
   border: 0;
   background-color: white;
   cursor: pointer;
-  margin: 0.5em 2em 0.5em 0.5em;
+  margin: 0.5em 0 0.5em 0;
+  outline: none;
 }
 
 .totalamount {

@@ -6,7 +6,7 @@ import FilledInPersonalInfo from "./components/FilledInPersonalInfo.vue";
 import ThanksForOrder from "./components/ThanksForOrder.vue";
 
 export const routes = [
-  { path: "/", component: Home },
+  { path: "/", name:'home', component: Home },
   { path: "/catalogue", component: Catalogue },
   {
     path: "/orderform",
