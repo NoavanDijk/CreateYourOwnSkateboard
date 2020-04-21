@@ -5,13 +5,13 @@
         <app-index-parts></app-index-parts>
       </div>
       <div class="column">
-        <app-deck-card v-show="showDecks"></app-deck-card>
-        <app-trucks-card v-show="showTrucks"></app-trucks-card>
-        <app-wheels-card v-show="showWheels"></app-wheels-card>
-        <app-bearings-card v-show="showBearings"></app-bearings-card>
-        <app-bolts-card v-show="showBolts"></app-bolts-card>
-        <app-griptape-card v-show="showGriptape"></app-griptape-card>
-        <app-order-form v-show="showOrderform"></app-order-form>
+        <app-deck-card v-if="showDecks"></app-deck-card>
+        <app-trucks-card v-if="showTrucks"></app-trucks-card>
+        <app-wheels-card v-if="showWheels"></app-wheels-card>
+        <app-bearings-card v-if="showBearings"></app-bearings-card>
+        <app-bolts-card v-if="showBolts"></app-bolts-card>
+        <app-griptape-card v-if="showGriptape"></app-griptape-card>
+        <app-order-form v-if="showOrderform"></app-order-form>
       </div>
     </div>
   </div>

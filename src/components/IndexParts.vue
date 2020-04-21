@@ -35,6 +35,7 @@ export default {
         this.$store.state.showTrucks = false;
         this.$store.state.showWheels = false;
         this.$store.state.showBearings = false;
+        // window.location.reload();
       }
       if(index == 1){
         this.$store.state.showDecks = false;
@@ -43,6 +44,7 @@ export default {
         this.$store.state.showBearings = false;
         this.$store.state.showBolts = false;
         this.$store.state.showGriptape = false;
+        // window.location.reload(index);
       }
       if(index == 2){
         this.$store.state.showDecks = false;
