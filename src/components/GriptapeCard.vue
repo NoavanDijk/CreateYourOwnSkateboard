@@ -80,6 +80,7 @@ export default {
     changeShowDecks(index) {
       this.$store.state.showGriptape = false;
       this.$store.state.showOrderform = true;
+      this.$store.state.gripTapeClicked = true;
 
       axios
         .post(
@@ -88,8 +89,8 @@ export default {
         )
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
-    },
-  },
+    }
+  }
 };
 </script>
 

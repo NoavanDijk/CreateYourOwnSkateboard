@@ -5,20 +5,22 @@ import PersonalInformation from "./components/PersonalInformation.vue";
 import FilledInPersonalInfo from "./components/FilledInPersonalInfo.vue";
 import ThanksForOrder from "./components/ThanksForOrder.vue";
 
+import { store }  from './store/store';
+
 export const routes = [
-  { path: "/", name:'home', component: Home },
+  { path: "/", name:"Home", component: Home },
   { path: "/catalogue", component: Catalogue },
   {
     path: "/orderform",
     component: OrderForm,
-    // beforeEnter: (to, from, next) => {
-    //   if (window.currentUser == "THEVALLEY\\noa.van.dijk") {
-    //     next();
-    //   } else {
-    //     // If params.name is blank or in your case, does not have permission, redirect back to the home page
-    //     next({ name: "Home" });
-    //   }
-    // }
+    name: "OrderForm",
+    beforeEnter: (to, from, next) => {
+      if (store.getters.gripTapeClicked == true) {
+        next();
+      } else {
+        next({ name: "Home" });
+      }
+    }
   },
   {
     path: "/personalinformation",

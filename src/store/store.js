@@ -32,6 +32,8 @@ export const store = new Vuex.Store({
     bank: "",
     accountnumber: "",
     pasnumber: 0,
+
+    gripTapeClicked: false
   },
 
   getters: {
@@ -78,6 +80,10 @@ export const store = new Vuex.Store({
     pasnumber: state => {
       return state.pasnumber;
     },
+
+    gripTapeClicked: state => {
+      return state.gripTapeClicked;
+    }
   },
 
   mutations: {
@@ -125,6 +131,10 @@ export const store = new Vuex.Store({
       state.pasnumber = payload;
     },
 
+    gripTapeClicked: (state, payload) => {
+      state.gripTapeClicked = payload;
+    }
+
   },
 
   actions: {
@@ -171,5 +181,9 @@ export const store = new Vuex.Store({
     updatePasnumber({ commit }, payload) {
       commit("updatePasnumber", payload);
     },
+
+    updateGripTapeClicked({ commit }, payload) {
+      commit("updateGripTapeClicked", payload);
+    }
   }
 });

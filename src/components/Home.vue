@@ -16,12 +16,6 @@
 <script></script>
 
 <style>
-#home {
-  overflow: hidden;
-  margin: 0;
-  height: 100%;
-}
-
 .homepageimage {
   background-size: cover;
   padding: 0;
@@ -47,5 +41,41 @@
   font-size: 3em;
   color: white;
   opacity: 1;
+}
+
+@media (min-width: 320px) and (max-width: 635px) {
+  .home {
+    background-image: linear-gradient(orange, black);
+    width: 425px;
+    height: 100vh;
+  }
+
+  .homepageimage {
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .creatediv {
+    height: 4em;
+    color: white;
+    width: 100%;
+    position: absolute;
+    margin-top: 10em;
+    height: 10em;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+  }
+
+  .homepagetext {
+    text-align: center;
+    padding: 0.9em;
+    font-size: 1.5em;
+    color: white;
+    opacity: 1;
+  }
 }
 </style>

@@ -40,7 +40,7 @@
               Begin opnieuw
             </button>
             <router-link to="/personalinformation">
-              <button class="button next">
+              <button class="button next" @click="goToPersonalInformation">
                 Ga verder
               </button>
             </router-link>
