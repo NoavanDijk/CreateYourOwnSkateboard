@@ -36,7 +36,7 @@
               </button>
             </router-link>
             <router-link to="/thanksfororder">
-              <button class="button next">
+              <button class="button next" @click="goToThanksForOrder">
                 Bevestigen
               </button>
             </router-link>
@@ -76,6 +76,10 @@ export default {
         })
         .catch((error) => console.log(error));
     },
+
+    goToThanksForOrder(){
+      this.$store.state.goToThanksForOrder = true;
+    }
   },
 
   created() {

@@ -25,37 +25,34 @@ export const routes = [
   {
     path: "/personalinformation",
     component: PersonalInformation,
-    // beforeEnter: (to, from, next) => {
-    //   if (window.currentUser == "THEVALLEY\\noa.van.dijk") {
-    //     next();
-    //   } else {
-    //     // If params.name is blank or in your case, does not have permission, redirect back to the home page
-    //     next({ name: "Home" });
-    //   }
-    // }
+    beforeEnter: (to, from, next) => {
+      if (store.getters.goToPersonalInformation == true) {
+        next();
+      } else {
+        next({ name: "Home" });
+      }
+    }
   },
   {
     path: "/filledinpersonalinfo",
     component: FilledInPersonalInfo,
-    // beforeEnter: (to, from, next) => {
-    //   if (window.currentUser == "THEVALLEY\\noa.van.dijk") {
-    //     next();
-    //   } else {
-    //     // If params.name is blank or in your case, does not have permission, redirect back to the home page
-    //     next({ name: "Home" });
-    //   }
-    // }
+    beforeEnter: (to, from, next) => {
+      if (store.getters.goToFilledInPersonalInfo == true) {
+        next();
+      } else {
+        next({ name: "Home" });
+      }
+    }
   },
   {
     path: "/thanksfororder",
     component: ThanksForOrder,
-    // beforeEnter: (to, from, next) => {
-    //   if (window.currentUser == "THEVALLEY\\noa.van.dijk") {
-    //     next();
-    //   } else {
-    //     // If params.name is blank or in your case, does not have permission, redirect back to the home page
-    //     next({ name: "Home" });
-    //   }
-    // }
+    beforeEnter: (to, from, next) => {
+      if (store.getters.goToThanksForOrder == true) {
+        next();
+      } else {
+        next({ name: "Home" });
+      }
+    }
   }
 ];

@@ -123,6 +123,11 @@ export default {
       this.activeModalId = "";
       return;
     },
+
+    goToPersonalInformation(){
+      this.$store.state.goToPersonalInformation = true;
+      this.$store.state.gripTapeClicked = false;
+    }
   },
 
   created() {

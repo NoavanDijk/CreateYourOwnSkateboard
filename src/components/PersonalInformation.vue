@@ -163,7 +163,7 @@
           </div>
           <footer class="card-footer">
             <router-link to="/filledinpersonalinfo" class="next2">
-              <button class="button next" :disabled="!allFilledIn">
+              <button class="button next" :disabled="!allFilledIn" @click="goToFilledInPersonalInfo">
                 Bestel
               </button>
             </router-link>
@@ -283,6 +283,10 @@ export default {
     updatePasnumber(event) {
       this.$store.dispatch("updatePasnumber", event.target.value);
     },
+
+    goToFilledInPersonalInfo(){
+      this.$store.state.goToFilledInPersonalInfo = true;
+    }
   },
 };
 </script>

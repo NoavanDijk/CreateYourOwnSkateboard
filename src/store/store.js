@@ -33,7 +33,10 @@ export const store = new Vuex.Store({
     accountnumber: "",
     pasnumber: 0,
 
-    gripTapeClicked: false
+    gripTapeClicked: false,
+    goToPersonalInformation: false,
+    goToFilledInPersonalInfo: false,
+    goToThanksForOrder: false,
   },
 
   getters: {
@@ -83,6 +86,18 @@ export const store = new Vuex.Store({
 
     gripTapeClicked: state => {
       return state.gripTapeClicked;
+    },
+
+    goToPersonalInformation: state => {
+      return state.goToPersonalInformation;
+    },
+
+    goToFilledInPersonalInfo: state => {
+      return state.goToFilledInPersonalInfo;
+    },
+
+    goToThanksForOrder: state => {
+      return state.goToThanksForOrder;
     }
   },
 
@@ -133,8 +148,19 @@ export const store = new Vuex.Store({
 
     gripTapeClicked: (state, payload) => {
       state.gripTapeClicked = payload;
-    }
+    },
 
+    goToPersonalInformation: (state, payload) => {
+      state.goToPersonalInformation = payload;
+    },
+
+    goToFilledInPersonalInfo: (state, payload) => {
+      state.goToFilledInPersonalInfo = payload;
+    },
+
+    goToThanksForOrder: (state, payload) => {
+      state.goToThanksForOrder = payload;
+    }
   },
 
   actions: {
@@ -184,6 +210,18 @@ export const store = new Vuex.Store({
 
     updateGripTapeClicked({ commit }, payload) {
       commit("updateGripTapeClicked", payload);
+    },
+
+    updateGoToPersonalInformation({ commit }, payload) {
+      commit("updateGoToPersonalInformation", payload);
+    },
+
+    updateGoToFilledInPersonalInfo({ commit }, payload) {
+      commit("updateGoToFilledInPersonalInfo", payload);
+    },
+
+    updateGoToThanksForOrder({ commit }, payload) {
+      commit("updateGoToThanksForOrder", payload);
     }
   }
 });
