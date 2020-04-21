@@ -69,15 +69,7 @@ export default {
           id: 15
         }
       ],
-
-      results: [],
-      finalChoices: [],
     };
-  },
-
-  created() {
-    this.createdMethod();
-    console.log("test");
   },
 
   methods: {
@@ -85,57 +77,14 @@ export default {
       this.$store.state.showBearings = false;
       this.$store.state.showBolts = true;
 
-      if(this.finalChoices.length == 0){
-        console.log("Leeg");
-        axios
-            .post(
-              "https://createyourownskateboard.firebaseio.com/decks.json",
-              this.decks[index]
-            )
-            .then(res => console.log(res))
-            .catch(error => console.log(error));
-      }else{
-        console.log("niet leeg");
-         for(var i = 0; i < this.finalChoices.length; i++){
-          if(this.finalChoices[i].id2 == 12 || this.finalChoices[i].id2 == 13 || this.finalChoices[i].id2 == 14 || this.finalChoices[i].id2 == 15){
-            console.log("bestaat al");
-            axios.put("https://createyourownskateboard.firebaseio.com/decks.json", { 
-              data: this.bearings[index]
-            })
-            .then(res => {console.log(res); console.log("put gedaan");})
-            .catch(error => console.log(error));
-
-          }else{
-            console.log("bestaat nog niet");
-            axios
-              .post(
-                "https://createyourownskateboard.firebaseio.com/decks.json",
-                this.bearings[index]
-              )
-              .then(res => console.log(res))
-              .catch(error => console.log(error));
-          }
-        }
-      }
-     
-    },
-
-    createdMethod() {
       axios
-        .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then((response) => {
-          console.log(response);
-          this.results = response.data;
-
-          var choices = [];
-          for (let key in this.results) {
-            this.results[key].id = key;
-            choices.push(this.results[key]);
-          }
-          this.finalChoices = choices;
-        })
-        .catch((error) => console.log(error));
-    }, 
+        .post(
+          "https://createyourownskateboard.firebaseio.com/decks.json",
+          this.bearings[index]
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+    },
   },
 };
 </script>
