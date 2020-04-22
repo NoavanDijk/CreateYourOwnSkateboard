@@ -77,6 +77,9 @@ export default {
       this.$store.state.showBearings = false;
       this.$store.state.showBolts = true;
 
+      this.$store.state.disableBolts = false;
+      this.$store.state.disableBearings = true;
+
       axios
         .post(
           "https://createyourownskateboard.firebaseio.com/decks.json",

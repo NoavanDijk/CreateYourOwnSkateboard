@@ -15,6 +15,7 @@ export const store = new Vuex.Store({
     showGriptape: false,
     showOrderform: false,
 
+    disableDeck: false,
     disableTrucks: true,
     disableWheels: true,
     disableBearings: true,
@@ -98,6 +99,30 @@ export const store = new Vuex.Store({
 
     goToThanksForOrder: state => {
       return state.goToThanksForOrder;
+    },
+
+    disableDeck: state => {
+      return state.disableDeck;
+    },
+
+    disableTrucks: state => {
+      return state.disableTrucks;
+    },
+
+    disableWheels: state => {
+      return state.disableWheels;
+    },
+
+    disableBearings: state => {
+      return state.disableBearings;
+    },
+
+    disableBolts: state => {
+      return state.disableBolts;
+    },
+
+    disableGriptape: state => {
+      return state.disableGriptape;
     }
   },
 
@@ -160,6 +185,30 @@ export const store = new Vuex.Store({
 
     goToThanksForOrder: (state, payload) => {
       state.goToThanksForOrder = payload;
+    },
+
+    disableTrucks: (state, payload) => {
+      state.disableTrucks = payload;
+    },
+
+    disableWheels: (state, payload) => {
+      state.disableWheels = payload;
+    },
+
+    disableDeck: (state, payload) => {
+      state.disableDeck = payload;
+    },
+
+    disableBearings: (state, payload) => {
+      state.disableBearings = payload;
+    },
+
+    disableBolts: (state, payload) => {
+      state.disableBolts = payload;
+    },
+
+    disableGriptape: (state, payload) => {
+      state.disableGriptape = payload;
     }
   },
 
@@ -222,6 +271,30 @@ export const store = new Vuex.Store({
 
     updateGoToThanksForOrder({ commit }, payload) {
       commit("updateGoToThanksForOrder", payload);
+    },
+
+    updateDisableTrucks({ commit }, payload) {
+      commit("updateDisableTrucks", payload);
+    },
+
+    updateDisableWheels({ commit }, payload) {
+      commit("updateDisableWheels", payload);
+    },
+
+    updateDisableDeck({ commit }, payload) {
+      commit("updateDisableDeck", payload);
+    },
+
+    updateDisableBearings({ commit }, payload) {
+      commit("updateDisableBearings", payload);
+    },
+
+    updateDisableBolts({ commit }, payload) {
+      commit("updateDisableBolts", payload);
+    },
+
+    updateDisableGriptape({ commit }, payload) {
+      commit("updateDisableGriptape", payload);
     }
   }
 });

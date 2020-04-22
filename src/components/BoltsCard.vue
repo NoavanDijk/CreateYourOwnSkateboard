@@ -68,6 +68,9 @@ export default {
     changeShowDecks(index) {
       this.$store.state.showBolts = false;
       this.$store.state.showGriptape = true;
+
+      this.$store.state.disableGriptape = false;
+      this.$store.state.disableBolts = true;
       
       axios
         .post(

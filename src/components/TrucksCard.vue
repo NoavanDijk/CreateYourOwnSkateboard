@@ -79,6 +79,9 @@ export default {
       this.$store.state.showTrucks = false;
       this.$store.state.showWheels = true;
 
+      this.$store.state.disableWheels = false;
+      this.$store.state.disableTrucks = true;
+
       axios
         .post(
           "https://createyourownskateboard.firebaseio.com/decks.json",

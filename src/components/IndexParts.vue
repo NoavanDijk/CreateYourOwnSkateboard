@@ -1,10 +1,65 @@
 <template>
   <div class="indexparts">
-    <div class="card" v-for="(part, index) in parts" v-bind:key="index">
-      <button class="buttonindexpart" @click="changeShowDecks(index)">
+    <div class="card">
+      <button class="buttonindexpart" :disabled="disableDeck">
         <div class="card-content">
         <div class="content">
-          <p class="partname">{{ part.name }}</p>
+          <p class="partname">Deck</p>
+          <i class="fas fa-chevron-circle-right fa-lg"></i>
+        </div>
+      </div>
+      </button>
+    </div>
+
+    <div class="card">
+      <button class="buttonindexpart" :disabled="disableTrucks">
+        <div class="card-content">
+        <div class="content">
+          <p class="partname">Trucks</p>
+          <i class="fas fa-chevron-circle-right fa-lg"></i>
+        </div>
+      </div>
+      </button>
+    </div>
+
+    <div class="card">
+      <button class="buttonindexpart" :disabled="disableWheels">
+        <div class="card-content">
+        <div class="content">
+          <p class="partname">Wielen</p>
+          <i class="fas fa-chevron-circle-right fa-lg"></i>
+        </div>
+      </div>
+      </button>
+    </div>
+
+    <div class="card">
+      <button class="buttonindexpart" :disabled="disableBearings">
+        <div class="card-content">
+        <div class="content">
+          <p class="partname">Bearings</p>
+          <i class="fas fa-chevron-circle-right fa-lg"></i>
+        </div>
+      </div>
+      </button>
+    </div>
+
+    <div class="card">
+      <button class="buttonindexpart" :disabled="disableBolts">
+        <div class="card-content">
+        <div class="content">
+          <p class="partname">Bolts</p>
+          <i class="fas fa-chevron-circle-right fa-lg"></i>
+        </div>
+      </div>
+      </button>
+    </div>
+
+    <div class="card">
+      <button class="buttonindexpart" :disabled="disableGriptape">
+        <div class="card-content">
+        <div class="content">
+          <p class="partname">Griptape</p>
           <i class="fas fa-chevron-circle-right fa-lg"></i>
         </div>
       </div>
@@ -15,69 +70,29 @@
 
 <script>
 export default {
-  data(){
-    return{
-      parts: [
-        { name: "Deck" },
-        { name: "Trucks" },
-        { name: "Wielen" },
-        { name: "Bearings" },
-        { name: "Bolts" },
-        { name: "Griptape" },
-      ]
-    }
-  },
+  computed:{
+    disableDeck(){
+      return this.$store.getters.disableDeck;
+    },
 
-  methods: {
-    changeShowDecks(index) {
-      if(index == 0){
-        this.$store.state.showDecks = true;
-        this.$store.state.showTrucks = false;
-        this.$store.state.showWheels = false;
-        this.$store.state.showBearings = false;
-        // window.location.reload();
-      }
-      if(index == 1){
-        this.$store.state.showDecks = false;
-        this.$store.state.showTrucks = true;
-        this.$store.state.showWheels = false;
-        this.$store.state.showBearings = false;
-        this.$store.state.showBolts = false;
-        this.$store.state.showGriptape = false;
-        // window.location.reload(index);
-      }
-      if(index == 2){
-        this.$store.state.showDecks = false;
-        this.$store.state.showTrucks = false;
-        this.$store.state.showWheels = true;
-        this.$store.state.showBearings = false;
-        this.$store.state.showBolts = false;
-        this.$store.state.showGriptape = false;
-      }
-      if(index == 3){
-        this.$store.state.showDecks = false;
-        this.$store.state.showTrucks = false;
-        this.$store.state.showWheels = false;
-        this.$store.state.showBearings = true;
-        this.$store.state.showBolts = false;
-        this.$store.state.showGriptape = false;
-      }
-      if(index == 4){
-        this.$store.state.showDecks = false;
-        this.$store.state.showTrucks = false;
-        this.$store.state.showWheels = false;
-        this.$store.state.showBearings = false;
-        this.$store.state.showBolts = true;
-        this.$store.state.showGriptape = false;
-      }
-      if(index == 5){
-        this.$store.state.showDecks = false;
-        this.$store.state.showTrucks = false;
-        this.$store.state.showWheels = false;
-        this.$store.state.showBearings = false;
-        this.$store.state.showBolts = false;
-        this.$store.state.showGriptape = true;
-      }
+    disableTrucks(){
+      return this.$store.getters.disableTrucks;
+    },
+
+    disableWheels(){
+      return this.$store.getters.disableWheels;
+    },
+
+    disableBearings(){
+      return this.$store.getters.disableBearings;
+    },
+
+    disableBolts(){
+      return this.$store.getters.disableBolts;
+    },
+
+    disableGriptape(){
+      return this.$store.getters.disableGriptape;
     }
   },
 }
@@ -101,7 +116,6 @@ export default {
     width: 100%;
     border: 0;
     background-color: white;
-    cursor: pointer;
   }
 
   .card{
