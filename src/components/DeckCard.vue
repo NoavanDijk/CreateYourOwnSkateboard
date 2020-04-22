@@ -139,8 +139,16 @@ pre{
 
 @media (min-width: 320px) and (max-width: 635px) {
   .productcard {
-    margin: 0.4em 1.2em 0 0;
+    margin: 0 0.7em 0 0;
     column-count: 1;
+  }
+
+  .columns{
+    margin: -0.75rem -0.75rem 0 0;
+  }
+
+  .skateboardimage {
+    width: 60%;
   }
 }
 </style>

@@ -198,4 +198,14 @@ hr {
   display: flex;
   justify-content: space-between;
 }
+
+@media (min-width: 320px) and (max-width: 635px) {
+  .card {
+    margin: 0;
+  }
+
+  .field{
+    margin: 0.5em 0.5em 0.5em 0;
+  }
+}
 </style>
