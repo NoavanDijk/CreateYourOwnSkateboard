@@ -3,10 +3,12 @@ import VueRouter from 'vue-router';
 import App from './App.vue'
 import { store }  from './store/store';
 import { routes } from './routes';
+import VueCarousel from 'vue-carousel';
 
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
+Vue.use(VueCarousel);
 
 const router = new VueRouter({
   routes

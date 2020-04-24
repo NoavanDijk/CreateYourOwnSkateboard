@@ -18,6 +18,8 @@
             <ul v-for="(result, index) in results" v-bind:key="index">
               <li>{{ result.name }}</li>
             </ul>
+            <br>
+            <p>U heeft de volgende gegevens ingevuld:</p>
             <label class="label zipcode">Postcode</label>
             <p>{{ zipcode }}</p>
             <label class="label">E-mailadres</label>
