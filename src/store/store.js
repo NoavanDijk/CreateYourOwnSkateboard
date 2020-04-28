@@ -22,6 +22,13 @@ export const store = new Vuex.Store({
     disableBolts: true,
     disableGriptape: true,
 
+    showCheckDeck: true,
+    showCheckTrucks: true,
+    showCheckWheels: true,
+    showCheckBearings: true,
+    showCheckBolts: true,
+    showCheckGriptape: true,
+
     gender: "",
     firstname: "",
     insertion: "",
@@ -123,7 +130,31 @@ export const store = new Vuex.Store({
 
     disableGriptape: state => {
       return state.disableGriptape;
-    }
+    },
+
+    showCheckDeck: state => {
+      return state.showCheckDeck;
+    },
+
+    showCheckTrucks: state => {
+      return state.showCheckTrucks;
+    },
+
+    showCheckWheels: state => {
+      return state.showCheckWheels;
+    },
+
+    showCheckBearings: state => {
+      return state.showCheckBearings;
+    },
+
+    showCheckBolts: state => {
+      return state.showCheckBolts;
+    },
+
+    showCheckGriptape: state => {
+      return state.showCheckGriptape;
+    },
   },
 
   mutations: {
@@ -209,7 +240,31 @@ export const store = new Vuex.Store({
 
     disableGriptape: (state, payload) => {
       state.disableGriptape = payload;
-    }
+    },
+
+    showCheckDeck: (state, payload) => {
+      state.showCheckDeck = payload;
+    },
+
+    showCheckTrucks: (state, payload) => {
+      state.showCheckTrucks = payload;
+    },
+
+    showCheckWheels: (state, payload) => {
+      state.showCheckWheels = payload;
+    },
+
+    showCheckBearings: (state, payload) => {
+      state.showCheckBearings = payload;
+    },
+
+    showCheckBolts: (state, payload) => {
+      state.showCheckBolts = payload;
+    },
+
+    showCheckGriptape: (state, payload) => {
+      state.showCheckGriptape = payload;
+    },
   },
 
   actions: {
@@ -295,6 +350,30 @@ export const store = new Vuex.Store({
 
     updateDisableGriptape({ commit }, payload) {
       commit("updateDisableGriptape", payload);
-    }
+    },
+
+    updateShowCheckDeck({ commit }, payload) {
+      commit("updateShowCheckDeck", payload);
+    },
+
+    updateShowCheckTrucks({ commit }, payload) {
+      commit("updateShowCheckTrucks", payload);
+    },
+
+    updateShowCheckWheels({ commit }, payload) {
+      commit("updateShowCheckWheels", payload);
+    },
+
+    updateShowCheckBearings({ commit }, payload) {
+      commit("updateShowCheckBearings", payload);
+    },
+
+    updateShowCheckBolts({ commit }, payload) {
+      commit("updateShowCheckBolts", payload);
+    },
+
+    updateShowCheckGriptape({ commit }, payload) {
+      commit("updateShowCheckGriptape", payload);
+    },
   }
 });

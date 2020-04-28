@@ -24,8 +24,8 @@
             <router-link to="/orderform">
               <button class="addbutton" @click="changeShowDecks(index)">
                 <p class="card-footer-item">
-                  Add <pre><i class="fas fa-plus"></i></pre>
-                </p>
+                Voeg toe aan winkelmandje<pre><i class="fas fa-shopping-cart"></i></pre>
+              </p>
               </button>
             </router-link>
           </footer>
@@ -78,7 +78,9 @@ export default {
     changeShowDecks(index) {
       this.$store.state.showGriptape = false;
       this.$store.state.showOrderform = true;
+
       this.$store.state.gripTapeClicked = true;
+      this.$store.state.showCheckGriptape = false;
 
       axios
         .post(
@@ -142,6 +144,10 @@ pre{
   background-color: white;
   padding: 0 1em 0 1em;
   color: black;
+}
+
+.card-footer-item{
+  font-size: 15px;
 }
 
 @media (min-width: 320px) and (max-width: 635px) {

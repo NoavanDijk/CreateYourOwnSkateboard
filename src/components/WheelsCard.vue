@@ -17,7 +17,7 @@
             <p class="card-footer-item"></p>
             <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
-                Add <pre><i class="fas fa-plus"></i></pre>
+                Voeg toe aan winkelmandje<pre><i class="fas fa-shopping-cart"></i></pre>
               </p>
             </button>
           </footer>
@@ -77,6 +77,8 @@ export default {
 
       this.$store.state.disableBearings = false;
       this.$store.state.disableWheels = true;
+
+      this.$store.state.showCheckWheels = false;
 
       axios
         .post(
@@ -143,6 +145,10 @@ pre{
     margin: 0 0.7em 0 0;
     column-count: 1;
   }
+
+  .card-footer-item{
+  font-size: 15px;
+}
 
   .columns{
     margin: -0.75rem -0.75rem 0 0;

@@ -5,7 +5,13 @@
         <div class="card-content">
           <div class="content">
             <p class="partname">Deck</p>
-            <i class="fas fa-chevron-circle-right fa-lg"></i>
+            <div v-if="showCheckDeck">
+              <i  class="fas fa-chevron-circle-right fa-lg arrow"></i>
+            </div>
+            <div v-if="!showCheckDeck" >
+              <i class="far fa-check-circle fa-lg"></i>
+            </div>
+            <div v-else></div>
           </div>
         </div>
       </button>
@@ -16,7 +22,13 @@
         <div class="card-content">
           <div class="content">
             <p class="partname">Trucks</p>
-            <i class="fas fa-chevron-circle-right fa-lg"></i>
+            <div v-if="showCheckTrucks">
+              <i  class="fas fa-chevron-circle-right fa-lg arrow2"></i>
+            </div>
+            <div v-if="!showCheckTrucks" >
+              <i class="far fa-check-circle fa-lg"></i>
+            </div>
+            <div v-else></div>
           </div>
         </div>
       </button>
@@ -27,7 +39,13 @@
         <div class="card-content">
           <div class="content">
             <p class="partname">Wielen</p>
-            <i class="fas fa-chevron-circle-right fa-lg"></i>
+            <div v-if="showCheckWheels">
+              <i  class="fas fa-chevron-circle-right fa-lg arrow3"></i>
+            </div>
+            <div v-if="!showCheckWheels" >
+              <i class="far fa-check-circle fa-lg"></i>
+            </div>
+            <div v-else></div>
           </div>
         </div>
       </button>
@@ -38,7 +56,13 @@
         <div class="card-content">
           <div class="content">
             <p class="partname">Bearings</p>
-            <i class="fas fa-chevron-circle-right fa-lg"></i>
+            <div v-if="showCheckBearings">
+              <i  class="fas fa-chevron-circle-right fa-lg arrow4"></i>
+            </div>
+            <div v-if="!showCheckBearings" >
+              <i class="far fa-check-circle fa-lg"></i>
+            </div>
+            <div v-else></div>
           </div>
         </div>
       </button>
@@ -49,7 +73,13 @@
         <div class="card-content">
           <div class="content">
             <p class="partname">Bolts</p>
-            <i class="fas fa-chevron-circle-right fa-lg"></i>
+            <div v-if="showCheckBolts">
+              <i  class="fas fa-chevron-circle-right fa-lg arrow"></i>
+            </div>
+            <div v-if="!showCheckBolts" >
+              <i class="far fa-check-circle fa-lg"></i>
+            </div>
+            <div v-else></div>
           </div>
         </div>
       </button>
@@ -60,7 +90,13 @@
         <div class="card-content">
           <div class="content">
             <p class="partname">Griptape</p>
-            <i class="fas fa-chevron-circle-right fa-lg"></i>
+            <div v-if="showCheckGriptape">
+              <i  class="fas fa-chevron-circle-right fa-lg arrow6"></i>
+            </div>
+            <div v-if="!showCheckGriptape" >
+              <i class="far fa-check-circle fa-lg"></i>
+            </div>
+            <div v-else></div>
           </div>
         </div>
       </button>
@@ -72,11 +108,11 @@
 export default {
   computed: {
     disableDeck() {
-      return this.$store.getters.disableDeck;
+      return this.$store.state.disableDeck;
     },
 
     disableTrucks() {
-      return this.$store.getters.disableTrucks;
+      return this.$store.state.disableTrucks;
     },
 
     disableWheels() {
@@ -93,6 +129,30 @@ export default {
 
     disableGriptape() {
       return this.$store.getters.disableGriptape;
+    },
+
+    showCheckDeck(){
+      return this.$store.getters.showCheckDeck;
+    },
+
+    showCheckTrucks(){
+      return this.$store.getters.showCheckTrucks;
+    },
+
+    showCheckWheels(){
+      return this.$store.getters.showCheckWheels;
+    },
+
+    showCheckBearings(){
+      return this.$store.getters.showCheckBearings;
+    },
+
+    showCheckBolts(){
+      return this.$store.getters.showCheckBolts;
+    },
+
+    showCheckGriptape(){
+      return this.$store.getters.showCheckGriptape;
     },
   },
 };
@@ -129,6 +189,22 @@ export default {
 .content pre:not(:last-child),
 .content table:not(:last-child) {
   margin-bottom: 0;
+}
+
+.arrow{
+  margin-left: 12em;
+}
+
+.arrow2{
+  margin-left: 11.5em;
+}
+
+.arrow3{
+  margin-left: 11.4em;
+}
+
+.arrow4, .arrow6{
+  margin-left: 10.8em;
 }
 
 @media (min-width: 320px) and (max-width: 635px) {
