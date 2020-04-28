@@ -5,11 +5,11 @@
         <div class="card-content">
           <div class="content">
             <p class="partname">Deck</p>
-            <transition name="fade" mode="out-in">
+            <transition name="fade" mode="out-in" tag="div">
               <div v-if="showCheckDeck" key="1">
                 <i class="fas fa-chevron-circle-right fa-lg arrow"></i>
               </div>
-              <div v-if="!showCheckDeck" key="2">
+              <div v-else-if="!showCheckDeck" key="2">
                 <i class="far fa-check-circle fa-lg"></i>
               </div>
               <div v-else></div>
@@ -28,7 +28,7 @@
               <div v-if="showCheckTrucks" key="1">
                 <i class="fas fa-chevron-circle-right fa-lg arrow2"></i>
               </div>
-              <div v-if="!showCheckTrucks" key="2">
+              <div v-else-if="!showCheckTrucks" key="2">
                 <i class="far fa-check-circle fa-lg"></i>
               </div>
               <div v-else></div>
@@ -47,7 +47,7 @@
               <div v-if="showCheckWheels" key="1">
                 <i class="fas fa-chevron-circle-right fa-lg arrow3"></i>
               </div>
-              <div v-if="!showCheckWheels" key="2">
+              <div v-else-if="!showCheckWheels" key="2">
                 <i class="far fa-check-circle fa-lg"></i>
               </div>
               <div v-else></div>
@@ -66,7 +66,7 @@
               <div v-if="showCheckBearings" key="1">
                 <i class="fas fa-chevron-circle-right fa-lg arrow4"></i>
               </div>
-              <div v-if="!showCheckBearings" key="2">
+              <div v-else-if="!showCheckBearings" key="2">
                 <i class="far fa-check-circle fa-lg"></i>
               </div>
               <div v-else></div>
@@ -85,7 +85,7 @@
               <div v-if="showCheckBolts" key="1">
                 <i class="fas fa-chevron-circle-right fa-lg arrow"></i>
               </div>
-              <div v-if="!showCheckBolts" key="2">
+              <div v-else-if="!showCheckBolts" key="2">
                 <i class="far fa-check-circle fa-lg"></i>
               </div>
               <div v-else></div>
@@ -104,13 +104,13 @@
               <div v-if="showCheckGriptape" key="1">
                 <i class="fas fa-chevron-circle-right fa-lg arrow6"></i>
               </div>
-              <div v-if="!showCheckGriptape" key="2">
+              <div v-else-if="!showCheckGriptape" key="2">
                 <i class="far fa-check-circle fa-lg"></i>
               </div>
               <div v-else></div>
             </transition>
           </div>
-        </div>
+    </div>
       </button>
     </div>
   </div>
@@ -220,8 +220,9 @@ export default {
   margin-left: 10.8em;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

@@ -15,7 +15,7 @@
             <p class="card-footer-item"></p>
             <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
-                Voeg toe aan winkelmandje<pre><i class="fas fa-shopping-cart"></i></pre>
+                Voeg toe aan <pre><i class="fas fa-shopping-cart"></i></pre>
               </p>
             </button>
           </footer>
