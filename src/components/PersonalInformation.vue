@@ -14,7 +14,7 @@
               <label class="label">Aanhef</label>
               <div class="control">
                 <div class="select">
-                  <select :value="gender" @input="updateGender">
+                  <select v-model="gender">
                     <option>Dhr.</option>
                     <option>Mevr.</option>
                   </select>
@@ -31,8 +31,7 @@
                       class="input"
                       type="text"
                       placeholder="Voornaam"
-                      :value="firstname"
-                      @input="updateFirstname"
+                      v-model="firstname"
                     />
                   </p>
                 </div>
@@ -42,8 +41,7 @@
                       class="input"
                       type="text"
                       placeholder="Tussenvoegsel"
-                      :value="insertion"
-                      @input="updateInsertion"
+                      v-model="insertion"
                     />
                   </p>
                 </div>
@@ -53,8 +51,7 @@
                       class="input"
                       type="text"
                       placeholder="Achternaam"
-                      :value="lastname"
-                      @input="updateLastname"
+                      v-model="lastname"
                     />
                   </p>
                 </div>
@@ -68,8 +65,7 @@
                   class="input"
                   type="text"
                   placeholder="1234AB"
-                  :value="zipcode"
-                  @input="updateZipcode"
+                  v-model="zipcode"
                 />
               </div>
             </div>
@@ -83,8 +79,7 @@
                       class="input"
                       type="number"
                       placeholder="Nummer"
-                      :value="housenumber"
-                      @input="updateHousenumber"
+                      v-model="housenumber"
                       min="0"
                     />
                   </p>
@@ -95,8 +90,7 @@
                       class="input"
                       type="text"
                       placeholder="Toevoeging"
-                      :value="addition"
-                      @input="updateAddition"
+                      v-model="addition"
                     />
                   </p>
                 </div>
@@ -105,14 +99,15 @@
 
             <div class="field">
               <label class="label">E-mailadres</label>
-              <div class="control">
+              <div class="control input2" :class="{invalid: $v.email.$error}">
                 <input
                   class="input"
                   type="email"
                   placeholder="test@gmail.com"
-                  :value="email"
-                  @input="updateEmail"
+                  @input="$v.email.$touch()"
+                  v-model="email"
                 />
+                <p v-if="!$v.email.email">Vul aub een valide emailadres in</p>
               </div>
             </div>
 
@@ -120,7 +115,7 @@
               <label class="label">Kies uw bank</label>
               <div class="control">
                 <div class="select">
-                  <select :value="bank" @input="updateBank">
+                  <select v-model="bank">
                     <option>ABN Amro Bank</option>
                     <option>ASN Bank</option>
                     <option>Bunq</option>
@@ -140,8 +135,7 @@
                 <input
                   class="input"
                   placeholder="Rekeningnummer"
-                  :value="accountnumber"
-                  @input="updateAccountnumber"
+                  v-model="accountnumber"
                   min="0"
                 />
               </p>
@@ -154,16 +148,37 @@
                   class="input"
                   type="number"
                   placeholder="Nummer"
-                  :value="pasnumber"
-                  @input="updatePasnumber"
+                  v-model="pasnumber"
                   min="0"
                 />
               </p>
             </div>
           </div>
           <footer class="card-footer">
-            <router-link to="/filledinpersonalinfo" class="next2">
-              <button class="button next" :disabled="!allFilledIn" @click="goToFilledInPersonalInfo">
+            <router-link
+              :to="{
+                name: 'filledinpersonalinfo',
+                params: {
+                  gender,
+                  firstname,
+                  insertion,
+                  lastname,
+                  zipcode,
+                  housenumber,
+                  addition,
+                  email,
+                  bank,
+                  accountnumber,
+                  pasnumber,
+                },
+              }"
+              class="next2"
+            >
+              <button
+                class="button next"
+                :disabled="!allFilledIn"
+                @click="goToFilledInPersonalInfo"
+              >
                 Bestel
               </button>
             </router-link>
@@ -177,8 +192,32 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
+import { required, email } from 'vuelidate/lib/validators';
 
 export default {
+  data() {
+    return {
+      gender: "",
+      firstname: "",
+      insertion: "",
+      lastname: "",
+      zipcode: "",
+      housenumber: 0,
+      addition: "",
+      email: "",
+      bank: "",
+      accountnumber: "",
+      pasnumber: 0,
+    };
+  },
+
+  validations: {
+    email: {
+      required,
+      email
+    }
+  },
+
   computed: {
     allFilledIn() {
       const inputsAreValid =
@@ -193,100 +232,12 @@ export default {
 
       return inputsAreValid;
     },
-
-    gender() {
-      return this.$store.state.gender;
-    },
-
-    firstname() {
-      return this.$store.getters.firstname;
-    },
-
-    insertion() {
-      return this.$store.getters.insertion;
-    },
-
-    lastname() {
-      return this.$store.getters.lastname;
-    },
-
-    zipcode() {
-      return this.$store.getters.zipcode;
-    },
-
-    housenumber() {
-      return this.$store.getters.housenumber;
-    },
-
-    addition() {
-      return this.$store.getters.addition;
-    },
-
-    email() {
-      return this.$store.getters.email;
-    },
-
-    bank() {
-      return this.$store.getters.bank;
-    },
-
-    accountnumber() {
-      return this.$store.getters.accountnumber;
-    },
-
-    pasnumber() {
-      return this.$store.getters.pasnumber;
-    },
   },
 
   methods: {
-    updateGender(event) {
-      this.$store.dispatch("updateGender", event.target.value);
-    },
-
-    updateFirstname(event) {
-      this.$store.dispatch("updateFirstname", event.target.value);
-    },
-
-    updateInsertion(event) {
-      this.$store.dispatch("updateInsertion", event.target.value);
-    },
-
-    updateLastname(event) {
-      this.$store.dispatch("updateLastname", event.target.value);
-    },
-
-    updateZipcode(event) {
-      this.$store.dispatch("updateZipcode", event.target.value);
-    },
-
-    updateHousenumber(event) {
-      this.$store.dispatch("updateHousenumber", event.target.value);
-    },
-
-    updateAddition(event) {
-      this.$store.dispatch("updateAddition", event.target.value);
-    },
-
-    updateEmail(event) {
-      this.$store.dispatch("updateEmail", event.target.value);
-    },
-
-    updateBank(event) {
-      this.$store.dispatch("updateBank", event.target.value);
-    },
-
-    updateAccountnumber(event) {
-      this.$store.dispatch("updateAccountnumber", event.target.value);
-    },
-
-    updatePasnumber(event) {
-      this.$store.dispatch("updatePasnumber", event.target.value);
-    },
-
-    goToFilledInPersonalInfo(){
+    goToFilledInPersonalInfo() {
       this.$store.state.goToFilledInPersonalInfo = true;
-    }
+    },
   },
 };
 </script>
@@ -320,7 +271,7 @@ a {
   align-items: center;
 }
 
-.next2{
+.next2 {
   background-color: #28a745;
 }
 
@@ -328,6 +279,19 @@ a {
   background-color: #218838;
   border-color: #1e7e34;
   color: white;
+}
+
+.input2:focus{
+  outline: 0;
+  border: 0 none transparent;
+}
+
+.input2.invalid input {
+  border: 1px solid red;
+}
+
+*:focus {
+    outline: 0;
 }
 
 @media (min-width: 320px) and (max-width: 635px) {

@@ -11,14 +11,14 @@
           </header>
           <div class="card-content">
             <p>
-              Beste {{ gender }} {{ gender2 }} {{ firstname }} {{ insertion }}
+              Beste {{ gender }} {{ firstname }} {{ insertion }}
               {{ lastname }}
             </p>
             <p>U wilt het volgende bestellen:</p>
             <ul v-for="(result, index) in results" v-bind:key="index">
               <li>{{ result.name }}</li>
             </ul>
-            <br>
+            <br />
             <p>U heeft de volgende gegevens ingevuld:</p>
             <label class="label zipcode">Postcode</label>
             <p>{{ zipcode }}</p>
@@ -61,6 +61,20 @@ export default {
     };
   },
 
+  props: [
+    "gender",
+    "firstname",
+    "insertion",
+    "lastname",
+    "zipcode",
+    "housenumber",
+    "addition",
+    "email",
+    "bank",
+    "accountnumber",
+    "pasnumber",
+  ],
+
   methods: {
     createdMethod() {
       axios
@@ -79,63 +93,13 @@ export default {
         .catch((error) => console.log(error));
     },
 
-    goToThanksForOrder(){
+    goToThanksForOrder() {
       this.$store.state.goToThanksForOrder = true;
-    }
+    },
   },
 
   created() {
     this.createdMethod();
-  },
-
-  computed: {
-    gender() {
-      return this.$store.getters.gender;
-    },
-
-    gender2() {
-      return this.$store.getters.gender2;
-    },
-
-    firstname() {
-      return this.$store.getters.firstname;
-    },
-
-    insertion() {
-      return this.$store.getters.insertion;
-    },
-
-    lastname() {
-      return this.$store.getters.lastname;
-    },
-
-    zipcode() {
-      return this.$store.getters.zipcode;
-    },
-
-    housenumber() {
-      return this.$store.getters.housenumber;
-    },
-
-    addition() {
-      return this.$store.getters.addition;
-    },
-
-    email() {
-      return this.$store.getters.email;
-    },
-
-    bank() {
-      return this.$store.getters.bank;
-    },
-
-    accountnumber() {
-      return this.$store.getters.accountnumber;
-    },
-
-    pasnumber() {
-      return this.$store.getters.pasnumber;
-    },
   },
 };
 </script>
@@ -187,12 +151,12 @@ a {
   margin: 0.5em 2em 0.5em 0.5em;
 }
 
-ul{
+ul {
   list-style-type: square;
   margin-left: 3em;
 }
 
-.zipcode{
+.zipcode {
   margin-top: 1em;
 }
 </style>

@@ -25,6 +25,8 @@ export const routes = [
   {
     path: "/personalinformation",
     component: PersonalInformation,
+    props: true,
+    name: "personalinformation",
     beforeEnter: (to, from, next) => {
       if (store.getters.goToPersonalInformation == true) {
         next();
@@ -36,6 +38,8 @@ export const routes = [
   {
     path: "/filledinpersonalinfo",
     component: FilledInPersonalInfo,
+    props: true,
+    name: "filledinpersonalinfo",
     beforeEnter: (to, from, next) => {
       if (store.getters.goToFilledInPersonalInfo == true) {
         next();
