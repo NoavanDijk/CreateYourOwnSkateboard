@@ -33,6 +33,11 @@ export const store = new Vuex.Store({
     goToPersonalInformation: false,
     goToFilledInPersonalInfo: false,
     goToThanksForOrder: false,
+
+    user: {
+      loggedIn: false,
+      data: null
+    }
   },
 
   getters: {
@@ -99,6 +104,10 @@ export const store = new Vuex.Store({
     showCheckGriptape: state => {
       return state.showCheckGriptape;
     },
+
+    user(state){
+      return state.user;
+    }
   },
 
   mutations: {
@@ -165,6 +174,14 @@ export const store = new Vuex.Store({
     showCheckGriptape: (state, payload) => {
       state.showCheckGriptape = payload;
     },
+
+    SET_LOGGED_IN(state, value) {
+      state.user.loggedIn = value;
+    },
+
+    SET_USER(state, data) {
+      state.user.data = data;
+    }
   },
 
   actions: {
@@ -231,5 +248,17 @@ export const store = new Vuex.Store({
     updateShowCheckGriptape({ commit }, payload) {
       commit("updateShowCheckGriptape", payload);
     },
+
+    fetchUser({ commit }, user) {
+      commit("SET_LOGGED_IN", user !== null);
+      if (user) {
+        commit("SET_USER", {
+          displayName: user.displayName,
+          email: user.email
+        });
+      } else {
+        commit("SET_USER", null);
+      }
+    }
   }
 });

@@ -54,7 +54,7 @@
     </carousel>
     <div class="creatediv">
       <h1 class="homepagetext">Creëer je eigen skateboard!</h1>
-      <router-link to="/catalogue" active-class="active">
+      <router-link to="/login" active-class="active">
         <button class="button button is-inverted">Start hier</button>
       </router-link>
     </div>

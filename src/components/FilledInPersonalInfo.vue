@@ -159,4 +159,8 @@ ul {
 .zipcode {
   margin-top: 1em;
 }
+
+.button {
+  margin-bottom: 0.5em;
+}
 </style>

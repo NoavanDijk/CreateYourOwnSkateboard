@@ -39,7 +39,7 @@
             <button class="button startover" @click="onClickOpenDeleteWarning">
               Begin opnieuw
             </button>
-            <router-link to="/personalinformation">
+            <router-link to="/login">
               <button class="button next" @click="goToPersonalInformation">
                 Ga verder
               </button>
@@ -127,6 +127,8 @@ export default {
     goToPersonalInformation(){
       this.$store.state.goToPersonalInformation = true;
       this.$store.state.gripTapeClicked = false;
+
+      this.$router.replace({ name: "personalinformation" });
     }
   },
 

@@ -330,7 +330,7 @@ a {
 }
 
 .button {
-  margin-bottom: 0;
+  margin-bottom: 0.5;
 }
 
 .validemailerror {

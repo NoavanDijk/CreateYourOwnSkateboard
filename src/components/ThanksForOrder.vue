@@ -82,4 +82,8 @@ export default {
   border-color: #1e7e34;
   color: white;
 }
+
+.button{
+  margin-bottom: 0;
+}
 </style>

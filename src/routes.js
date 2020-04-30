@@ -5,11 +5,14 @@ import PersonalInformation from "./components/PersonalInformation.vue";
 import FilledInPersonalInfo from "./components/FilledInPersonalInfo.vue";
 import ThanksForOrder from "./components/ThanksForOrder.vue";
 
-import { store }  from './store/store';
+import Login from "./auth/Login.vue";
+import Register from "./auth/Register.vue";
+
+import { store } from "./store/store";
 
 export const routes = [
-  { path: "/", name:"Home", component: Home },
-  { path: "/catalogue", component: Catalogue },
+  { path: "/", name: "Home", component: Home },
+  { path: "/catalogue", name: "catalogue", component: Catalogue },
   {
     path: "/orderform",
     component: OrderForm,
@@ -20,20 +23,20 @@ export const routes = [
       } else {
         next({ name: "Home" });
       }
-    }
+    },
   },
   {
     path: "/personalinformation",
     component: PersonalInformation,
     props: true,
     name: "personalinformation",
-    beforeEnter: (to, from, next) => {
-      if (store.getters.goToPersonalInformation == true) {
-        next();
-      } else {
-        next({ name: "Home" });
-      }
-    }
+    // beforeEnter: (to, from, next) => {
+    //   if (store.getters.goToPersonalInformation == true) {
+    //     next();
+    //   } else {
+    //     next({ name: "Home" });
+    //   }
+    // },
   },
   {
     path: "/filledinpersonalinfo",
@@ -46,7 +49,7 @@ export const routes = [
       } else {
         next({ name: "Home" });
       }
-    }
+    },
   },
   {
     path: "/thanksfororder",
@@ -57,6 +60,17 @@ export const routes = [
       } else {
         next({ name: "Home" });
       }
-    }
-  }
+    },
+  },
+
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
+  },
 ];
