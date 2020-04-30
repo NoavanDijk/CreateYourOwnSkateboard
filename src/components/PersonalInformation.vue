@@ -26,13 +26,22 @@
             <div class="field is-horizontal">
               <div class="field-body">
                 <div class="field">
-                  <p class="control">
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder="Voornaam"
-                      v-model="firstname"
-                    />
+                  <div
+                    class="control input2"
+                    :class="{ invalid: $v.firstname.$error }"
+                  >
+                    <p class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        placeholder="Voornaam"
+                        v-model="firstname"
+                        @input="$v.firstname.$touch()"
+                      />
+                    </p>
+                  </div>
+                  <p class="validemailerror" v-if="!$v.firstname.minLength">
+                    Voornaam moet tenminste 2 letters bevatten
                   </p>
                 </div>
                 <div class="field">
@@ -46,13 +55,22 @@
                   </p>
                 </div>
                 <div class="field">
-                  <p class="control">
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder="Achternaam"
-                      v-model="lastname"
-                    />
+                  <div
+                    class="control input2"
+                    :class="{ invalid: $v.lastname.$error }"
+                  >
+                    <p class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        placeholder="Achternaam"
+                        v-model="lastname"
+                        @input="$v.lastname.$touch()"
+                      />
+                    </p>
+                  </div>
+                  <p class="validemailerror" v-if="!$v.lastname.minLength">
+                    Voornaam moet tenminste 2 letters bevatten
                   </p>
                 </div>
               </div>
@@ -99,7 +117,7 @@
 
             <div class="field">
               <label class="label">E-mailadres</label>
-              <div class="control input2" :class="{invalid: $v.email.$error}">
+              <div class="control input2" :class="{ invalid: $v.email.$error }">
                 <input
                   class="input"
                   type="email"
@@ -107,7 +125,9 @@
                   @input="$v.email.$touch()"
                   v-model="email"
                 />
-                <p v-if="!$v.email.email">Vul aub een valide emailadres in</p>
+                <p class="validemailerror" v-if="!$v.email.email">
+                  Vul aub een valide emailadres in
+                </p>
               </div>
             </div>
 
@@ -176,7 +196,7 @@
             >
               <button
                 class="button next"
-                :disabled="!allFilledIn"
+                :disabled="$v.$invalid"
                 @click="goToFilledInPersonalInfo"
               >
                 Bestel
@@ -191,8 +211,7 @@
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-import { required, email } from 'vuelidate/lib/validators';
+import { required, email, minLength } from "vuelidate/lib/validators";
 
 export default {
   data() {
@@ -202,35 +221,55 @@ export default {
       insertion: "",
       lastname: "",
       zipcode: "",
-      housenumber: 0,
+      housenumber: null,
       addition: "",
       email: "",
       bank: "",
       accountnumber: "",
-      pasnumber: 0,
+      pasnumber: null,
     };
   },
 
   validations: {
+    gender: {
+      required,
+    },
+
+    firstname: {
+      required,
+      minLength: minLength(2),
+    },
+
+    lastname: {
+      required,
+      minLength: minLength(2),
+    },
+
+    zipcode: {
+      required,
+    },
+
+    housenumber: {
+      required,
+      minLength: minLength(0),
+    },
+
     email: {
       required,
-      email
-    }
-  },
+      email,
+    },
 
-  computed: {
-    allFilledIn() {
-      const inputsAreValid =
-        this.firstname.length > 0 &&
-        this.lastname.length > 0 &&
-        this.zipcode.length > 0 &&
-        this.housenumber.length > 0 &&
-        this.email.length > 0 &&
-        this.bank.length > 0 &&
-        this.accountnumber.length > 0 &&
-        this.pasnumber.length > 0;
+    bank: {
+      required,
+    },
 
-      return inputsAreValid;
+    accountnumber: {
+      required,
+    },
+
+    pasnumber: {
+      required,
+      minLength: minLength(0),
     },
   },
 
@@ -281,7 +320,7 @@ a {
   color: white;
 }
 
-.input2:focus{
+.input2:focus {
   outline: 0;
   border: 0 none transparent;
 }
@@ -290,8 +329,13 @@ a {
   border: 1px solid red;
 }
 
-*:focus {
-    outline: 0;
+.button {
+  margin-bottom: 0;
+}
+
+.validemailerror {
+  color: red;
+  font-size: 0.8em;
 }
 
 @media (min-width: 320px) and (max-width: 635px) {

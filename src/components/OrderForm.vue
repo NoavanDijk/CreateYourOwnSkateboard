@@ -199,6 +199,10 @@ hr {
   justify-content: space-between;
 }
 
+.button{
+  margin-bottom: 0.5em;
+}
+
 @media (min-width: 320px) and (max-width: 635px) {
   .card {
     margin: 0;

@@ -51,4 +51,8 @@
   color: white;
   border-color: #bd2130;
 }
+
+.button{
+  margin-bottom: 0;
+}
 </style>

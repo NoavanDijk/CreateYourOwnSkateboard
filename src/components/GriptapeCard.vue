@@ -129,7 +129,6 @@ export default {
 }
 
 .addbutton {
-  width: 50%;
   border: 0;
   background-color: white;
   cursor: pointer;
