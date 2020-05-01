@@ -2,17 +2,12 @@
   <div id="app">
     <div id="nav">
     </div>
-    <navbar></navbar>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import navbar from "./auth/Navbar";
 export default {
-  components: {
-    navbar
-  }
 }
 </script>
 

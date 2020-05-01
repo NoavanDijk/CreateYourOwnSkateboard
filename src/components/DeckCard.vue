@@ -99,7 +99,7 @@ export default {
 }
 
 .skateboardimage {
-  width: 47%;
+  width: 40%;
 }
 
 .card-content {

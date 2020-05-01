@@ -101,7 +101,7 @@ export default {
 }
 
 .skateboardimage {
-  width: 47%;
+  width: 41%;
 }
 
 .card-content {

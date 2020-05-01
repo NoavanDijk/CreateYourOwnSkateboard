@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <navbar></navbar>
     <div class="columns">
       <div class="column is-one-quarter">
         <app-index-parts></app-index-parts>
@@ -27,6 +28,7 @@ import BearingsCard from "@/components/BearingsCard.vue";
 import BoltsCard from "@/components/BoltsCard.vue";
 import GriptapeCard from "@/components/GriptapeCard.vue";
 import OrderForm from "@/components/OrderForm.vue";
+import navbar from "@/auth/Navbar.vue";
 
 export default {
   components: {
@@ -37,7 +39,8 @@ export default {
     appBearingsCard: BearingsCard,
     appBoltsCard: BoltsCard,
     appGriptapeCard: GriptapeCard,
-    appOrderForm: OrderForm
+    appOrderForm: OrderForm,
+    navbar: navbar
   },
 
   computed: {
