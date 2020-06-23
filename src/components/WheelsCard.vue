@@ -99,7 +99,7 @@ export default {
 }
 
 .skateboardimage {
-  width: 38%;
+  width: 43.8%;
   margin: 0.5em 2.5em 0.5em 0.5em;
 }
 

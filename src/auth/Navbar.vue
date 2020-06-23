@@ -20,21 +20,28 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <router-link to="/" class="navbar-brand">Home</router-link>
+        <div class="buttons">
+          <div class="navbar-item">
+            <!-- <router-link to="/" class="navbar-brand home"><button class="button">Home</button></router-link> -->
+          </div>
+        </div>
       </div>
 
       <div class="navbar-end">
         <template v-if="user.loggedIn">
-          <div>{{ user.data.displayName }}</div>
-          <div class="navbar-item">
-            <a class="nav-link" @click.prevent="signOut">
-              <button class="button">Uitloggen</button></a>
+          <div class="buttons">
+            <div class="navbar-item name">{{ user.data.firstName }}</div>
+            <div class="navbar-item">
+              <a class="nav-link" @click.prevent="signOut">
+                <button class="button">Uitloggen</button></a
+              >
+            </div>
           </div>
         </template>
         <template v-else>
           <div class="buttons">
             <div class="navbar-item">
-              <router-link to="login" class="nav-link"
+              <router-link to="/loginnav" class="nav-link"
                 ><button class="button">
                   Inloggen
                 </button></router-link
@@ -56,6 +63,7 @@
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase";
+
 export default {
   computed: {
     ...mapGetters({
@@ -77,3 +85,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.name{
+  margin-bottom: 0.5em;
+}
+</style>

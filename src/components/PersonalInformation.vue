@@ -1,5 +1,6 @@
 <template>
   <div class="personalinformation">
+    <app-nav-bar></app-nav-bar>
     <div class="columns">
       <div class="column"></div>
       <div class="column is-two-fifths">
@@ -212,8 +213,14 @@
 
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
+import Navbar from "@/auth/Navbar.vue";
+import { mapGetters } from "vuex";
 
 export default {
+  components: {
+    appNavBar: Navbar,
+  },
+
   data() {
     return {
       gender: "",
@@ -271,6 +278,22 @@ export default {
       required,
       minLength: minLength(0),
     },
+  },
+
+  computed: {
+    ...mapGetters({
+      // map `this.user` to `this.$store.getters.user`
+      user: "user",
+    }),
+  },
+
+  created(){
+    if(this.user.loggedIn){
+      this.firstname = this.user.data.displayName;
+      this.zipcode = this.user.data.zipcode;
+      this.email = this.user.data.email;
+      console.log(this.user.data.displayName);
+    }
   },
 
   methods: {

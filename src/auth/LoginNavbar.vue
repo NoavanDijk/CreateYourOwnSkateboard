@@ -48,31 +48,12 @@
               </div>
             </div>
 
-            <!-- <footer class="card-footer"> -->
-              <!-- <router-link to="personalinformation" tag="button">Inloggen</router-link> -->
+            <footer class="card-footer">
               <button type="submit" class="btn btn-primary">Login</button>
-              <p>Ik heb nog geen account. Registreer <router-link to="register">hier</router-link></p>
-            <!-- </footer> -->
+            </footer>
           </form>
         </div>
       </div>
-    </div>
-
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          Component
-        </p>
-      </header>
-      <div class="card-content">
-        <div class="content">
-          <p>Ga door met bestellen zonder account</p>
-        </div>
-      </div>
-      <footer class="card-footer">
-        <a class="card-footer-item"></a>
-        <a href="#" class="card-footer-item">Ga verder</a>
-      </footer>
     </div>
   </div>
 </template>
@@ -96,7 +77,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then((data) => {
-          this.$router.replace({ name: "personalinformation" });
+          this.$router.replace({ name: "catalogue" });
         })
         .catch((err) => {
           this.error = err.message;

@@ -6,6 +6,7 @@ import FilledInPersonalInfo from "./components/FilledInPersonalInfo.vue";
 import ThanksForOrder from "./components/ThanksForOrder.vue";
 
 import Login from "./auth/Login.vue";
+import LoginNav from "./auth/LoginNavbar.vue";
 import Register from "./auth/Register.vue";
 
 import { store } from "./store/store";
@@ -70,7 +71,12 @@ export const routes = [
   },
   {
     path: "/register",
-    name: "Register",
+    name: "register",
     component: Register,
+  },
+  {
+    path: "/loginnav",
+    name: "loginnav",
+    component: LoginNav,
   },
 ];

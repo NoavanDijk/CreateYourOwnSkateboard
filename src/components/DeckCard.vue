@@ -17,7 +17,7 @@
             <p class="card-footer-item"></p>
             <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
-                Voeg toe aan <pre><i class="fas fa-shopping-cart"></i></pre>
+                Selecteer (vinkje)
               </p>
             </button>
           </footer>
@@ -99,7 +99,7 @@ export default {
 }
 
 .skateboardimage {
-  width: 40%;
+  width: 47%;
 }
 
 .card-content {

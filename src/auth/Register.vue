@@ -3,12 +3,12 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Register</div>
+          <div class="card-header">Registreren</div>
           <div class="card-body">
             <div v-if="error" class="alert alert-danger">{{error}}</div>
             <form action="#" @submit.prevent="submit">
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">Voornaam</label>
 
                 <div class="col-md-6">
                   <input
@@ -42,7 +42,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                <label for="password" class="col-md-4 col-form-label text-md-right">Wachtwoord</label>
 
                 <div class="col-md-6">
                   <input
@@ -58,7 +58,7 @@
 
               <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">Register</button>
+                  <button type="submit" class="btn btn-primary">Registreer</button>
                 </div>
               </div>
             </form>

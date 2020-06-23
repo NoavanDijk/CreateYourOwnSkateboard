@@ -27,6 +27,12 @@ const configOptions = {
   appId: "1:388189150298:web:38309d47b6b3bd7a63cc63"
 };
 
+const db = firebase.firestore()
+const auth = firebase.auth()
+const currentUser = auth.currentUser
+
+const usersCollection = db.collection('users')
+
 firebase.initializeApp(configOptions);
 
 firebase.auth().onAuthStateChanged(user => {

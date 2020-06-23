@@ -254,6 +254,7 @@ export const store = new Vuex.Store({
       if (user) {
         commit("SET_USER", {
           displayName: user.displayName,
+          zipcode: user.zipcode,
           email: user.email
         });
       } else {
