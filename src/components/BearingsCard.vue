@@ -82,13 +82,15 @@ export default {
 
       this.$store.state.showCheckBearings = false;
 
-      axios
-        .post(
-          "https://createyourownskateboard.firebaseio.com/decks.json",
-          this.bearings[index]
-        )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+      this.$store.state.bearingsID = this.bearings[index].id;
+
+      // axios
+      //   .post(
+      //     "https://createyourownskateboard.firebaseio.com/decks.json",
+      //     this.bearings[index]
+      //   )
+      //   .then(res => console.log(res))
+      //   .catch(error => console.log(error));
     },
   },
 };

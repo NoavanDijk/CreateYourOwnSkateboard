@@ -84,6 +84,8 @@ export default {
 
       this.$store.state.showCheckTrucks = false;
 
+      this.$store.state.decksID = this.trucks[index].id;
+
       // axios
       //   .post(
       //     "https://createyourownskateboard.firebaseio.com/decks.json",

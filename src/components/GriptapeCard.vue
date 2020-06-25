@@ -82,13 +82,15 @@ export default {
       this.$store.state.gripTapeClicked = true;
       this.$store.state.showCheckGriptape = false;
 
-      axios
-        .post(
-          "https://createyourownskateboard.firebaseio.com/decks.json",
-          this.griptapes[index]
-        )
-        .then((res) => console.log(res))
-        .catch((error) => console.log(error));
+      this.$store.state.griptapeID = this.griptapes[index].id;
+
+      // axios
+      //   .post(
+      //     "https://createyourownskateboard.firebaseio.com/decks.json",
+      //     this.griptapes[index]
+      //   )
+      //   .then((res) => console.log(res))
+      //   .catch((error) => console.log(error));
     }
   }
 };

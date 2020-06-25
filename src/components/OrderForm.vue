@@ -134,6 +134,12 @@ export default {
 
   created() {
     this.createdMethod();
+    console.log(this.$store.getters.getDecksID);
+    console.log(this.$store.getters.getTrucksID);
+    console.log(this.$store.getters.getWheelsID);
+    console.log(this.$store.getters.getBearingsID);
+    console.log(this.$store.getters.getBoltsID);
+    console.log(this.$store.getters.getGriptapeID);
   },
 };
 </script>

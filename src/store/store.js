@@ -35,6 +35,11 @@ export const store = new Vuex.Store({
     goToThanksForOrder: false,
 
     decksID: 0,
+    trucksID: 0,
+    bearingsID: 0,
+    boltsID: 0,
+    griptapeID: 0,
+    wheelsID: 0,
 
     user: {
       loggedIn: false,
@@ -113,6 +118,26 @@ export const store = new Vuex.Store({
 
     getDecksID: state => {
       return state.decksID;
+    },
+
+    getTrucksID: state => {
+      return state.trucksID;
+    },
+
+    getBearingsID: state => {
+      return state.bearingsID;
+    },
+
+    getBoltsID: state => {
+      return state.boltsID;
+    },
+    
+    getGriptapeID: state => {
+      return state.griptapeID;
+    },
+
+    getWheelsID: state => {
+      return state.wheelsID;
     }
   },
 
@@ -191,6 +216,26 @@ export const store = new Vuex.Store({
 
     setDecksID: (state, payload) => {
       state.setDecksID = payload;
+    },
+
+    setTrucksID: (state, payload) => {
+      state.setTrucksID = payload;
+    },
+
+    setBearingsID: (state, payload) => {
+      state.setBearingsID = payload;
+    },
+
+    setBoltsID: (state, payload) => {
+      state.setBoltsID = payload;
+    },
+
+    setGriptapeID: (state, payload) => {
+      state.setGriptapeID = payload;
+    },
+
+    setWheelsID: (state, payload) => {
+      state.setWheelsID = payload;
     }
   },
 
@@ -273,6 +318,26 @@ export const store = new Vuex.Store({
 
     updateDecksID({ commit }, payload) {
       commit("updateDecksID", payload);
+    },
+
+    updateTrucksID({ commit }, payload) {
+      commit("updateTrucksID", payload);
+    },
+
+    updateBearingsID({ commit }, payload) {
+      commit("updateBearingsID", payload);
+    },
+
+    updateBoltsID({ commit }, payload) {
+      commit("updateBoltsID", payload);
+    },
+
+    updateGriptapeID({ commit }, payload) {
+      commit("updateGriptapeID", payload);
+    },
+
+    updateWheelsID({ commit }, payload) {
+      commit("updateWheelsID", payload);
     }
   }
 });

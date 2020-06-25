@@ -73,14 +73,16 @@ export default {
       this.$store.state.disableBolts = true;
 
       this.$store.state.showCheckBolts = false;
+
+      this.$store.state.boltsID = this.bolts[index].id;
       
-      axios
-        .post(
-          "https://createyourownskateboard.firebaseio.com/decks.json",
-          this.bolts[index]
-        )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+      // axios
+      //   .post(
+      //     "https://createyourownskateboard.firebaseio.com/decks.json",
+      //     this.bolts[index]
+      //   )
+      //   .then(res => console.log(res))
+      //   .catch(error => console.log(error));
     },
   }
 };
