@@ -84,13 +84,13 @@ export default {
 
       this.$store.state.showCheckTrucks = false;
 
-      axios
-        .post(
-          "https://createyourownskateboard.firebaseio.com/decks.json",
-          this.trucks[index]
-        )
-        .then((res) => console.log(res))
-        .catch((error) => console.log(error));
+      // axios
+      //   .post(
+      //     "https://createyourownskateboard.firebaseio.com/decks.json",
+      //     this.trucks[index]
+      //   )
+      //   .then((res) => console.log(res))
+      //   .catch((error) => console.log(error));
     },
   },
 };

@@ -215,6 +215,7 @@
 import { required, email, minLength } from "vuelidate/lib/validators";
 import Navbar from "@/auth/Navbar.vue";
 import { mapGetters } from "vuex";
+import firebase from "firebase";
 
 export default {
   components: {
@@ -287,10 +288,11 @@ export default {
     }),
   },
 
-  created(){
-    if(this.user.loggedIn){
+  created() {
+    if (firebase.auth().currentUser !== null) 
+        console.log(firebase.auth().currentUser.uid);
+    if (this.user.loggedIn) {
       this.firstname = this.user.data.displayName;
-      this.zipcode = this.user.data.zipcode;
       this.email = this.user.data.email;
       console.log(this.user.data.displayName);
     }

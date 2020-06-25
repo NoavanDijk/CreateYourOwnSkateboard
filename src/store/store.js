@@ -34,6 +34,8 @@ export const store = new Vuex.Store({
     goToFilledInPersonalInfo: false,
     goToThanksForOrder: false,
 
+    decksID: 0,
+
     user: {
       loggedIn: false,
       data: null
@@ -107,6 +109,10 @@ export const store = new Vuex.Store({
 
     user(state){
       return state.user;
+    },
+
+    getDecksID: state => {
+      return state.decksID;
     }
   },
 
@@ -181,6 +187,10 @@ export const store = new Vuex.Store({
 
     SET_USER(state, data) {
       state.user.data = data;
+    },
+
+    setDecksID: (state, payload) => {
+      state.setDecksID = payload;
     }
   },
 
@@ -254,12 +264,15 @@ export const store = new Vuex.Store({
       if (user) {
         commit("SET_USER", {
           displayName: user.displayName,
-          zipcode: user.zipcode,
           email: user.email
         });
       } else {
         commit("SET_USER", null);
       }
+    },
+
+    updateDecksID({ commit }, payload) {
+      commit("updateDecksID", payload);
     }
   }
 });

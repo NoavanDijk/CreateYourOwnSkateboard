@@ -80,13 +80,15 @@ export default {
 
       this.$store.state.showCheckDeck = false;
 
-      axios
-        .post(
-          "https://createyourownskateboard.firebaseio.com/decks.json",
-          this.decks[index]
-        )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+      this.$store.state.decksID = this.decks[index].id;
+
+      // axios
+      //   .post(
+      //     "https://createyourownskateboard.firebaseio.com/decks.json",
+      //     this.decks[index]
+      //   )
+      //   .then(res => console.log(res))
+      //   .catch(error => console.log(error));
     }
   }
 };
