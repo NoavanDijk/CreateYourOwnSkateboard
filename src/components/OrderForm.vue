@@ -190,6 +190,7 @@ export default {
       var totalprices = [];
       totalprices.push(this.decksPrice, this.trucksPrice, this.wheelsPrice, this.bearingsPrice, this.boltsPrice, this.griptapePrice);
       this.totalprice = totalprices.reduce((a, b) => a + b, 0);
+      this.$store.state.totalPrice = this.totalprice;
     },
 
     startover() {
@@ -219,7 +220,7 @@ export default {
       this.$store.state.goToPersonalInformation = true;
       this.$store.state.gripTapeClicked = false;
 
-      this.$router.replace({ name: "personalinformation" });
+      this.$router.replace({ name: "login" });
     },
   },
 

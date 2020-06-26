@@ -49,9 +49,12 @@
             </div>
 
             <!-- <footer class="card-footer"> -->
-              <!-- <router-link to="personalinformation" tag="button">Inloggen</router-link> -->
-              <button type="submit" class="btn btn-primary">Login</button>
-              <p>Ik heb nog geen account. Registreer <router-link to="register">hier</router-link></p>
+            <!-- <router-link to="personalinformation" tag="button">Inloggen</router-link> -->
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p>
+              Ik heb nog geen account. Registreer
+              <router-link to="register">hier</router-link>
+            </p>
             <!-- </footer> -->
           </form>
         </div>

@@ -55,6 +55,8 @@ export const store = new Vuex.Store({
     griptapePrice: 0,
     wheelsPrice: 0,
 
+    totalPrice: 0,
+
     user: {
       loggedIn: false,
       data: null
@@ -200,6 +202,10 @@ export const store = new Vuex.Store({
 
     getWheelsPrice: state => {
       return state.wheelsPrice;
+    },
+
+    getTotalPrice: state => {
+      return state.totalPrice;
     }
   },
 
@@ -346,6 +352,10 @@ export const store = new Vuex.Store({
 
     setWheelsPrice: (state, payload) => {
       state.setWheelsPrice = payload;
+    },
+
+    setTotalPrice: (state, payload) => {
+      state.setTotalPrice = payload;
     }
   },
 
@@ -496,6 +506,10 @@ export const store = new Vuex.Store({
 
     updateWheelsPrice({ commit }, payload) {
       commit("updateWheelsPrice", payload);
+    },
+
+    updateTotalPrice({ commit }, payload) {
+      commit("updateTotalPrice", payload);
     }
   }
 });

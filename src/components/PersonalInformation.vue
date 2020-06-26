@@ -216,6 +216,7 @@ import { required, email, minLength } from "vuelidate/lib/validators";
 import Navbar from "@/auth/Navbar.vue";
 import { mapGetters } from "vuex";
 import firebase from "firebase";
+import axios from "axios";
 
 export default {
   components: {
@@ -235,6 +236,10 @@ export default {
       bank: "",
       accountnumber: "",
       pasnumber: null,
+      currentUser: "",
+      currentDate: "",
+      totalPrices: 0,
+      order: []
     };
   },
 
@@ -289,12 +294,30 @@ export default {
   },
 
   created() {
+    // sla de currentuserUID, de huidige datum en de totale prijs op in de database.
+    this.currentUser = firebase.auth().currentUser.uid;
+    this.currentDate = Math.round((Date.now()) / 1000);
+    this.totalPrices = this.$store.getters.getTotalPrice;
+    console.log(this.totalPrices);
+    console.log(this.currentDate);
+    console.log(this.currentUser);
+    this.order.push(this.currentUser);
+    this.order.push(this.currentDate);
+    this.order.push(this.totalPrices);
+    console.log(this.order);
+    axios
+        .post(
+          "https://createyourownskateboard.firebaseio.com/orders.json",
+          this.order
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
     if (firebase.auth().currentUser !== null) 
         console.log(firebase.auth().currentUser.uid);
     if (this.user.loggedIn) {
       this.firstname = this.user.data.displayName;
       this.email = this.user.data.email;
-      console.log(this.user.data.displayName);
+      // console.log(this.user.data.displayName);
     }
   },
 
