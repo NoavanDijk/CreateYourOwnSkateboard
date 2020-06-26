@@ -30,7 +30,9 @@
       <div class="navbar-end">
         <template v-if="user.loggedIn">
           <div class="buttons">
-            <div class="navbar-item name">{{ user.data.displayName }}</div>
+            <router-link to="account">
+              <div class="navbar-item name">{{ user.data.displayName }}</div>
+            </router-link>
             <div class="navbar-item">
               <a class="nav-link" @click.prevent="signOut">
                 <button class="button">Uitloggen</button></a

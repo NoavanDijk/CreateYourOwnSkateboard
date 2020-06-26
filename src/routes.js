@@ -8,6 +8,7 @@ import ThanksForOrder from "./components/ThanksForOrder.vue";
 import Login from "./auth/Login.vue";
 import LoginNav from "./auth/LoginNavbar.vue";
 import Register from "./auth/Register.vue";
+import Account from "./auth/Account.vue";
 
 import { store } from "./store/store";
 
@@ -78,5 +79,10 @@ export const routes = [
     path: "/loginnav",
     name: "loginnav",
     component: LoginNav,
+  },
+  {
+    path: "/account",
+    name: "account",
+    component: Account,
   },
 ];
