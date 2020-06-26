@@ -80,7 +80,9 @@ export default {
 
       this.$store.state.showCheckWheels = false;
 
-      this.$store.state.wheelsID = this.wheels[index].id;
+      this.$store.state.wheelsName = this.wheels[index].name;
+      this.$store.state.wheelsImage = this.wheels[index].src;
+      this.$store.state.wheelsPrice = this.wheels[index].price;
 
       // axios
       //   .post(

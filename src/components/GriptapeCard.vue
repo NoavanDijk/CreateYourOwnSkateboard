@@ -82,7 +82,9 @@ export default {
       this.$store.state.gripTapeClicked = true;
       this.$store.state.showCheckGriptape = false;
 
-      this.$store.state.griptapeID = this.griptapes[index].id;
+      this.$store.state.griptapeName = this.griptapes[index].name;
+      this.$store.state.griptapeImage = this.griptapes[index].src;
+      this.$store.state.griptapePrice = this.griptapes[index].price;
 
       // axios
       //   .post(

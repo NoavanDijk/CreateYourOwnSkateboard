@@ -18,13 +18,13 @@ export const routes = [
     path: "/orderform",
     component: OrderForm,
     name: "OrderForm",
-    beforeEnter: (to, from, next) => {
-      if (store.getters.gripTapeClicked == true) {
-        next();
-      } else {
-        next({ name: "Home" });
-      }
-    },
+    // beforeEnter: (to, from, next) => {
+    //   if (store.getters.gripTapeClicked == true) {
+    //     next();
+    //   } else {
+    //     next({ name: "Home" });
+    //   }
+    // },
   },
   {
     path: "/personalinformation",

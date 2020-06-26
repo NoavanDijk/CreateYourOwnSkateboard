@@ -34,12 +34,26 @@ export const store = new Vuex.Store({
     goToFilledInPersonalInfo: false,
     goToThanksForOrder: false,
 
-    decksID: 0,
-    trucksID: 0,
-    bearingsID: 0,
-    boltsID: 0,
-    griptapeID: 0,
-    wheelsID: 0,
+    decksName: "",
+    trucksName: "",
+    bearingsName: "",
+    boltsName: "",
+    griptapeName: "",
+    wheelsName: "",
+
+    decksImage: "",
+    trucksImage: "",
+    bearingsImage: "",
+    boltsImage: "",
+    griptapeImage: "",
+    wheelsImage: "",
+
+    decksPrice: 0,
+    trucksPrice: 0,
+    bearingsPrice: 0,
+    boltsPrice: 0,
+    griptapePrice: 0,
+    wheelsPrice: 0,
 
     user: {
       loggedIn: false,
@@ -116,28 +130,76 @@ export const store = new Vuex.Store({
       return state.user;
     },
 
-    getDecksID: state => {
-      return state.decksID;
+    getDecksName: state => {
+      return state.decksName;
     },
 
-    getTrucksID: state => {
-      return state.trucksID;
+    getTrucksName: state => {
+      return state.trucksName;
     },
 
-    getBearingsID: state => {
-      return state.bearingsID;
+    getBearingsName: state => {
+      return state.bearingsName;
     },
 
-    getBoltsID: state => {
-      return state.boltsID;
+    getBoltsName: state => {
+      return state.boltsName;
     },
     
-    getGriptapeID: state => {
-      return state.griptapeID;
+    getGriptapeName: state => {
+      return state.griptapeName;
     },
 
-    getWheelsID: state => {
-      return state.wheelsID;
+    getWheelsName: state => {
+      return state.wheelsName;
+    },
+
+    getDecksImage: state => {
+      return state.decksImage;
+    },
+
+    getTrucksImage: state => {
+      return state.trucksImage;
+    },
+
+    getBearingsImage: state => {
+      return state.bearingsImage;
+    },
+
+    getBoltsImage: state => {
+      return state.boltsImage;
+    },
+    
+    getGriptapeImage: state => {
+      return state.griptapeImage;
+    },
+
+    getWheelsImage: state => {
+      return state.wheelsImage;
+    },
+
+    getDecksPrice: state => {
+      return state.decksPrice;
+    },
+
+    getTrucksPrice: state => {
+      return state.trucksPrice;
+    },
+
+    getBearingsPrice: state => {
+      return state.bearingsPrice;
+    },
+
+    getBoltsPrice: state => {
+      return state.boltsPrice;
+    },
+    
+    getGriptapePrice: state => {
+      return state.griptapePrice;
+    },
+
+    getWheelsPrice: state => {
+      return state.wheelsPrice;
     }
   },
 
@@ -214,28 +276,76 @@ export const store = new Vuex.Store({
       state.user.data = data;
     },
 
-    setDecksID: (state, payload) => {
-      state.setDecksID = payload;
+    setDecksName: (state, payload) => {
+      state.setDecksName = payload;
     },
 
-    setTrucksID: (state, payload) => {
-      state.setTrucksID = payload;
+    setTrucksName: (state, payload) => {
+      state.setTrucksName = payload;
     },
 
-    setBearingsID: (state, payload) => {
-      state.setBearingsID = payload;
+    setBearingsName: (state, payload) => {
+      state.setBearingsName = payload;
     },
 
-    setBoltsID: (state, payload) => {
-      state.setBoltsID = payload;
+    setBoltsName: (state, payload) => {
+      state.setBoltsName = payload;
     },
 
-    setGriptapeID: (state, payload) => {
-      state.setGriptapeID = payload;
+    setGriptapeName: (state, payload) => {
+      state.setGriptapeName = payload;
     },
 
-    setWheelsID: (state, payload) => {
-      state.setWheelsID = payload;
+    setWheelsName: (state, payload) => {
+      state.setWheelsName = payload;
+    },
+
+    setDecksImage: (state, payload) => {
+      state.setDecksImage = payload;
+    },
+
+    setTrucksImage: (state, payload) => {
+      state.setTrucksImage = payload;
+    },
+
+    setBearingsImage: (state, payload) => {
+      state.setBearingsImage = payload;
+    },
+
+    setBoltsImage: (state, payload) => {
+      state.setBoltsImage = payload;
+    },
+
+    setGriptapeImage: (state, payload) => {
+      state.setGriptapeImage = payload;
+    },
+
+    setWheelsImage: (state, payload) => {
+      state.setWheelsImage = payload;
+    },
+
+    setDecksPrice: (state, payload) => {
+      state.setDecksPrice = payload;
+    },
+
+    setTrucksPrice: (state, payload) => {
+      state.setTrucksPrice = payload;
+    },
+
+    setBearingsPrice: (state, payload) => {
+      state.setBearingsPrice = payload;
+    },
+
+    setBoltsPrice: (state, payload) => {
+      state.setBoltsPrice = payload;
+    },
+
+    setGriptapePrice: (state, payload) => {
+      state.setGriptapePrice = payload;
+    },
+
+    setWheelsPrice: (state, payload) => {
+      state.setWheelsPrice = payload;
     }
   },
 
@@ -316,28 +426,76 @@ export const store = new Vuex.Store({
       }
     },
 
-    updateDecksID({ commit }, payload) {
-      commit("updateDecksID", payload);
+    updateDecksName({ commit }, payload) {
+      commit("updateDecksName", payload);
     },
 
-    updateTrucksID({ commit }, payload) {
-      commit("updateTrucksID", payload);
+    updateTrucksName({ commit }, payload) {
+      commit("updateTrucksName", payload);
     },
 
-    updateBearingsID({ commit }, payload) {
-      commit("updateBearingsID", payload);
+    updateBearingsName({ commit }, payload) {
+      commit("updateBearingsName", payload);
     },
 
-    updateBoltsID({ commit }, payload) {
-      commit("updateBoltsID", payload);
+    updateBoltsName({ commit }, payload) {
+      commit("updateBoltsName", payload);
     },
 
-    updateGriptapeID({ commit }, payload) {
-      commit("updateGriptapeID", payload);
+    updateGriptapeName({ commit }, payload) {
+      commit("updateGriptapeName", payload);
     },
 
-    updateWheelsID({ commit }, payload) {
-      commit("updateWheelsID", payload);
+    updateWheelsName({ commit }, payload) {
+      commit("updateWheelsName", payload);
+    },
+
+    updateDecksImage({ commit }, payload) {
+      commit("updateDecksImage", payload);
+    },
+
+    updateTrucksImage({ commit }, payload) {
+      commit("updateTrucksImage", payload);
+    },
+
+    updateBearingsImage({ commit }, payload) {
+      commit("updateBearingsImage", payload);
+    },
+
+    updateBoltsImage({ commit }, payload) {
+      commit("updateBoltsImage", payload);
+    },
+
+    updateGriptapeImage({ commit }, payload) {
+      commit("updateGriptapeImage", payload);
+    },
+
+    updateWheelsImage({ commit }, payload) {
+      commit("updateWheelsImage", payload);
+    },
+
+    updateDecksPrice({ commit }, payload) {
+      commit("updateDecksPrice", payload);
+    },
+
+    updateTrucksPrice({ commit }, payload) {
+      commit("updateTrucksPrice", payload);
+    },
+
+    updateBearingsPrice({ commit }, payload) {
+      commit("updateBearingsPrice", payload);
+    },
+
+    updateBoltsPrice({ commit }, payload) {
+      commit("updateBoltsPrice", payload);
+    },
+
+    updateGriptapePrice({ commit }, payload) {
+      commit("updateGriptapePrice", payload);
+    },
+
+    updateWheelsPrice({ commit }, payload) {
+      commit("updateWheelsPrice", payload);
     }
   }
 });

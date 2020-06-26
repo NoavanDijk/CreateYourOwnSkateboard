@@ -11,22 +11,88 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <div
-                class="producten"
-                v-for="(result, index) in results"
-                v-bind:key="index"
-              >
+              <div class="producten">
                 <article class="media">
                   <figure class="media-left">
                     <p class="image is-128x128">
-                      <img :src="result.src" :alt="result.alt" />
+                      <img :src="decksImage"  />
                     </p>
                   </figure>
                   <div class="media-content">
                     <div class="field">
-                      <p>{{ result.name }}</p>
+                      <p>{{ decksName }}</p>
                       <br />
-                      <p>€ {{ result.price }}</p>
+                      <p>€ {{ decksPrice }}</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-128x128">
+                      <img :src="trucksImage"  />
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="field">
+                      <p>{{ trucksName }}</p>
+                      <br />
+                      <p>€ {{ trucksPrice }}</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-128x128">
+                      <img :src="wheelsImage"  />
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="field">
+                      <p>{{ wheelsName }}</p>
+                      <br />
+                      <p>€ {{ wheelsPrice }}</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-128x128">
+                      <img :src="bearingsImage"  />
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="field">
+                      <p>{{ bearingsName }}</p>
+                      <br />
+                      <p>€ {{ bearingsPrice }}</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-128x128">
+                      <img :src="boltsImage"  />
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="field">
+                      <p>{{ boltsName }}</p>
+                      <br />
+                      <p>€ {{ boltsPrice }}</p>
+                    </div>
+                  </div>
+                </article>
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-128x128">
+                      <img :src="griptapeImage"  />
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="field">
+                      <p>{{ griptapeName }}</p>
+                      <br />
+                      <p>€ {{ griptapePrice }}</p>
                     </div>
                   </div>
                 </article>
@@ -74,31 +140,56 @@ export default {
       finalChoices: [],
       totalprice: 0,
       activeModalId: "",
+      decksName: "",
+      decksImage: "",
+      decksPrice: "",
+      trucksName: "",
+      bearingsName: "",
+      boltsName: "",
+      griptapeName: "",
+      wheelsName: "",
+      trucksImage: "",
+      bearingsImage: "",
+      boltsImage: "",
+      griptapeImage: "",
+      wheelsImage: "",
+      trucksPrice: 0,
+      bearingsPrice: 0,
+      boltsPrice: 0,
+      griptapePrice: 0,
+      wheelsPrice: 0,
     };
   },
 
   methods: {
+    // createdMethod() {
+    //   axios
+    //     .get("https://createyourownskateboard.firebaseio.com/decks.json")
+    //     .then((response) => {
+    //       this.results = response.data;
+
+    //       var choices = [];
+    //       for (let key in this.results) {
+    //         this.results[key].id = key;
+    //         choices.push(this.results[key]);
+    //       }
+    //       this.finalChoices = choices;
+
+    //       var totalprices = [];
+    //       for (var i = 0; i < this.finalChoices.length; i++) {
+    //         totalprices.push(this.finalChoices[i].price);
+    //         // console.log(this.finalChoices[i].id2);
+    //       }
+
+    //       this.totalprice = totalprices.reduce((a, b) => a + b, 0);
+    //     })
+    //     .catch((error) => console.log(error));
+    // },
+
     createdMethod() {
-      axios
-        .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then((response) => {
-          this.results = response.data;
-
-          var choices = [];
-          for (let key in this.results) {
-            this.results[key].id = key;
-            choices.push(this.results[key]);
-          }
-          this.finalChoices = choices;
-
-          var totalprices = [];
-          for (var i = 0; i < this.finalChoices.length; i++) {
-            totalprices.push(this.finalChoices[i].price);
-          }
-
-          this.totalprice = totalprices.reduce((a, b) => a + b, 0);
-        })
-        .catch((error) => console.log(error));
+      var totalprices = [];
+      totalprices.push(this.decksPrice, this.trucksPrice, this.wheelsPrice, this.bearingsPrice, this.boltsPrice, this.griptapePrice);
+      this.totalprice = totalprices.reduce((a, b) => a + b, 0);
     },
 
     startover() {
@@ -124,22 +215,35 @@ export default {
       return;
     },
 
-    goToPersonalInformation(){
+    goToPersonalInformation() {
       this.$store.state.goToPersonalInformation = true;
       this.$store.state.gripTapeClicked = false;
 
       this.$router.replace({ name: "personalinformation" });
-    }
+    },
   },
 
   created() {
+    this.decksName = this.$store.getters.getDecksName;
+    this.trucksName = this.$store.getters.getTrucksName;
+    this.bearingsName = this.$store.getters.getBearingsName;
+    this.boltsName = this.$store.getters.getBoltsName;
+    this.griptapeName = this.$store.getters.getGriptapeName;
+    this.wheelsName = this.$store.getters.getWheelsName;
+    this.decksImage = this.$store.getters.getDecksImage;
+    this.trucksImage = this.$store.getters.getTrucksImage;
+    this.bearingsImage = this.$store.getters.getBearingsImage;
+    this.boltsImage = this.$store.getters.getBoltsImage;
+    this.griptapeImage = this.$store.getters.getGriptapeImage;
+    this.wheelsImage = this.$store.getters.getWheelsImage;
+    this.decksPrice = this.$store.getters.getDecksPrice;
+    this.trucksPrice = this.$store.getters.getTrucksPrice;
+    this.bearingsPrice = this.$store.getters.getBearingsPrice;
+    this.boltsPrice = this.$store.getters.getBoltsPrice;
+    this.griptapePrice = this.$store.getters.getGriptapePrice;
+    this.wheelsPrice = this.$store.getters.getWheelsPrice;
+
     this.createdMethod();
-    console.log(this.$store.getters.getDecksID);
-    console.log(this.$store.getters.getTrucksID);
-    console.log(this.$store.getters.getWheelsID);
-    console.log(this.$store.getters.getBearingsID);
-    console.log(this.$store.getters.getBoltsID);
-    console.log(this.$store.getters.getGriptapeID);
   },
 };
 </script>
@@ -207,7 +311,7 @@ hr {
   justify-content: space-between;
 }
 
-.button{
+.button {
   margin-bottom: 0.5em;
 }
 
@@ -216,7 +320,7 @@ hr {
     margin: 0;
   }
 
-  .field{
+  .field {
     margin: 0.5em 0.5em 0.5em 0;
   }
 }

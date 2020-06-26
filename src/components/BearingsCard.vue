@@ -82,7 +82,9 @@ export default {
 
       this.$store.state.showCheckBearings = false;
 
-      this.$store.state.bearingsID = this.bearings[index].id;
+      this.$store.state.bearingsName = this.bearings[index].name;
+      this.$store.state.bearingsImage = this.bearings[index].src;
+      this.$store.state.bearingsPrice = this.bearings[index].price;
 
       // axios
       //   .post(

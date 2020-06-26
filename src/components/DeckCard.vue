@@ -80,12 +80,14 @@ export default {
 
       this.$store.state.showCheckDeck = false;
 
-      this.$store.state.decksID = this.decks[index].id;
+      this.$store.state.decksName = this.decks[index].name;
+      this.$store.state.decksImage = this.decks[index].src;
+      this.$store.state.decksPrice = this.decks[index].price;
 
       // axios
       //   .post(
       //     "https://createyourownskateboard.firebaseio.com/decks.json",
-      //     this.decks[index]
+      //     this.deck4
       //   )
       //   .then(res => console.log(res))
       //   .catch(error => console.log(error));

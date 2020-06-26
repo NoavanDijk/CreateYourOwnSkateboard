@@ -84,12 +84,14 @@ export default {
 
       this.$store.state.showCheckTrucks = false;
 
-      this.$store.state.decksID = this.trucks[index].id;
+      this.$store.state.trucksName = this.trucks[index].name;
+      this.$store.state.trucksImage = this.trucks[index].src;
+      this.$store.state.trucksPrice = this.trucks[index].price;
 
       // axios
       //   .post(
-      //     "https://createyourownskateboard.firebaseio.com/decks.json",
-      //     this.trucks[index]
+      //     "https://createyourownskateboard.firebaseio.com/trucks.json",
+      //     this.trucks
       //   )
       //   .then((res) => console.log(res))
       //   .catch((error) => console.log(error));

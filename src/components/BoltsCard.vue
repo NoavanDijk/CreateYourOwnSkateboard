@@ -74,7 +74,9 @@ export default {
 
       this.$store.state.showCheckBolts = false;
 
-      this.$store.state.boltsID = this.bolts[index].id;
+      this.$store.state.boltsName = this.bolts[index].name;
+      this.$store.state.boltsImage = this.bolts[index].src;
+      this.$store.state.boltsPrice = this.bolts[index].price;
       
       // axios
       //   .post(
