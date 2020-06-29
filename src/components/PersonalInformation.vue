@@ -239,7 +239,8 @@ export default {
       currentUser: "",
       currentDate: "",
       totalPrices: 0,
-      order: []
+      order: [],
+      orderItems: [],
     };
   },
 
@@ -304,7 +305,12 @@ export default {
     this.order.push(this.currentUser);
     this.order.push(this.currentDate);
     this.order.push(this.totalPrices);
-    // console.log(this.order);
+    console.log(this.$store.getters.getDecksName);
+    this.orderItems.push(this.$store.getters.getDecksName);
+    this.orderItems.push(this.$store.getters.getTrucksName);
+    console.log(this.orderItems);
+    this.order.push(this.orderItems);
+    console.log(this.order);
     axios
         .post(
           "https://createyourownskateboard.firebaseio.com/orders.json",

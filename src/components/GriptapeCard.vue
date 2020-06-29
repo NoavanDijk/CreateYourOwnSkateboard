@@ -24,8 +24,8 @@
             <router-link to="/orderform">
               <button class="addbutton" @click="changeShowDecks(index)">
                 <p class="card-footer-item">
-                Voeg toe aan <pre><i class="fas fa-shopping-cart"></i></pre>
-              </p>
+                  Selecteer <i class="fas fa-check checkmark"></i>
+                </p>
               </button>
             </router-link>
           </footer>
@@ -93,8 +93,8 @@ export default {
       //   )
       //   .then((res) => console.log(res))
       //   .catch((error) => console.log(error));
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -143,14 +143,12 @@ a {
   text-align: center;
 }
 
-pre{
-  background-color: white;
-  padding: 0 1em 0 1em;
-  color: black;
+.card-footer-item {
+  font-size: 15px;
 }
 
-.card-footer-item{
-  font-size: 15px;
+.checkmark {
+  margin-left: 0.7em;
 }
 
 @media (min-width: 320px) and (max-width: 635px) {
@@ -159,7 +157,7 @@ pre{
     column-count: 1;
   }
 
-  .columns{
+  .columns {
     margin: -0.75rem -0.75rem 0 0;
   }
 }

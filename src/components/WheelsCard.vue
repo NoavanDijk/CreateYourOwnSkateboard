@@ -17,7 +17,7 @@
             <p class="card-footer-item"></p>
             <button class="addbutton" @click="changeShowDecks(index)">
               <p class="card-footer-item">
-                Voeg toe aan <pre><i class="fas fa-shopping-cart"></i></pre>
+                Selecteer <i class="fas fa-check checkmark"></i>
               </p>
             </button>
           </footer>
@@ -138,10 +138,8 @@ export default {
   cursor: pointer;
 }
 
-pre{
-  background-color: white;
-  padding: 0 1em 0 1em;
-  color: black;
+.checkmark {
+  margin-left: 0.7em;
 }
 
 @media (min-width: 320px) and (max-width: 635px) {
