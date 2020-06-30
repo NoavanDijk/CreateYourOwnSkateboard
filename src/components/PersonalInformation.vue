@@ -217,6 +217,7 @@ import Navbar from "@/auth/Navbar.vue";
 import { mapGetters } from "vuex";
 import firebase from "firebase";
 import axios from "axios";
+import moment from "moment";
 
 export default {
   components: {
@@ -240,7 +241,9 @@ export default {
       currentDate: "",
       totalPrices: 0,
       order: [],
-      orderItems: [],
+      orderItemsNames: [],
+      orderItemsPrice: [],
+      convertedDate: "",
     };
   },
 
@@ -298,19 +301,33 @@ export default {
     // sla de currentuserUID, de huidige datum en de totale prijs op in de database.
     this.currentUser = firebase.auth().currentUser.uid;
     this.currentDate = Math.round((Date.now()) / 1000);
+    this.convertedDate = moment.unix(this.currentDate).format("DD/MM/YYYY");
+    console.log(this.convertedDate);
     this.totalPrices = this.$store.getters.getTotalPrice;
     // console.log(this.totalPrices);
     // console.log(this.currentDate);
     // console.log(this.currentUser);
     this.order.push(this.currentUser);
-    this.order.push(this.currentDate);
+    this.order.push(this.convertedDate);
     this.order.push(this.totalPrices);
-    console.log(this.$store.getters.getDecksName);
-    this.orderItems.push(this.$store.getters.getDecksName);
-    this.orderItems.push(this.$store.getters.getTrucksName);
-    console.log(this.orderItems);
-    this.order.push(this.orderItems);
-    console.log(this.order);
+    
+    this.orderItemsNames.push(this.$store.getters.getDecksName);
+    this.orderItemsNames.push(this.$store.getters.getTrucksName);
+    this.orderItemsNames.push(this.$store.getters.getWheelsName);
+    this.orderItemsNames.push(this.$store.getters.getBearingsName);
+    this.orderItemsNames.push(this.$store.getters.getBoltsName);
+    this.orderItemsNames.push(this.$store.getters.getGriptapeName);
+
+    this.orderItemsPrice.push(this.$store.getters.getDecksPrice);
+    this.orderItemsPrice.push(this.$store.getters.getTrucksPrice);
+    this.orderItemsPrice.push(this.$store.getters.getWheelsPrice);
+    this.orderItemsPrice.push(this.$store.getters.getBearingsPrice);
+    this.orderItemsPrice.push(this.$store.getters.getBoltsPrice);
+    this.orderItemsPrice.push(this.$store.getters.getGriptapePrice);
+
+    this.order.push(this.orderItemsNames);
+    this.order.push(this.orderItemsPrice);
+
     axios
         .post(
           "https://createyourownskateboard.firebaseio.com/orders.json",

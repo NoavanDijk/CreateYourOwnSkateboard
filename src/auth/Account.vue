@@ -15,29 +15,36 @@
             <p>E-mail: {{ user.data.email }}</p>
 
             <h1 class="titleOrders"><b>Overzicht bestellingen</b></h1>
-            <table class="table is-bordered is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Datum</th>
-                  <th>Bedrag</th>
-                </tr>
-              </thead>
-              <tfoot></tfoot>
-              <tbody>
-                <tr>
-                  <td>
-                    <div v-for="(date, index) in dates" :key="index" @click="openOrder(index)">
-                      <p>{{ date }}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div v-for="totalPrice in totalPrices" :key="totalPrice">
-                      <p>{{ totalPrice }}</p>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+
+            <div
+              v-for="(sameID, i) in sameIDs"
+              :key="i"
+              v-on:click="toggleDiv(i)"
+            >
+              Datum: {{ sameIDs[i][1] }} Prijs: {{ sameIDs[i][2] }}
+              <div v-show="showOrder[i]">
+                <div>
+                  Deck: {{ sameIDs[i][3][0] }} Prijs: {{ sameIDs[i][4][0] }}
+                </div>
+                <div>
+                  Trucks: {{ sameIDs[i][3][1] }} Prijs: {{ sameIDs[i][4][1] }}
+                </div>
+                <div>
+                  Wielen: {{ sameIDs[i][3][2] }} Prijs: {{ sameIDs[i][4][2] }}
+                </div>
+                <div>
+                  Bearings: {{ sameIDs[i][3][3] }} Prijs: {{ sameIDs[i][4][3] }}
+                </div>
+                <div>
+                  Bolts: {{ sameIDs[i][3][4] }} Prijs: {{ sameIDs[i][4][4] }}
+                </div>
+                <div>
+                  Griptape: {{ sameIDs[i][3][5] }} Prijs: {{ sameIDs[i][4][5] }}
+                </div>
+                <button v-on:click="closeOrder(i)">Sluit bestelling</button>
+                <br />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -63,6 +70,8 @@ export default {
       sameIDs: [],
       dates: [],
       totalPrices: [],
+      display_div: false,
+      showOrder: [],
     };
   },
 
@@ -100,6 +109,8 @@ export default {
             if (this.finalChoices[i][0] == firebase.auth().currentUser.uid) {
               this.sameIDs.push(this.finalChoices[i]);
               console.log(this.sameIDs);
+              this.showOrder.push(false);
+              console.log(this.showOrder);
             }
           }
 
@@ -115,9 +126,20 @@ export default {
         .catch((error) => console.log(error));
     },
 
-    openOrder(index) {
-      console.log(index);
-    }
+    toggleDiv(i) {
+      this.showOrder.splice(i, 1, true);
+    },
+
+    closeOrder(i) {
+      console.log(i);
+      this.showOrder.splice(i, 1, false);
+      console.log(this.showOrder);
+    },
+
+    // formatDateToString: function(dates) {
+    //   var formattedDate = moment.unix(dates.format("MM/DD/YYYY"));
+    //   return formattedDate;
+    // },
   },
 };
 </script>
@@ -128,7 +150,8 @@ export default {
   padding: 0;
 }
 
-.titleOrders, th{
+.titleOrders,
+th {
   color: black;
 }
 </style>
