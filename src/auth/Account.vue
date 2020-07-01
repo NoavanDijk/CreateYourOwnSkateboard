@@ -13,7 +13,8 @@
           <div class="card-content">
             <p>Naam: {{ user.data.displayName }}</p>
             <p>E-mail: {{ user.data.email }}</p>
-
+            <br />
+            
             <h1 class="titleOrders"><b>Overzicht bestellingen</b></h1>
 
             <div
@@ -41,7 +42,6 @@
                 <div>
                   Griptape: {{ sameIDs[i][3][5] }} Prijs: {{ sameIDs[i][4][5] }}
                 </div>
-                <button v-on:click="closeOrder(i)">Sluit bestelling</button>
                 <br />
               </div>
             </div>
@@ -130,15 +130,10 @@ export default {
       this.showOrder.splice(i, 1, true);
     },
 
-    closeOrder(i) {
-      console.log(i);
-      this.showOrder.splice(i, 1, false);
-      console.log(this.showOrder);
-    },
-
-    // formatDateToString: function(dates) {
-    //   var formattedDate = moment.unix(dates.format("MM/DD/YYYY"));
-    //   return formattedDate;
+    // closeOrder(i) {
+    //   console.log(i);
+    //   this.showOrder.splice(i, 1, false);
+    //   console.log(this.showOrder);
     // },
   },
 };
