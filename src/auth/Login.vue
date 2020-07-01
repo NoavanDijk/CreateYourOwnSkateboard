@@ -11,7 +11,9 @@
           <div v-if="error" class="alert alert-danger error">{{ error }}</div>
           <form action="#" @submit.prevent="submit">
             <div class="form-group row">
-              <label for="email" class="col-md-4 col-form-label text-md-right emailname"
+              <label
+                for="email"
+                class="col-md-4 col-form-label text-md-right emailname"
                 >Email</label
               >
 
@@ -50,12 +52,13 @@
 
             <footer class="card-footer">
               <a class="card-footer-item register">
-                  <router-link to="register" class="registerhere">Ik heb nog geen account. Registreer 
-                  <u>hier</u></router-link>
-                </a>
+                <router-link to="register" class="registerhere"
+                  >Ik heb nog geen account. Registreer <u>hier</u></router-link
+                >
+              </a>
               <a class="card-footer-item loginbutton">
                 <button type="submit" class="button addbutton">Login</button>
-                </a>
+              </a>
             </footer>
           </form>
         </div>
@@ -72,10 +75,15 @@
         <div class="content">
           <p>Ga door met bestellen zonder account</p>
         </div>
-      </div><br /><br /><br /><br />
-      <footer class="card-footer">
+      </div>
+      <br /><br /><br /><br />
+      <footer class="card-footer footerNoAccount">
         <a class="card-footer-item"></a>
-        <a href="#" class="card-footer-item next">Ga verder</a>
+        <a class="card-footer-item loginbutton">
+          <router-link to="personalinformation" class="registerhere">
+            Ga verder
+          </router-link>
+        </a>
       </footer>
     </div>
   </div>
@@ -103,8 +111,7 @@ export default {
           this.$router.replace({ name: "personalinformation" });
         })
         .catch((err) => {
-          this.error =
-            "Dit wachtwoord klopt niet of het email bestaat niet";
+          this.error = "Dit wachtwoord klopt niet of het email bestaat niet";
         });
     },
   },
@@ -167,11 +174,13 @@ export default {
   padding: 1rem 0rem 0 0rem;
 }
 
-.emailname, .passwordname {
+.emailname,
+.passwordname {
   margin: 0 1.5rem;
 }
 
-.email, .password {
+.email,
+.password {
   margin: 0 1.5rem;
 }
 
@@ -185,5 +194,9 @@ export default {
 .loginbutton {
   padding: 0.2rem 0;
   margin: 0;
+}
+
+.footerNoAccount {
+  height: 100%;
 }
 </style>

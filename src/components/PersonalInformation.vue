@@ -298,19 +298,31 @@ export default {
   },
 
   created() {
-    // sla de currentuserUID, de huidige datum en de totale prijs op in de database.
-    this.currentUser = firebase.auth().currentUser.uid;
-    this.currentDate = Math.round((Date.now()) / 1000);
-    this.convertedDate = moment.unix(this.currentDate).format("DD/MM/YYYY");
-    console.log(this.convertedDate);
-    this.totalPrices = this.$store.getters.getTotalPrice;
-    // console.log(this.totalPrices);
-    // console.log(this.currentDate);
-    // console.log(this.currentUser);
-    this.order.push(this.currentUser);
-    this.order.push(this.convertedDate);
-    this.order.push(this.totalPrices);
-    
+    if (this.user.loggedIn) {
+      this.firstname = this.user.data.displayName;
+      this.email = this.user.data.email;
+
+      this.currentUser = firebase.auth().currentUser.uid;
+      this.currentDate = Math.round(Date.now() / 1000);
+      this.convertedDate = moment.unix(this.currentDate).format("DD/MM/YYYY");
+      // console.log(this.convertedDate);
+      this.totalPrices = this.$store.getters.getTotalPrice;
+      // console.log(this.totalPrices);
+      // console.log(this.currentDate);
+      // console.log(this.currentUser);
+      this.order.push(this.currentUser);
+      this.order.push(this.convertedDate);
+      this.order.push(this.totalPrices);
+
+      axios
+        .post(
+          "https://createyourownskateboard.firebaseio.com/orders.json",
+          this.order
+        )
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
+    }
+
     this.orderItemsNames.push(this.$store.getters.getDecksName);
     this.orderItemsNames.push(this.$store.getters.getTrucksName);
     this.orderItemsNames.push(this.$store.getters.getWheelsName);
@@ -327,21 +339,6 @@ export default {
 
     this.order.push(this.orderItemsNames);
     this.order.push(this.orderItemsPrice);
-
-    axios
-        .post(
-          "https://createyourownskateboard.firebaseio.com/orders.json",
-          this.order
-        )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
-    if (firebase.auth().currentUser !== null) 
-        // console.log(firebase.auth().currentUser.uid);
-    if (this.user.loggedIn) {
-      this.firstname = this.user.data.displayName;
-      this.email = this.user.data.email;
-      // console.log(this.user.data.displayName);
-    }
   },
 
   methods: {
@@ -392,7 +389,8 @@ a {
   color: white;
 }
 
-.button[disabled], fieldset[disabled] .button{
+.button[disabled],
+fieldset[disabled] .button {
   background-color: #218838;
   border-color: #1e7e34;
 }

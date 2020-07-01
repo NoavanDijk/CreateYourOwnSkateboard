@@ -14,33 +14,88 @@
             <p>Naam: {{ user.data.displayName }}</p>
             <p>E-mail: {{ user.data.email }}</p>
             <br />
-            
+
             <h1 class="titleOrders"><b>Overzicht bestellingen</b></h1>
+            <div class="titledateandprice">
+              <h1>Datum:</h1>
+              <h1>Totaal bedrag:</h1>
+            </div>
 
             <div
               v-for="(sameID, i) in sameIDs"
               :key="i"
               v-on:click="toggleDiv(i)"
             >
-              Datum: {{ sameIDs[i][1] }} Prijs: {{ sameIDs[i][2] }}
+              <div class="dateandprice">
+                <h1>{{ sameIDs[i][1] }}</h1>
+                <h1>€ {{ sameIDs[i][2] }}</h1>
+              </div>
+              <br />
+
               <div v-show="showOrder[i]">
-                <div>
-                  Deck: {{ sameIDs[i][3][0] }} Prijs: {{ sameIDs[i][4][0] }}
+                <div class="items">
+                  <div>
+                    <h2><u>Deck:</u></h2>
+                    <p>{{ sameIDs[i][3][0] }}</p>
+                  </div>
+                  <div>
+                    <h2><u>Prijs:</u></h2>
+                    <p>€ {{ sameIDs[i][4][0] }}</p>
+                  </div>  
                 </div>
-                <div>
-                  Trucks: {{ sameIDs[i][3][1] }} Prijs: {{ sameIDs[i][4][1] }}
+
+                <div class="items">
+                  <div>
+                    <h2><u>Trucks:</u></h2>
+                    <p>{{ sameIDs[i][3][1] }}</p>
+                  </div>
+                  <div>
+                    <h2><u>Prijs:</u></h2>
+                    <p>€ {{ sameIDs[i][4][1] }}</p>
+                  </div>  
                 </div>
-                <div>
-                  Wielen: {{ sameIDs[i][3][2] }} Prijs: {{ sameIDs[i][4][2] }}
+
+                <div class="items">
+                  <div>
+                    <h2><u>Wielen:</u></h2>
+                    <p>{{ sameIDs[i][3][2] }}</p>
+                  </div>
+                  <div>
+                    <h2><u>Prijs:</u></h2>
+                    <p>€ {{ sameIDs[i][4][2] }}</p>
+                  </div>  
                 </div>
-                <div>
-                  Bearings: {{ sameIDs[i][3][3] }} Prijs: {{ sameIDs[i][4][3] }}
+
+                <div class="items">
+                  <div>
+                    <h2><u>Bearings:</u></h2>
+                    <p>{{ sameIDs[i][3][3] }}</p>
+                  </div>
+                  <div>
+                    <h2><u>Prijs:</u></h2>
+                    <p>€ {{ sameIDs[i][4][3] }}</p>
+                  </div>  
                 </div>
-                <div>
-                  Bolts: {{ sameIDs[i][3][4] }} Prijs: {{ sameIDs[i][4][4] }}
+
+                <div class="items">
+                  <div>
+                    <h2><u>Bolts:</u></h2>
+                    <p>{{ sameIDs[i][3][4] }}</p>
+                  </div>
+                  <div>
+                    <h2><u>Prijs:</u></h2>
+                    <p>€ {{ sameIDs[i][4][4] }}</p>
+                  </div>  
                 </div>
-                <div>
-                  Griptape: {{ sameIDs[i][3][5] }} Prijs: {{ sameIDs[i][4][5] }}
+                <div class="items">
+                  <div>
+                    <h2><u>Griptape:</u></h2>
+                    <p>{{ sameIDs[i][3][5] }}</p>
+                  </div>
+                  <div>
+                    <h2><u>Prijs:</u></h2>
+                    <p>€ {{ sameIDs[i][4][5] }}</p>
+                  </div>  
                 </div>
                 <br />
               </div>
@@ -115,8 +170,9 @@ export default {
           }
 
           for (var j = 0; j < this.sameIDs.length; j++) {
-            console.log(this.sameIDs[j][3]);
-            console.log(this.sameIDs[j].id);
+            // console.log(this.sameIDs[j][1]);
+            console.log(this.dateAndPrices);
+            // console.log(this.sameIDs[j].id);
             this.dates.push(
               moment.unix(this.sameIDs[j][1]).format("MM/DD/YYYY")
             );
@@ -148,5 +204,36 @@ export default {
 .titleOrders,
 th {
   color: black;
+}
+
+.dateandprice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.titledateandprice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5rem 1rem 0.5rem 0;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 1rem 0.3rem 0;
+}
+
+.dateandprice {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.columns {
+  height: 93.5vh;
 }
 </style>

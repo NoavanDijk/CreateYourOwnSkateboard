@@ -43,7 +43,7 @@
         <template v-else>
           <div class="buttons">
             <div class="navbar-item">
-              <router-link to="/loginnav" class="nav-link"
+              <router-link to="/login" class="nav-link"
                 ><button class="button">
                   Inloggen
                 </button></router-link
@@ -79,9 +79,6 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace({
-            name: "Home",
-          });
         });
     },
   },
