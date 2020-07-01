@@ -379,6 +379,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
 .next2 {
@@ -389,6 +390,11 @@ a {
   background-color: #218838;
   border-color: #1e7e34;
   color: white;
+}
+
+.button[disabled], fieldset[disabled] .button{
+  background-color: #218838;
+  border-color: #1e7e34;
 }
 
 .input2:focus {

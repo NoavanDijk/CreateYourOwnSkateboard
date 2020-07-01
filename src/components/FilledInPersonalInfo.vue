@@ -16,7 +16,7 @@
             </p>
             <p>U wilt het volgende bestellen:</p>
             <ul v-for="(result, index) in results" v-bind:key="index">
-              <li>{{ result.name }}</li>
+              <li>{{ result }}</li>
             </ul>
             <br />
             <p>U heeft de volgende gegevens ingevuld:</p>
@@ -58,6 +58,13 @@ export default {
     return {
       results: [],
       finalChoices: [],
+      decksName: "",
+      decksPrice: "",
+      trucksName: "",
+      bearingsName: "",
+      boltsName: "",
+      griptapeName: "",
+      wheelsName: "",
     };
   },
 
@@ -77,20 +84,26 @@ export default {
 
   methods: {
     createdMethod() {
-      axios
-        .get("https://createyourownskateboard.firebaseio.com/decks.json")
-        .then((response) => {
-          console.log(response);
-          this.results = response.data;
+      this.results.push(this.decksName);
+      this.results.push(this.trucksName);
+      this.results.push(this.bearingsName);
+      this.results.push(this.boltsName);
+      this.results.push(this.griptapeName);
+      this.results.push(this.wheelsName);
+      // axios
+      //   .get("https://createyourownskateboard.firebaseio.com/decks.json")
+      //   .then((response) => {
+      //     console.log(response);
+      //     this.results = response.data;
 
-          var choices = [];
-          for (let key in this.results) {
-            this.results[key].id = key;
-            choices.push(this.results[key]);
-          }
-          this.finalChoices = choices;
-        })
-        .catch((error) => console.log(error));
+      //     var choices = [];
+      //     for (let key in this.results) {
+      //       this.results[key].id = key;
+      //       choices.push(this.results[key]);
+      //     }
+      //     this.finalChoices = choices;
+      //   })
+      //   .catch((error) => console.log(error));
     },
 
     goToThanksForOrder() {
@@ -99,7 +112,14 @@ export default {
   },
 
   created() {
+    this.decksName = this.$store.getters.getDecksName;
+    this.trucksName = this.$store.getters.getTrucksName;
+    this.bearingsName = this.$store.getters.getBearingsName;
+    this.boltsName = this.$store.getters.getBoltsName;
+    this.griptapeName = this.$store.getters.getGriptapeName;
+    this.wheelsName = this.$store.getters.getWheelsName;
     this.createdMethod();
+    console.log(this.results);
   },
 };
 </script>
