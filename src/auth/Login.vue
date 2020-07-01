@@ -50,8 +50,8 @@
 
             <footer class="card-footer">
               <a class="card-footer-item register">
-                  <router-link to="register">Ik heb nog geen account. Registreer 
-                  hier</router-link>
+                  <router-link to="register" class="registerhere">Ik heb nog geen account. Registreer 
+                  <u>hier</u></router-link>
                 </a>
               <a class="card-footer-item loginbutton">
                 <button type="submit" class="button addbutton">Login</button>
@@ -65,7 +65,7 @@
     <div class="card card2">
       <header class="card-header">
         <p class="card-header-title">
-          Component
+          Geen account?
         </p>
       </header>
       <div class="card-content">
@@ -135,6 +135,13 @@ export default {
   font-size: 0.9rem;
   margin: 0;
   padding: 0;
+  color: black;
+  outline: black;
+}
+
+.registerhere {
+  color: black;
+  outline: black;
 }
 
 .input {
