@@ -11,7 +11,7 @@
       </section>
       <footer class="modal-card-foot footerdeletewarning">
         <button class="button is-text" v-on:click="onClickCloseModal">Cancel</button>
-        <button class="button deletebutton" v-on:click="startover">Delete</button>
+        <button class="button deletebutton" v-on:click="startover">Begin opnieuw</button>
       </footer>
     </div>
   </div>

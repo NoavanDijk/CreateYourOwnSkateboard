@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg">
     <app-nav-bar></app-nav-bar>
     <div class="columns">
       <div class="column"></div>
@@ -11,8 +11,49 @@
             </p>
           </header>
           <div class="card-content">
-            <p>Naam: {{ user.data.displayName }}</p>
-            <p>E-mail: {{ user.data.email }}</p>
+            <div class="field">
+              <label class="label">Naam</label>
+              <div
+                class="control input2"
+                :class="{ invalid: $v.firstname.$error }"
+              >
+                <p class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Voornaam"
+                    v-model="firstname"
+                    @input="$v.firstname.$touch()"
+                  />
+                </p>
+              </div>
+              <p class="validemailerror" v-if="!$v.firstname.minLength">
+                Voornaam moet tenminste 2 letters bevatten
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="label">E-mailadres</label>
+              <div class="control input2" :class="{ invalid: $v.email.$error }">
+                <input
+                  class="input"
+                  type="email"
+                  placeholder="test@gmail.com"
+                  @input="$v.email.$touch()"
+                  v-model="email"
+                />
+                <p class="validemailerror" v-if="!$v.email.email">
+                  Vul aub een valide emailadres in
+                </p>
+              </div>
+            </div>
+            <button
+              class="button next"
+              :disabled="$v.$invalid"
+              @click="saveNewEmail"
+            >
+              Opslaan
+            </button>
             <br />
 
             <h1 class="titleOrders"><b>Overzicht bestellingen</b></h1>
@@ -41,7 +82,7 @@
                   <div>
                     <h2><u>Prijs:</u></h2>
                     <p>€ {{ sameIDs[i][4][0] }}</p>
-                  </div>  
+                  </div>
                 </div>
 
                 <div class="items">
@@ -52,7 +93,7 @@
                   <div>
                     <h2><u>Prijs:</u></h2>
                     <p>€ {{ sameIDs[i][4][1] }}</p>
-                  </div>  
+                  </div>
                 </div>
 
                 <div class="items">
@@ -63,7 +104,7 @@
                   <div>
                     <h2><u>Prijs:</u></h2>
                     <p>€ {{ sameIDs[i][4][2] }}</p>
-                  </div>  
+                  </div>
                 </div>
 
                 <div class="items">
@@ -74,7 +115,7 @@
                   <div>
                     <h2><u>Prijs:</u></h2>
                     <p>€ {{ sameIDs[i][4][3] }}</p>
-                  </div>  
+                  </div>
                 </div>
 
                 <div class="items">
@@ -85,7 +126,7 @@
                   <div>
                     <h2><u>Prijs:</u></h2>
                     <p>€ {{ sameIDs[i][4][4] }}</p>
-                  </div>  
+                  </div>
                 </div>
                 <div class="items">
                   <div>
@@ -95,7 +136,7 @@
                   <div>
                     <h2><u>Prijs:</u></h2>
                     <p>€ {{ sameIDs[i][4][5] }}</p>
-                  </div>  
+                  </div>
                 </div>
                 <br />
               </div>
@@ -114,6 +155,7 @@ import firebase from "firebase";
 import axios from "axios";
 import moment from "moment";
 import Navbar from "@/auth/Navbar.vue";
+import { required, email, minLength } from "vuelidate/lib/validators";
 
 export default {
   data() {
@@ -127,11 +169,25 @@ export default {
       totalPrices: [],
       display_div: false,
       showOrder: [],
+      email: "",
+      firstname: "",
     };
   },
 
   components: {
     appNavBar: Navbar,
+  },
+
+  validations: {
+    firstname: {
+      required,
+      minLength: minLength(2),
+    },
+
+    email: {
+      required,
+      email,
+    },
   },
 
   computed: {
@@ -146,6 +202,10 @@ export default {
 
   methods: {
     createdMethod() {
+      if (this.user.loggedIn) {
+        this.email = this.user.data.email;
+        this.firstname = this.user.data.displayName;
+      }
       axios
         .get("https://createyourownskateboard.firebaseio.com/orders.json")
         .then((response) => {
@@ -186,6 +246,28 @@ export default {
       this.showOrder.splice(i, 1, true);
     },
 
+    saveNewEmail() {
+      var user = firebase.auth().currentUser;
+
+      user
+        .updateEmail(this.email)
+        .then(function() {
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+      user
+        .updateProfile({ displayName: this.firstname })
+        .then(function() {
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      
+      window.alert("Gegevens zijn opgeslagen");
+    },
+
     // closeOrder(i) {
     //   console.log(i);
     //   this.showOrder.splice(i, 1, false);
@@ -196,6 +278,11 @@ export default {
 </script>
 
 <style scoped>
+.bg {
+  background-color: #f4f4f4;
+  height: 100%;
+}
+
 .card {
   margin: 2em 0 1.3em 0;
   padding: 0;
@@ -233,7 +320,25 @@ th {
   cursor: pointer;
 }
 
-.columns {
-  height: 93.5vh;
+.next, .next:focus {
+  width: 100%;
+  border: 0;
+  background-color: #28a745;
+  cursor: pointer;
+  height: 56px;
+  color: white;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  outline: none;
+}
+
+.next:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  color: white;
 }
 </style>

@@ -21,9 +21,11 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
         <div class="buttons">
-          <div class="navbar-item">
-            <!-- <router-link to="/" class="navbar-brand home"><button class="button">Home</button></router-link> -->
-          </div>
+          <router-link to="/" class="navbar-brand">
+            <div class="navbar-item name">
+              Home
+            </div>
+          </router-link>
         </div>
       </div>
 
@@ -31,7 +33,7 @@
         <template v-if="user.loggedIn">
           <div class="buttons">
             <router-link to="account">
-              <div class="navbar-item name">{{ user.data.displayName }}</div>
+              <div class="navbar-item name">Mijn account</div>
             </router-link>
             <div class="navbar-item">
               <a class="nav-link" @click.prevent="signOut">
@@ -78,15 +80,14 @@ export default {
       firebase
         .auth()
         .signOut()
-        .then(() => {
-        });
+        .then(() => {});
     },
   },
 };
 </script>
 
 <style scoped>
-.name{
+.name {
   margin-bottom: 0.5em;
 }
 </style>
