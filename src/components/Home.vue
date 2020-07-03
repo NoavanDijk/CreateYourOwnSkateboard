@@ -119,24 +119,12 @@ export default {
 }
 
 @media (min-width: 320px) and (max-width: 635px) {
-  /* .home {
-    background-image: linear-gradient(orange, black);
-    height: 100vh;
-  }
-
-  .homepageimage {
-    opacity: 0;
-  }
-
-  .creatediv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
   .homepagetext {
-    font-size: 1.5em;
-  } */
+  text-align: center;
+  padding: 0.4em;
+  font-size: 1.8em;
+  color: white;
+  opacity: 1;
+}
 }
 </style>

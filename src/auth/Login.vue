@@ -80,7 +80,7 @@
       <footer class="card-footer footerNoAccount">
         <a class="card-footer-item"></a>
         <a class="card-footer-item loginbutton">
-          <router-link to="personalinformation" class="registerhere">
+          <router-link to="personalinformation" class="registerhere2">
             Ga verder
           </router-link>
         </a>
@@ -146,7 +146,7 @@ export default {
   outline: black;
 }
 
-.registerhere {
+.registerhere, .registerhere2 {
   color: black;
   outline: black;
 }
@@ -198,5 +198,29 @@ export default {
 
 .footerNoAccount {
   height: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 635px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 1rem;
+    padding: 0;
+  }
+
+  .registerhere {
+    color: black;
+    outline: black;
+    padding: 0.5rem;
+  }
 }
 </style>

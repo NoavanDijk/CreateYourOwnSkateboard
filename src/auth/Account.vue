@@ -341,4 +341,22 @@ th {
   border-color: #1e7e34;
   color: white;
 }
+
+@media (min-width: 320px) and (max-width: 635px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 1rem;
+    padding: 0;
+  }
+}
 </style>
